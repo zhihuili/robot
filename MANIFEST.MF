@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: context.Demo
+Class-Path: ./ ./lib/IKAnalyzer3.2.3Stable.jar ./lib/lucene-analyzers-3.5.0.jar ./lib/lucene-core-3.6.0.jar ./lib/bsh.jar
+
