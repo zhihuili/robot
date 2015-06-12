@@ -5,11 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import com.customexception.AppException;
 import com.nana.robot.chatterbean.parser.AliceBotParser;
 import com.nana.robot.chatterbean.parser.AliceBotParserConfigurationException;
 import com.nana.robot.chatterbean.parser.AliceBotParserException;
 import com.nana.robot.chatterbean.util.Searcher;
+import com.nana.robot.customexception.AppException;
 
 public class AliceBotMother {
 	/*

@@ -1,4 +1,4 @@
-package com.customexception;
+package com.nana.robot.customexception;
 
 public class AppException extends RuntimeException {
 	/**

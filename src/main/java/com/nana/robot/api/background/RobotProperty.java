@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.customexception.AppException;
+import com.nana.robot.customexception.AppException;
 
 public class RobotProperty {
 	private final File PROPERTYFILE = new File("./robot.properties");

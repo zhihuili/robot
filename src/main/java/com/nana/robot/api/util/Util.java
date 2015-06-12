@@ -12,7 +12,7 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
-import com.customexception.AppException;
+import com.nana.robot.customexception.AppException;
 
 public class Util {
 	// 分词器

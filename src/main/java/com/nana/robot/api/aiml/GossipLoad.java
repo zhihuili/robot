@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
-import com.customexception.AppException;
+import com.nana.robot.customexception.AppException;
 
 public class GossipLoad {
 	private String gossipPath = "./gossip.txt";// 数据源文件

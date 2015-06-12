@@ -17,7 +17,6 @@ package com.nana.robot.chatterbean.script;
 /**
  * Interpreter for Beanshell scripts.
  */
-// Interpreter是接口吗？？？？
 public class BeanshellInterpreter implements Interpreter {
 	/*
 	 * Attribute Section
