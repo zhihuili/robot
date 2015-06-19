@@ -36,6 +36,12 @@ public class RobotConsumerListener implements ConsumerListener {
 		sendToApp(output, reqMessage);
 	}
 
+	/**
+	 * 发送robot结果到消息队列，等待webapi将其推送给App
+	 * 
+	 * @param responseStr
+	 * @param reqMessage
+	 */
 	private void sendToApp(String responseStr, RequestMessage reqMessage) {
 		ResponseMessage resMessage = new ResponseMessage();
 		resMessage.setDisplayText(responseStr);
