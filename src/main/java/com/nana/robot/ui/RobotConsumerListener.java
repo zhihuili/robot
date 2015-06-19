@@ -24,6 +24,7 @@ public class RobotConsumerListener implements ConsumerListener {
 		String tmp = Translate.translateString(input);
 		String output = chartManager.response(tmp);
 		System.out.println("robot answer: " + output);
+		
 	}
 
 }
