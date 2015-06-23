@@ -13,6 +13,7 @@ public class RobotConsumerListener implements ConsumerListener {
 	private ChartManager chartManager;
 	private MqProducer appMqProducer = MqFactory
 			.getMqProducer("PID_DEV_NANA_3");
+	private MqProducer csMqProducer = MqFactory.getMqProducer("PID_DEV_NANA_2");
 
 	private RobotConsumerListener() {
 		chartManager = ChartManager.getInstance();
@@ -33,7 +34,21 @@ public class RobotConsumerListener implements ConsumerListener {
 		String tmp = Translate.translateString(input);
 		String output = chartManager.response(tmp);
 		System.out.println("robot answer: " + output);
-		sendToApp(output, reqMessage);
+		if ("//TODO".equals(output)) {
+			sendToCS(reqMessage);
+		} else {
+			sendToApp(output, reqMessage);
+		}
+	}
+
+	/**
+	 * robot 不能处理该消息，将消息发送到客服中心
+	 * 
+	 * @param reqMessage
+	 */
+	private void sendToCS(RequestMessage reqMessage) {
+		csMqProducer.sendMessage("DEV_NANA_2", null, null,
+				JSON.toJSONString(reqMessage).getBytes());
 	}
 
 	/**
