@@ -14,3 +14,4 @@ conf/dew.conf
 dew-collected-data
 Database
 logs
+.DS_Store

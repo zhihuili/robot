@@ -8,15 +8,19 @@ import com.nana.common.mq.MqFactory;
 import com.nana.common.mq.MqProducer;
 import com.nana.robot.api.context.ChartManager;
 import com.nana.robot.chatterbean.util.Translate;
+import com.nana.serviceengine.bean.UserMessage;
+import com.nana.serviceengine.util.NaNaRobot;
 
 public class RobotConsumerListener implements ConsumerListener {
 	private ChartManager chartManager;
+	private NaNaRobot robot;
 	private MqProducer appMqProducer = MqFactory
 			.getMqProducer("PID_DEV_NANA_3");
 	private MqProducer csMqProducer = MqFactory.getMqProducer("PID_DEV_NANA_2");
 
 	private RobotConsumerListener() {
 		chartManager = ChartManager.getInstance();
+		robot = new NaNaRobot();
 	}
 
 	private static RobotConsumerListener instance = new RobotConsumerListener();
@@ -29,10 +33,16 @@ public class RobotConsumerListener implements ConsumerListener {
 	public void process(String key, String tag, byte[] body) {
 		RequestMessage reqMessage = JSON.parseObject(new String(body),
 				RequestMessage.class);
+		UserMessage mes = new UserMessage();
+		mes.setUserid(reqMessage.getId());
+		mes.setMessage(reqMessage.getContent());
+		
+		
 		String input = reqMessage.getContent();
 		System.out.println("user input: " + input);
 		String tmp = Translate.translateString(input);
-		String output = chartManager.response(tmp);
+		//String output = chartManager.response(tmp);
+		String output = robot.getAnswer(mes);
 		System.out.println("robot answer: " + output);
 		if ("//TODO".equals(output)) {
 			sendToCS(reqMessage);

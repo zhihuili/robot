@@ -19,8 +19,22 @@
 			<id>github-mvn-repo</id>
 			<url>https://raw.github.com/itisaid/mvnrepo/master</url>
 		</repository>
+		<repository>
+			<id>github-ansj-repo</id>
+			<url>http://maven.ansj.org</url>
+		</repository>
 	</repositories>
 	<dependencies>
+<dependency>
+                        <groupId>org.json</groupId>
+                        <artifactId>json</artifactId>
+                        <version>20141113</version>
+                </dependency>                
+<dependency>
+                        <groupId>org.nlpcn</groupId>
+                        <artifactId>nlp-lang</artifactId>
+                        <version>0.2</version>
+                </dependency>
 		<dependency>
 			<groupId>bsh</groupId>
 			<artifactId>bsh</artifactId>
