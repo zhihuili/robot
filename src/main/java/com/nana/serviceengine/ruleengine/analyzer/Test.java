@@ -1,22 +1,25 @@
 package com.nana.serviceengine.ruleengine.analyzer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import com.nana.serviceengine.ruleengine.cacher.RuleData;
-import com.nana.serviceengine.util.ListDeepCopyer;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Test {
 
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
-			String[] in = new String[]{"weather","want"};
-			String res = RuleDecisionMaker.getInstance().chooseDomainProcessor(in);
-			System.out.println(res);
-			
-			
+//			String[] in = new String[]{"weather","want"};
+//			String res = RuleDecisionMaker.getInstance().chooseDomainProcessor(in);
+//			System.out.println(Test.class.getName());
+//			Map<String,String> tnp = new HashMap<String,String>();
+//			System.out.println(tnp.get(null));
+		Pattern pattern = Pattern.compile("vn");
+		Matcher mather = pattern.matcher("abvn");
+		if (mather.find()) {
+			System.out.println(mather.start());
+		}			
 			
 			
 			

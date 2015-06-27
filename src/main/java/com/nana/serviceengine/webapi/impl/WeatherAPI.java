@@ -28,9 +28,9 @@ public class WeatherAPI implements APIAccessor {
 			String format = ConfigCenter.getInstance().getProperty("format");
 			if (weatherParam.getLocation() == null) {
 				if (weatherParam.getGpslat() != null
-						&& weatherParam.getGpslot() != null) {
+						&& weatherParam.getGpslon() != null) {
 					param1 = "key=" + weatherkey + "&dtype=json&lon="
-							+ weatherParam.getGpslot() + "&lat="
+							+ weatherParam.getGpslon() + "&lat="
 							+ weatherParam.getGpslat() + "&cityname="
 							+ weatherParam.getLocation() + "&format=" + format;
 					apiPath = ConfigCenter.getInstance().getProperty(

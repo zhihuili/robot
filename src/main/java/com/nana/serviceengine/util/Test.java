@@ -19,11 +19,11 @@ public class Test {
 		while(true){
 			Scanner scann = new Scanner(System.in);
 		    String str= scann.next();
-			NaNaRobot robot = new NaNaRobot();
+			NaNaRobot robot = NaNaRobot.getInstance();
 			UserMessage mes = new UserMessage();
 			mes.setUserid("wds");
 			mes.setMessage(str);
-			System.out.println(robot.getAnswer(mes));
+			robot.getAnswer(mes);
 			
 		}
 

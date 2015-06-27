@@ -6,7 +6,7 @@ public class WeatherParam {
 	private String location;
 	private Date date;
 	
-	private String gpslot;
+	private String gpslon;
 	private String gpslat;
 	
 
@@ -26,12 +26,12 @@ public class WeatherParam {
 		this.date = date;
 	}
 
-	public String getGpslot() {
-		return gpslot;
+	public String getGpslon() {
+		return gpslon;
 	}
 
-	public void setGpslot(String gpslot) {
-		this.gpslot = gpslot;
+	public void setGpslon(String gpslon) {
+		this.gpslon = gpslon;
 	}
 
 	public String getGpslat() {

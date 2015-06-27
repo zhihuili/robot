@@ -1,4 +1,3 @@
-u,n ob
 n,v subpre
 r,v subpre
 v,v subpre
@@ -8,3 +7,5 @@ r,d,v subpre
 v,d,v subpre
 a,d,v subpre
 v,n,v subpre
+r,t,v subpre
+n,t,v subpre

@@ -23,7 +23,7 @@ public class ProcessorFactory {
 	} 
 	
 	/**
-	 * 处理未分词的请求
+	 * 处理未分词的请求 过期
 	 * @param input
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class ProcessorFactory {
 		return processor;
 	}
 	/**
-	 * 处理分词后的请求
+	 * 处理分词后的请求  过期
 	 * @param inputs
 	 * @return
 	 */

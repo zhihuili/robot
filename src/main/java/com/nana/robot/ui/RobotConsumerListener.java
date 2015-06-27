@@ -20,7 +20,7 @@ public class RobotConsumerListener implements ConsumerListener {
 
 	private RobotConsumerListener() {
 		chartManager = ChartManager.getInstance();
-		robot = new NaNaRobot();
+		robot  = NaNaRobot.getInstance();
 	}
 
 	private static RobotConsumerListener instance = new RobotConsumerListener();
@@ -36,21 +36,31 @@ public class RobotConsumerListener implements ConsumerListener {
 		UserMessage mes = new UserMessage();
 		mes.setUserid(reqMessage.getId());
 		mes.setMessage(reqMessage.getContent());
+		mes.setReqMessage(reqMessage);
+		robot.getAnswer(mes);
 		
-		
-		String input = reqMessage.getContent();
-		System.out.println("user input: " + input);
-		String tmp = Translate.translateString(input);
-		//String output = chartManager.response(tmp);
-		String output = robot.getAnswer(mes);
-		System.out.println("robot answer: " + output);
-		if ("//TODO".equals(output)) {
-			sendToCS(reqMessage);
-		} else {
-			sendToApp(output, reqMessage);
-		}
+//		String input = reqMessage.getContent();
+//		System.out.println("user input: " + input);
+//		String tmp = Translate.translateString(input);
+//		String output = chartManager.response(tmp);
+//		System.out.println("robot answer: " + output);
+//		if ("//TODO".equals(output)) {
+//			sendToCS(reqMessage);
+//		} else {
+//			sendToApp(output, reqMessage);
+//		}
 	}
 
+	public void sendMsg(String output,RequestMessage reqMessage){
+		System.out.println("robot:"+output);
+		
+		
+//		if ("//TODO".equals(output)) {
+//			sendToCS(reqMessage);
+//		} else {
+//			sendToApp(output, reqMessage);
+//		}
+	}
 	/**
 	 * robot 不能处理该消息，将消息发送到客服中心
 	 * 

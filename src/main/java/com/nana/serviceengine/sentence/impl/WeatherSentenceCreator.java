@@ -56,13 +56,13 @@ public class WeatherSentenceCreator implements SentenceCreator {
 							jsonTimeKey);
 				}
 				if (aimJson == null) {
-					res = "我只能查询最近6天的天气哦。";
+					res = "我只能查询最近6天的天气。";
 				} else {
 					weather = aimJson.getString("weather");
 					wind = aimJson.getString("wind");
 					temprature = aimJson.getString("temperature");
-					res = date.getMonth()+"月" + date.getDate() +"日 " + cityname + " 天气：" + weather + " 风力："+wind
-							+ " 温度："+ temprature;
+					res = (date.getMonth()+1)+"月" + date.getDate() +"日, " + cityname + ", 天气：" + weather + ", 风力："+wind
+							+ ", 温度："+ temprature;
 				}
 
 			} else {

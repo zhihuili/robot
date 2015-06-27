@@ -11,8 +11,7 @@ public class UserDialog {
 	private String userid;
 	private int count;
 	private List<String> dialog=new ArrayList<String>();
-	private ServiceProcessor processor;
-	private Object domainObject;
+	private List<ServiceProcessor> processors;
 	private Date lastDialog;
 	
 	public String getUserid() {
@@ -33,17 +32,11 @@ public class UserDialog {
 	public void setDialog(List<String> dialog) {
 		this.dialog = dialog;
 	}
-	public Object getDomainObject() {
-		return domainObject;
+	public List<ServiceProcessor> getProcessors() {
+		return processors;
 	}
-	public void setDomainObject(Object domainObject) {
-		this.domainObject = domainObject;
-	}
-	public ServiceProcessor getProcessor() {
-		return processor;
-	}
-	public void setProcessor(ServiceProcessor processor) {
-		this.processor = processor;
+	public void setProcessors(List<ServiceProcessor> processors) {
+		this.processors = processors;
 	}
 	public Date getLastDialog() {
 		return lastDialog;

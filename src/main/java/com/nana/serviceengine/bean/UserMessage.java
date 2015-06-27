@@ -4,14 +4,19 @@ import java.util.List;
 
 import org.ansj.domain.Term;
 
+import com.nana.common.message.RequestMessage;
+import com.nana.serviceengine.grammer.bean.GrammerItem;
+
 public class UserMessage {
 
 	private String userid;
 	private String message;
 	private List<Term> terms;
+	GrammerItem grammerItem;
+	RequestMessage reqMessage;
 	private String lon;
 	private String lat;
-
+	
 	public List<Term> getTerms() {
 		return terms;
 	}
@@ -51,5 +56,27 @@ public class UserMessage {
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
+
+	public GrammerItem getGrammerItem() {
+		return grammerItem;
+	}
+
+	public void setGrammerItem(GrammerItem grammerItem) {
+		this.grammerItem = grammerItem;
+	}
+
+
+	public RequestMessage getReqMessage() {
+		return reqMessage;
+	}
+
+	public void setReqMessage(RequestMessage reqMessage) {
+		this.reqMessage = reqMessage;
+	}
+
+	
+	
+	
+	
 	
 }

@@ -1,9 +1,11 @@
 package com.nana.serviceengine.bean;
 
 public class DomainKeyWord {
-	
+	//关键字
 	private String keyWord;
+	//值
 	private String value;
+	//领域
 	private String domain;
 	
 	public String getKeyWord() {

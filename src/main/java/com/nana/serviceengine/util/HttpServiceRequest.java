@@ -18,6 +18,7 @@ public class HttpServiceRequest {
 	 * @return
 	 */
 	public static String httpGet(String url) {
+	    url = url.replaceAll(" ", "%20");
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
 		try {
