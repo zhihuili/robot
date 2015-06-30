@@ -19,6 +19,7 @@ public class DomainDic {
 				kdw.setKeyWord(strs[0]);
 				kdw.setDomain(strs[1]);
 				kdw.setValue(strs[2]);
+				kdw.setParDomain(strs[3]);
 				domainKeyWord.put(strs[0], kdw);
 			}
 		}catch(Exception ex){

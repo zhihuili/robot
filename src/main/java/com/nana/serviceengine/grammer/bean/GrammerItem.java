@@ -1,6 +1,5 @@
 package com.nana.serviceengine.grammer.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GrammerItem {
@@ -11,7 +10,7 @@ public class GrammerItem {
 	//谓词
 	private String predicItem; 
 	//宾语，其中带连词和定语
-	private List<ObjectItem> objects = new ArrayList<ObjectItem>();
+	private List<ObjectItem> objects;
 	
 	public String getSubItem() {
 		return subItem;

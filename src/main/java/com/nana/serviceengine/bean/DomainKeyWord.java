@@ -7,6 +7,8 @@ public class DomainKeyWord {
 	private String value;
 	//领域
 	private String domain;
+	//父领域
+	private String parDomain;
 	
 	public String getKeyWord() {
 		return keyWord;
@@ -25,6 +27,12 @@ public class DomainKeyWord {
 	}
 	public void setDomain(String domain) {
 		this.domain = domain;
+	}
+	public String getParDomain() {
+		return parDomain;
+	}
+	public void setParDomain(String parDomain) {
+		this.parDomain = parDomain;
 	}
 	
 	

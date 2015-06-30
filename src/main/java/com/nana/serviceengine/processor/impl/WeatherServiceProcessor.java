@@ -1,9 +1,7 @@
 package com.nana.serviceengine.processor.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.ansj.domain.Term;
@@ -17,7 +15,6 @@ import com.nana.serviceengine.cacher.UserTheme;
 import com.nana.serviceengine.dic.DomainDic;
 import com.nana.serviceengine.processor.ServiceProcessor;
 import com.nana.serviceengine.sentence.impl.WeatherSentenceCreator;
-import com.nana.serviceengine.util.CityCollector;
 import com.nana.serviceengine.util.TimeCollector;
 import com.nana.serviceengine.webapi.APIAccessor;
 import com.nana.serviceengine.webapi.impl.WeatherAPI;
@@ -35,7 +32,7 @@ public class WeatherServiceProcessor extends ServiceProcessor {
 	@Override
 	public void run() {
 		
-		UserDialog udialog = null;
+		UserDialog udialog = UserTheme.UserDialog.get(mes.getUserid());
 		String unfinishedanswer = null;
 		//List<String> locations = new ArrayList<String>();
 		boolean isfinished = false;

@@ -8,10 +8,12 @@ import org.ansj.splitWord.analysis.ToAnalysis;
 
 import com.nana.robot.api.context.ChartManager;
 import com.nana.robot.chatterbean.util.Translate;
+import com.nana.serviceengine.analyzer.ActionSelector;
 import com.nana.serviceengine.analyzer.ProcessorFactory;
 import com.nana.serviceengine.bean.UserDialog;
 import com.nana.serviceengine.bean.UserMessage;
 import com.nana.serviceengine.cacher.UserTheme;
+import com.nana.serviceengine.command.StateCmd;
 import com.nana.serviceengine.inteceptor.MessagePreTreator;
 import com.nana.serviceengine.processor.ServiceProcessor;
 import com.nana.serviceengine.ruleengine.analyzer.DomainInference;
@@ -38,13 +40,8 @@ public class NaNaRobot {
 				userMessage.setGrammerItem(MessagePreTreator.getInstance()
 						.getGrammerItem(userMessage.getTerms()));
 
-				// 寻找关键字
-				// String[] sortedWords =
-				// MessagePreTreator.getInstance().getSortedWords(userMessage.getTerms());
-
-				// 翻译slots关键字
-				// String[] domainKeyWords =
-				// MessagePreTreator.getInstance().getDomainKeys(sortedWords);
+				StateCmd command = ActionSelector.getInstance().getCommand(userMessage);
+				command.doRun(userMessage, null);
 
 				// 寻找领域关键字
 				List<String[]> domainKeyWords = DomainInference.getInstance()
