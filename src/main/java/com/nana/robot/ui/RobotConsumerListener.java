@@ -8,15 +8,19 @@ import com.nana.common.mq.MqFactory;
 import com.nana.common.mq.MqProducer;
 import com.nana.robot.api.context.ChartManager;
 import com.nana.robot.chatterbean.util.Translate;
+import com.nana.serviceengine.bean.UserMessage;
+import com.nana.serviceengine.util.NaNaRobot;
 
 public class RobotConsumerListener implements ConsumerListener {
 	private ChartManager chartManager;
+	private NaNaRobot robot;
 	private MqProducer appMqProducer = MqFactory
 			.getMqProducer("PID_DEV_NANA_3");
 	private MqProducer csMqProducer = MqFactory.getMqProducer("PID_DEV_NANA_2");
 
 	private RobotConsumerListener() {
 		chartManager = ChartManager.getInstance();
+		robot  = NaNaRobot.getInstance();
 	}
 
 	private static RobotConsumerListener instance = new RobotConsumerListener();
@@ -29,18 +33,34 @@ public class RobotConsumerListener implements ConsumerListener {
 	public void process(String key, String tag, byte[] body) {
 		RequestMessage reqMessage = JSON.parseObject(new String(body),
 				RequestMessage.class);
-		String input = reqMessage.getContent();
-		System.out.println("user input: " + input);
-		String tmp = Translate.translateString(input);
-		String output = chartManager.response(tmp);
-		System.out.println("robot answer: " + output);
-		if ("//TODO".equals(output)) {
-			sendToCS(reqMessage);
-		} else {
-			sendToApp(output, reqMessage);
-		}
+		UserMessage mes = new UserMessage();
+		mes.setUserid(reqMessage.getId());
+		mes.setMessage(reqMessage.getContent());
+		mes.setReqMessage(reqMessage);
+		robot.getAnswer(mes);
+		
+//		String input = reqMessage.getContent();
+//		System.out.println("user input: " + input);
+//		String tmp = Translate.translateString(input);
+//		String output = chartManager.response(tmp);
+//		System.out.println("robot answer: " + output);
+//		if ("//TODO".equals(output)) {
+//			sendToCS(reqMessage);
+//		} else {
+//			sendToApp(output, reqMessage);
+//		}
 	}
 
+	public void sendMsg(String output,RequestMessage reqMessage){
+		System.out.println("robot:"+output);
+		
+		
+//		if ("//TODO".equals(output)) {
+//			sendToCS(reqMessage);
+//		} else {
+//			sendToApp(output, reqMessage);
+//		}
+	}
 	/**
 	 * robot 不能处理该消息，将消息发送到客服中心
 	 * 

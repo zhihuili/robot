@@ -1,0 +1,9 @@
+acnun null 0 -1 null
+acaun null 0 -1 null
+ncaun null 0 -1 null
+ncnun null 0 -1 null
+v[a-bd-z]*nc null 0 -2 c[a-bd-z]*n
+c[a-bd-z]*n null 0 -1 null
+v[a-z]*nv null 0 -2 null
+v[a-z]*n null 0 -1 null
+[a-uw-z]*n null 0 -1 null
