@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.ansj.domain.Term;
 
-import com.nana.serviceengine.dic.DomainDic;
+import com.nana.serviceengine.dic.pool.DomainDic;
 import com.nana.serviceengine.grammer.bean.GrammerItem;
 import com.nana.serviceengine.grammer.bean.ObjectItem;
 
@@ -22,14 +22,14 @@ public class GrammerAnalyzer {
 	public void analysisAll(GrammerItem gi, List<Term> terms) {
 		analysisObject(gi, terms);
 
-		if (gi.getObjects().size() == 0)
-			return;
-		ObjectItem oi = gi.getObjects().get(0);
-		int endIndex = oi == null ? 0 : oi.getConnectIndex();
-		if (endIndex != 0)
-			analysisNotItem(gi, terms, endIndex);
-		else
-			analysisNotItem(gi, terms);
+		if (gi.getObjects() == null || gi.getObjects().size() == 0)
+		{
+			analysisNotItem(gi, terms);	
+		}
+		else{
+			ObjectItem oi = gi.getObjects().get(0);
+			analysisNotItem(gi, terms, oi.getIndex());
+		}
 	}
 
 	/**

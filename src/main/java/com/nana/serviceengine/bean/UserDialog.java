@@ -6,17 +6,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.nana.common.message.ResponseMessage;
 import com.nana.serviceengine.processor.ServiceProcessor;
 import com.nana.serviceengine.statemachine.DialogState;
 
 public class UserDialog {
 	
 	private String userid;
+	//第几次会话
 	private int count;
 	private List<String> dialog=new ArrayList<String>();
+	private List<ResponseMessage> resMessages = new ArrayList<ResponseMessage>();
 	private Map<String,Object> stateInfo = new HashMap<String,Object>();
 	private List<ServiceProcessor> processors;
+	//上一次会话状态
+	private DialogState preDialogState;
+	//当前会话的领域参数
+	private Object param;
+	//上一次会话的时间
 	private Date lastDialog;
+	//会话状态
 	private DialogState state;
 	
 	public String getUserid() {
@@ -61,6 +70,26 @@ public class UserDialog {
 	public void setStateInfo(Map<String, Object> stateInfo) {
 		this.stateInfo = stateInfo;
 	}
+	public DialogState getPreDialogState() {
+		return preDialogState;
+	}
+	public void setPreDialogState(DialogState preDialogState) {
+		this.preDialogState = preDialogState;
+	}
+	public List<ResponseMessage> getResMessages() {
+		return resMessages;
+	}
+	public void setResMessages(List<ResponseMessage> resMessages) {
+		this.resMessages = resMessages;
+	}
+	public Object getParam() {
+		return param;
+	}
+	public void setParam(Object param) {
+		this.param = param;
+	}
+
+	
 	
 	
 	

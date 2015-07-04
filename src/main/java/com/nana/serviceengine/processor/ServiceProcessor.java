@@ -1,7 +1,8 @@
 package com.nana.serviceengine.processor;
 
 
-import com.nana.robot.ui.RobotConsumerListener;
+import com.nana.common.message.ResponseMessage;
+import com.nana.serviceengine.bean.UserDialog;
 import com.nana.serviceengine.bean.UserMessage;
 
 public abstract class ServiceProcessor implements Runnable{
@@ -15,12 +16,6 @@ public abstract class ServiceProcessor implements Runnable{
     
     public ServiceProcessor(UserMessage mes) {
     	this.mes = mes;
-	}
-
-
-	protected void sendMsg(String output){
-		//RobotConsumerListener.getInstance().sendMsg(output, mes.getReqMessage());
-		System.out.println(output);
 	}
 	
 	public UserMessage getMes() {

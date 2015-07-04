@@ -5,12 +5,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.nana.common.message.ResponseMessage;
+import com.nana.robot.ui.RobotConsumerListener;
 import com.nana.serviceengine.bean.DomainKeyWord;
 import com.nana.serviceengine.bean.UserDialog;
 import com.nana.serviceengine.bean.UserMessage;
 import com.nana.serviceengine.cacher.UserTheme;
 import com.nana.serviceengine.command.StateCmd;
-import com.nana.serviceengine.dic.DomainDic;
+import com.nana.serviceengine.command.StateCommandUtil;
+import com.nana.serviceengine.dic.pool.DomainDic;
 import com.nana.serviceengine.statemachine.DialogState;
 
 /**
@@ -30,22 +33,25 @@ public class DomainClearCmd implements StateCmd {
 	@Override
 	public void doRun(UserMessage mes,Map<String,Object> moreInfo) {
 		StringBuilder answer = new StringBuilder();
+		StringBuilder display =new StringBuilder();
 		try{
 		
 		UserDialog userDialog = UserTheme.UserDialog.get(mes.getUserid());
-		List<String[]> domainKeyWords = (List<String[]>) userDialog.getStateInfo().get("domainKeyWords");
+		List<String[]> domainKeyWords = mes.getDomainKeyWords();
 		//如果用户给的概念较大，并且包含了多个概念
 		if(domainKeyWords.size()>1){
-			answer.append("我还无法处理大概念、多概念的问题");
+			answer.append("我还无法处理大概念且多概念的问题");
 		}else{
-			String[] tmp = domainKeyWords.get(0);
+			Integer index = 0;
 			String parentValue = null;
 			String notValue = null;
 			//找父领域关键词，为进一步做概念澄清做准备
-	    	for(int j=0;j<tmp.length;j++){
-	    		if("not".equals(DomainDic.domainKeyWord.get(tmp[j]).getDomain())) notValue = "not";
-	    		if("parent".equals(DomainDic.domainKeyWord.get(tmp[j]).getDomain())){
-	    			parentValue = DomainDic.domainKeyWord.get(tmp[j]).getValue();
+	    	for(int j=0;j<mes.getTerms().size();j++){
+	    		String tmp  = mes.getTerms().get(j).getRealName();
+	    		if("not".equals(DomainDic.domainKeyWord.get(tmp).getDomain())) notValue = "not";
+	    		if("parent".equals(DomainDic.domainKeyWord.get(tmp).getDomain())){
+	    			parentValue = DomainDic.domainKeyWord.get(tmp).getValue();
+	    			index = j;
 	    			break;
 	    		}
 	    	}	
@@ -58,7 +64,7 @@ public class DomainClearCmd implements StateCmd {
 				if(parentValue.equals(DomainDic.domainKeyWord.get(key).getParDomain())){
 					if(notValue != null){
 						//如果有否定词则选择第一个子领域关键词进入推荐
-						goRecommand(userDialog,DomainDic.domainKeyWord.get(key).getDomain(),tmp,mes);
+						StateCommandUtil.getInstance().goRecommand(userDialog, key, index, mes);
 						return ;
 					}else{
 						preSelectDomain.add(DomainDic.domainKeyWord.get(key));
@@ -67,42 +73,38 @@ public class DomainClearCmd implements StateCmd {
 			}
 			//如果子领域大于10个，就无法做领域提示了
 			if(preSelectDomain.size()>10){
-				answer.append("您给的概念太宽泛，我无法处理");
+				answer.append("您给的概念太宽泛，我无法处理。");
+				userDialog.setState(DialogState.START);
 			}else{
 				//开始概念澄清
-				answer.append("请问您是要下面哪种服务呢？");
-				StringBuilder display =new StringBuilder();
+				answer.append("请问您是要下面哪种服务呢？");	
 				for(int i=0;i<preSelectDomain.size();i++){
 					display.append(preSelectDomain.get(i).getKeyWord()+" ");
 				}
+				userDialog.getStateInfo().clear();
+				userDialog.getStateInfo().put("terms", mes.getTerms());
+				userDialog.getStateInfo().put("index", index);
+				userDialog.getStateInfo().put("parentvalue", parentValue);
+				userDialog.getStateInfo().put("originmessage", mes.getMessage());
+				//userDialog.getStateInfo().put("selectdomain", preSelectDomain);
+				userDialog.setState(DialogState.RESELECT);
 				
 				
 				
 			}
-			
-			
-		
-	    
-	    	
-	    
+			//构造消息并发送
+			ResponseMessage rpMessage = new ResponseMessage();
+			userDialog.getDialog().add(mes.getMessage());
+			userDialog.getDialog().add(answer.toString());
+			rpMessage.setAudioText(answer.toString());
+			rpMessage.setDisplayText(display.toString());
+			userDialog.getResMessages().add(rpMessage);
+			RobotConsumerListener.getInstance().sendMsg(rpMessage, mes.getReqMessage());
+	   
 		}
 		}catch(Exception ex){
-			
+			ex.printStackTrace();
 		}		
-	}
-	
-	private void goRecommand(UserDialog userDialog,String aimDomain,String[] orginDomain,UserMessage mes){	
-		for(int i=0;i<orginDomain.length;i++){
-			if("parent".equals(orginDomain[i])){
-				orginDomain[i] = aimDomain;
-			}
-		}
-		userDialog.setState(DialogState.START);
-		StartCmd.getInstance().doRun(mes, null);
-	}
-	
-	private void goDomainClear(){
-		
 	}
 	
 }

@@ -9,7 +9,6 @@ import com.nana.common.mq.MqProducer;
 import com.nana.robot.api.context.ChartManager;
 import com.nana.robot.chatterbean.util.Translate;
 import com.nana.serviceengine.bean.UserMessage;
-import com.nana.serviceengine.util.NaNaRobot;
 
 public class RobotConsumerListener implements ConsumerListener {
 	private ChartManager chartManager;
@@ -51,8 +50,19 @@ public class RobotConsumerListener implements ConsumerListener {
 //		}
 	}
 
-	public void sendMsg(String output,RequestMessage reqMessage){
-		System.out.println("robot:"+output);
+	public void sendMsg(ResponseMessage resMessage,RequestMessage reqMessage){
+		System.out.println("robot:"+resMessage.getAudioText());
+		System.out.println("display:" + resMessage.getDisplayText());
+		
+		
+//		if ("//TODO".equals(output)) {
+//			sendToCS(reqMessage);
+//		} else {
+//			sendToApp(output, reqMessage);
+//		}
+	}
+	public void sendMsg(String mes,RequestMessage reqMessage){
+		System.out.println("robot:"+mes);
 		
 		
 //		if ("//TODO".equals(output)) {

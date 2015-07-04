@@ -8,7 +8,7 @@ import java.util.List;
 import org.ansj.domain.Term;
 
 import com.nana.serviceengine.bean.DomainKeyWord;
-import com.nana.serviceengine.dic.DomainDic;
+import com.nana.serviceengine.dic.pool.DomainDic;
 import com.nana.serviceengine.grammer.analyzer.GrammerAnalyzer;
 import com.nana.serviceengine.grammer.bean.GrammerItem;
 import com.nana.serviceengine.util.ListDeepCopyer;

@@ -7,6 +7,8 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nana.common.message.ResponseMessage;
+import com.nana.serviceengine.dao.bean.DomainParam;
 import com.nana.serviceengine.sentence.SentenceCreator;
 
 public class WeatherSentenceCreator implements SentenceCreator {
@@ -21,7 +23,7 @@ public class WeatherSentenceCreator implements SentenceCreator {
 		return wsc;
 	}
 
-	@Override
+
 	public String createSentence(Map<String, Object> params) {
 		String data = (String) params.get("data");
 		Date date = (Date) params.get("date");
@@ -72,6 +74,12 @@ public class WeatherSentenceCreator implements SentenceCreator {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	@Override
+	public ResponseMessage createSentence(DomainParam params) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

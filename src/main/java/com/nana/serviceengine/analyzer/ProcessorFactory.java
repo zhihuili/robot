@@ -5,7 +5,7 @@ import java.util.List;
 import org.ansj.domain.Term;
 
 import com.nana.serviceengine.bean.UserMessage;
-import com.nana.serviceengine.dic.ChinaCity;
+import com.nana.serviceengine.dic.pool.ChinaCity;
 import com.nana.serviceengine.processor.ServiceProcessor;
 import com.nana.serviceengine.processor.impl.WeatherServiceProcessor;
 import com.nana.serviceengine.util.TxtReader;

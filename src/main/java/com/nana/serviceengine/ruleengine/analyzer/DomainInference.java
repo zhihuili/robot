@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.nana.serviceengine.bean.DomainKeyWord;
 import com.nana.serviceengine.bean.UserMessage;
-import com.nana.serviceengine.dic.DomainDic;
+import com.nana.serviceengine.dic.pool.DomainDic;
 import com.nana.serviceengine.grammer.bean.GrammerItem;
 import com.nana.serviceengine.grammer.bean.ObjectItem;
 
@@ -28,7 +28,7 @@ public class DomainInference {
 	}
 
 	/**
-	 * 这里生成领域的关键词 并且忽略了连词 可以修改变得更灵活
+	 * 这里生成领域的关键词 可以修改变得更灵活
 	 * 
 	 * @param mes
 	 * @return 如果无宾语或者字典中没有相关数据则返回null
@@ -38,7 +38,7 @@ public class DomainInference {
 			GrammerItem gi = mes.getGrammerItem();
 			List<ObjectItem> oi = gi.getObjects();
 			// 如果没有宾语就没有必要在分析下去
-			if (oi.size() == 0)
+			if (oi == null || oi.size() == 0)
 				return null;
 			List<String[]> res = new ArrayList<String[]>();
 			Map<String, String> tmp = new HashMap<String, String>();

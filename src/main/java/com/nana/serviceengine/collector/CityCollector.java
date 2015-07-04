@@ -1,4 +1,4 @@
-package com.nana.serviceengine.util;
+package com.nana.serviceengine.collector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +8,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nana.serviceengine.bean.DomainKeyWord;
+import com.nana.serviceengine.dic.pool.DomainDic;
+import com.nana.serviceengine.util.TxtReader;
+
 public class CityCollector {
+	private static CityCollector cc = new CityCollector();
+	private CityCollector(){}
+	
+	public static CityCollector getInstance(){
+		return cc;
+	}
 	/**
-	 * 找到句子中的城市名
+	 * 过期 找到句子中的城市名
 	 * @param inputs
 	 * @return
 	 */
-	public static String[] parseCity(String inputs) {
+	public String[] parseCity(String inputs) {
 		String city = new TxtReader("resources/chinacitys").getContent();
 		List<String> res = new ArrayList<String>();
 		try {
@@ -49,13 +59,15 @@ public class CityCollector {
 	 * @param inputs 
 	 * @return
 	 */
-	public static String[] parseCity(List<Term> terms) {
+	public String[] parseCity(List<Term> terms) {
 		List<String> res = new ArrayList<String>();
 		for(int i=0;i<terms.size();i++){
-			if(terms.get(i).getNatureStr().equals("ns")){
-				res.add(terms.get(i).getRealName());
+			DomainKeyWord dkw  = DomainDic.domainKeyWord.get(terms.get(i).getRealName());
+			if(dkw == null) continue;
+			if("address".equals(dkw.getDomain())){
+				res.add(dkw.getValue());
 			}
 		}
-		return (String[])res.toArray();
+		return res.toArray(new String[]{});
 	}
 }

@@ -12,6 +12,7 @@ public class UserMessage {
 	private String userid;
 	private String message;
 	private List<Term> terms;
+	private List<String[]> domainKeyWords;
 	GrammerItem grammerItem;
 	RequestMessage reqMessage;
 	private String lon;
@@ -74,9 +75,12 @@ public class UserMessage {
 		this.reqMessage = reqMessage;
 	}
 
-	
-	
-	
-	
+	public List<String[]> getDomainKeyWords() {
+		return domainKeyWords;
+	}
+
+	public void setDomainKeyWords(List<String[]> domainKeyWords) {
+		this.domainKeyWords = domainKeyWords;
+	}	
 	
 }

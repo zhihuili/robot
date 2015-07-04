@@ -2,6 +2,7 @@ package com.nana.serviceengine.util;
 
 import java.util.Scanner;
 
+import com.nana.robot.ui.NaNaRobot;
 import com.nana.serviceengine.bean.UserMessage;
 
 public class Test {
@@ -24,7 +25,6 @@ public class Test {
 			mes.setUserid("wds");
 			mes.setMessage(str);
 			robot.getAnswer(mes);
-			
 		}
 
 	}
