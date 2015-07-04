@@ -1,4 +1,4 @@
-package com.nana.serviceengine.util;
+package com.nana.serviceengine.collector;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,16 +13,23 @@ import org.ansj.domain.Term;
 
 import com.nana.serviceengine.bean.DomainKeyWord;
 import com.nana.serviceengine.bean.UserMessage;
-import com.nana.serviceengine.dic.DomainDic;
+import com.nana.serviceengine.dic.pool.DomainDic;
+import com.nana.serviceengine.util.TxtReader;
 
 public class TimeCollector {
+	private static TimeCollector tc =new TimeCollector();
+	private TimeCollector(){}
+	
+	public static TimeCollector getInstance(){
+		return tc;
+	}
 	/**
-	 * 将时间关键词转化为机器能识别的时间
+	 * 过期 将时间关键词转化为机器能识别的时间
 	 * 
 	 * @param input
 	 * @return
 	 */
-	public static Date[] parseDate(String input) {
+	public Date[] parseDate(String input) {
 		List<Date> dates = new ArrayList<Date>();
 		List<String> timeMapLines = new TxtReader("resources/timemaper")
 				.getContentLineList();
@@ -61,12 +68,14 @@ public class TimeCollector {
 	 * @param mes
 	 * @return
 	 */
-	public static Date[] parseDate(UserMessage mes) {
+	public Date[] parseDate(UserMessage mes) {
 		List<Date> res = new ArrayList<Date>();
 		for (Term term : mes.getTerms()) {
 			if ("t".equals(term.getNatureStr())) {
 				DomainKeyWord keyWord = DomainDic.domainKeyWord.get(term
 						.getRealName());
+				//如果词典中没有收集这个时间关键词则忽略它
+				if(keyWord == null) continue;
 				int diff = Integer.parseInt(keyWord.getValue());
 				if (term.getRealName().contains("星期")
 						|| term.getRealName().contains("周")) {

@@ -1,7 +1,8 @@
 package com.nana.serviceengine.sentence;
 
-import java.util.Map;
+import com.nana.common.message.ResponseMessage;
+import com.nana.serviceengine.dao.bean.DomainParam;
 
 public interface SentenceCreator {
-	String createSentence(Map<String,Object> params);
+	ResponseMessage createSentence(DomainParam params);
 }

@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class TxtReader {
+
 	private File file;
 
 	public TxtReader(String path) {

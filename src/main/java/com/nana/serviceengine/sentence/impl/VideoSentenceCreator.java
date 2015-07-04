@@ -1,8 +1,10 @@
 package com.nana.serviceengine.sentence.impl;
 
-import java.util.Map;
-
+import com.nana.common.message.ResponseMessage;
+import com.nana.serviceengine.dao.bean.DomainParam;
+import com.nana.serviceengine.dao.bean.impl.VideoParam;
 import com.nana.serviceengine.sentence.SentenceCreator;
+import com.nana.serviceengine.webapi.bean.Movie;
 
 public class VideoSentenceCreator implements SentenceCreator {
 	private static VideoSentenceCreator vsc = new VideoSentenceCreator();
@@ -14,10 +16,20 @@ public class VideoSentenceCreator implements SentenceCreator {
 	public static VideoSentenceCreator getInstance() {
 		return vsc;
 	}
+
 	@Override
-	public String createSentence(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return params.get("data").toString();
+	public ResponseMessage createSentence(DomainParam params) {
+		VideoParam param = (VideoParam) params;
+		ResponseMessage rpsMessage = new ResponseMessage();
+		rpsMessage.setAudioText("好的。");
+		
+		Movie movie = param.getResMovie().get(param.getIndex()); 
+		
+		rpsMessage.setDisplayText(movie.getName());
+		
+		
+		return rpsMessage;
 	}
+	
 
 }

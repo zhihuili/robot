@@ -1,94 +1,82 @@
 package com.nana.serviceengine.processor.impl;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.ansj.domain.Term;
-
-import com.nana.serviceengine.bean.DomainKeyWord;
+import com.alibaba.fastjson.JSON;
+import com.nana.robot.ui.RobotConsumerListener;
 import com.nana.serviceengine.bean.UserDialog;
-import com.nana.serviceengine.bean.VideoParam;
-import com.nana.serviceengine.cacher.UserAnswer;
+import com.nana.serviceengine.bean.UserMessage;
 import com.nana.serviceengine.cacher.UserTheme;
-import com.nana.serviceengine.dic.DomainDic;
-import com.nana.serviceengine.grammer.analyzer.GrammerAnalyzer;
-import com.nana.serviceengine.grammer.bean.GrammerItem;
-import com.nana.serviceengine.grammer.bean.ObjectItem;
+import com.nana.serviceengine.dao.bean.DomainParam;
+import com.nana.serviceengine.dao.bean.impl.VideoParam;
 import com.nana.serviceengine.processor.ServiceProcessor;
 import com.nana.serviceengine.sentence.impl.VideoSentenceCreator;
-import com.nana.serviceengine.sentence.impl.WeatherSentenceCreator;
-import com.nana.serviceengine.webapi.APIAccessor;
+import com.nana.serviceengine.statemachine.DialogState;
+import com.nana.serviceengine.statemachine.bean.LoadType;
+import com.nana.serviceengine.statemachine.bean.ParamState;
+import com.nana.serviceengine.webapi.SimpleApiAccessor;
+import com.nana.serviceengine.webapi.bean.Movie;
 import com.nana.serviceengine.webapi.impl.VideoAPI;
 
 public class VideoServiceProcessor extends ServiceProcessor {
 
 	@Override
 	public void run() {
-		// 如果缺少属性则构造答案
-		String unfinishedanswer = null;
-		boolean isfinished = false;
-		VideoParam vParam = domainObject == null ? new VideoParam()
-				: (VideoParam) domainObject;
-		StringBuilder builder = new StringBuilder();
+		//ssssss
 		UserDialog userDialog = UserTheme.UserDialog.get(mes.getUserid());
-		if (userDialog.getCount() == 1) {
-			List<ObjectItem> obItems = mes.getGrammerItem().getObjects();
-			for (int i = 0; i < obItems.size(); i++) {
-				DomainKeyWord tmpSubDomain = DomainDic.domainKeyWord
-						.get(obItems.get(i).getValue());
-				if (tmpSubDomain != null
-						&& "video".equals(tmpSubDomain.getDomain())) {
-					for (String str : obItems.get(i).getAttributive()) {
-						builder.append(str + " ");
-					}
-				}
-			}
-		} else {
-			for (Term term : mes.getTerms()) {
-				char nature = term.getNatureStr().charAt(0);
-				if ('n' == nature || 'a' == nature) {
-					builder.append(term.getRealName() + " ");
-				}
-			}
+		DomainParam domainParam = (DomainParam) userDialog.getParam();
+		if (domainParam == null){
+			domainParam = new VideoParam();
+			userDialog.setParam(domainParam);
 		}
-		if (builder.length() == 0) {
-			unfinishedanswer = "请问，您想看关于什么的电影?";
-		} else {
-			builder.deleteCharAt(builder.length() - 1);
-			vParam.setKeyWord(builder.toString());
-			isfinished = true;
+		String answer = "好的";
+		if(domainParam.getLoadType() == null || LoadType.NOLOAD.equals(domainParam.getLoadType())){
+			answer = domainParam.dataCollect(mes);		
 		}
-		int count = userDialog.getCount() + 1;
-		userDialog.setCount(count);
-		if (isfinished) {
-			finalDealRequest(vParam);
-		} else {
+		//eeeeee
+		if (!LoadType.NOLOAD.equals(domainParam.getLoadType())) {
 			
-			sendMsg(unfinishedanswer);
+			if (domainParam.getLoadType().equals(LoadType.EXTERNALLOAD)) {
+				// 这里需要修改调用方法，正常返回的不需要存储
+				domainParam.setCount(1);
+				domainParam.setParamState(ParamState.DATAFINISH);
+				externalRequest(mes, (VideoParam) domainParam);
+				// 保存会话的领域关键词
+				
+			} else if (domainParam.getLoadType().equals(LoadType.INTERNALLOAD)) {
+				internalRequest(mes, (VideoParam) domainParam);
+			}
+			domainParam.setLoadType(LoadType.NOLOAD);
+			// 保存会话的参数
+			
+			userDialog.setState(DialogState.FINISHED);
+
+		} else {
+			RobotConsumerListener.getInstance().sendMsg(answer, mes.getReqMessage());
+			domainParam.setParamState(ParamState.DATALACK);
+			userDialog.setState(DialogState.WAIT);
 		}
 
 	}
 
-	private void finalDealRequest(VideoParam vParam) {
+	/**
+	 * 数据收集完成或关键属性改变后，进行结果请求
+	 * 
+	 * @param vParam
+	 */
+	private void externalRequest(UserMessage mes, VideoParam vParam) {
+		SimpleApiAccessor apiAccessor = VideoAPI.getInstance();
+		String data = apiAccessor.loadData(vParam);
+		List<Movie> movies = JSON.parseArray(data, Movie.class);
+		vParam.setResMovie(movies);
+		RobotConsumerListener.getInstance().sendMsg(VideoSentenceCreator.getInstance().createSentence(vParam), mes.getReqMessage());
+		
+	}
 
-		APIAccessor apiAccessor = VideoAPI.getInstance();
-
-		String data = null;
-		try {
-			data = new String(apiAccessor.getInfo(vParam)
-					.getBytes("iso-8859-1"), "utf-8");
-		} catch (UnsupportedEncodingException e) {
-
-			e.printStackTrace();
-		}
-
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("data", data);
-		sendMsg(VideoSentenceCreator.getInstance().createSentence(params));
-
+	private void internalRequest(UserMessage mes, VideoParam vParam) {
+	
+		RobotConsumerListener.getInstance().sendMsg(VideoSentenceCreator.getInstance().createSentence(vParam), mes.getReqMessage());
+		
 	}
 
 }
