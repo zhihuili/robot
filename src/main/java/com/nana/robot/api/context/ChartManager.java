@@ -2,7 +2,7 @@ package com.nana.robot.api.context;
 
 import com.nana.robot.api.aiml.AskToAIML;
 import com.nana.robot.ui.RobotConsumerListener;
-import com.nana.serviceengine.bean.UserMessage;
+import com.nana.serviceengine.common.bean.UserMessage;
 
 public class ChartManager {
 	private static final AskToAIML askToAIML = new AskToAIML();
@@ -25,9 +25,9 @@ public class ChartManager {
 		return chartContext.response(input);
 	}
 	
-	public void response(UserMessage mes) {
-		String responseStr = chartContext.response(mes.getMessage());
-		//RobotConsumerListener.getInstance().sendMsg(responseStr, mes.getReqMessage());
-		System.out.println(responseStr);
-	}
+//	public void response(UserMessage mes) {
+//		String responseStr = chartContext.response(mes.getMessage());
+//		//RobotConsumerListener.getInstance().sendMsg(responseStr, mes.getReqMessage());
+//		System.out.println(responseStr);
+//	}
 }

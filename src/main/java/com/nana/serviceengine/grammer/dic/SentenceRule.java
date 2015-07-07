@@ -4,8 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.nana.serviceengine.common.util.TxtReader;
 import com.nana.serviceengine.grammer.bean.SentenceRuleItem;
-import com.nana.serviceengine.util.TxtReader;
 
 public class SentenceRule {
 	public static Map<String,SentenceRuleItem> SentenceRuleModel = new LinkedHashMap<String,SentenceRuleItem>();
