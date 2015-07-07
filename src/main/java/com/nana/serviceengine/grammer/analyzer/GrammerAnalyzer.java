@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.ansj.domain.Term;
 
-import com.nana.serviceengine.dic.pool.DomainDic;
+import com.nana.serviceengine.common.dic.DomainDic;
 import com.nana.serviceengine.grammer.bean.GrammerItem;
 import com.nana.serviceengine.grammer.bean.ObjectItem;
 

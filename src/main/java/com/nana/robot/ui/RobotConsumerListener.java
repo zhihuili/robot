@@ -8,7 +8,7 @@ import com.nana.common.mq.MqFactory;
 import com.nana.common.mq.MqProducer;
 import com.nana.robot.api.context.ChartManager;
 import com.nana.robot.chatterbean.util.Translate;
-import com.nana.serviceengine.bean.UserMessage;
+import com.nana.serviceengine.common.bean.UserMessage;
 
 public class RobotConsumerListener implements ConsumerListener {
 	private ChartManager chartManager;

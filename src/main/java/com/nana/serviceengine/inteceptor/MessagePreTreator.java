@@ -7,11 +7,11 @@ import java.util.List;
 
 import org.ansj.domain.Term;
 
-import com.nana.serviceengine.bean.DomainKeyWord;
-import com.nana.serviceengine.dic.pool.DomainDic;
+import com.nana.serviceengine.common.bean.DomainKeyWord;
+import com.nana.serviceengine.common.dic.DomainDic;
+import com.nana.serviceengine.common.util.ListDeepCopyer;
 import com.nana.serviceengine.grammer.analyzer.GrammerAnalyzer;
 import com.nana.serviceengine.grammer.bean.GrammerItem;
-import com.nana.serviceengine.util.ListDeepCopyer;
 
 /**
  * 消息预处理
@@ -44,48 +44,7 @@ public class MessagePreTreator {
 		}
 		return null;
 	}
-	
 
-	
-	/**
-	 * 获取以排序的分词词组 过期
-	 * @param terms
-	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws IOException
-	 */
-	public String[] getSortedWords(List<Term> terms)
-			throws ClassNotFoundException, IOException {
-		try {
-			deleWTag(terms);
-			deleUJWords(terms);
-			int termSize = terms.size();
-			List<Term> tmp = ListDeepCopyer.copy(terms);
-			List<Term> tmp1 = new ArrayList<Term>(); 
-			String[] keyWords = new String[termSize];
-			Iterator iterator = tmp.iterator();
-			while(iterator.hasNext()){
-				Term term = (Term) iterator.next();
-				if('n'== term.getNatureStr().charAt(0)){
-					tmp1.add(term);
-					iterator.remove();
-				}
-			}
-			for(int i=0;i<tmp1.size();i++){
-				keyWords[i] = tmp1.get(i).getRealName();
-			}
-			for(int i=0;i<tmp.size();i++){
-				keyWords[i+tmp1.size()] = tmp.get(i).getRealName();		
-			}
-			return keyWords;
-		} catch (Exception ex) {
-			//TODO log
-			ex.printStackTrace();
-		}
-		return null;
-	}
-
-	
 	/**
 	 * 分析语法结构 目前只分析了否定语、宾语和其的定语和连词 需完善
 	 * @param terms

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.nana.serviceengine.util.TxtReader;
+import com.nana.serviceengine.common.util.TxtReader;
 
 public class GrammerRule {
 	public static Map<String,String> GramModel = new HashMap<String,String>();
