@@ -1,4 +1,4 @@
-package com.nana.serviceengine.dao.webapi.bean;
+package com.nana.serviceengine.domain.video.bean;
 
 public class MovieKeyWord {
 	private int count;

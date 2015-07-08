@@ -1,4 +1,4 @@
-package com.nana.serviceengine.neuron.responsecreator.impl;
+package com.nana.serviceengine.domain.weather.responsecreator;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

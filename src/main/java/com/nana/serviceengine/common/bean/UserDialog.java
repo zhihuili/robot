@@ -28,6 +28,8 @@ public class UserDialog {
 	//会话状态
 	private DialogState state;
 	
+	private String currentDomain;
+	
 	public String getUserid() {
 		return userid;
 	}
@@ -89,9 +91,11 @@ public class UserDialog {
 	public void setParam(Object param) {
 		this.param = param;
 	}
-
-	
-	
-	
+	public String getCurrentDomain() {
+		return currentDomain;
+	}
+	public void setCurrentDomain(String currentDomain) {
+		this.currentDomain = currentDomain;
+	}
 	
 }

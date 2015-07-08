@@ -1,4 +1,4 @@
-package com.nana.serviceengine.neuron.processor.itemcollector;
+package com.nana.serviceengine.domain.itemcollector;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,14 +15,19 @@ import com.nana.serviceengine.common.bean.DomainKeyWord;
 import com.nana.serviceengine.common.bean.UserMessage;
 import com.nana.serviceengine.common.dic.DomainDic;
 import com.nana.serviceengine.common.util.TxtReader;
+import com.nana.serviceengine.neuron.itemcollector.Collector;
+import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
-public class TimeCollector {
-	private static TimeCollector tc =new TimeCollector();
-	private TimeCollector(){}
-	
-	public static TimeCollector getInstance(){
+public class TimeCollector implements Collector<Date[]>{
+	private static TimeCollector tc = new TimeCollector();
+
+	private TimeCollector() {
+	}
+
+	public static TimeCollector getInstance() {
 		return tc;
 	}
+
 	/**
 	 * 过期 将时间关键词转化为机器能识别的时间
 	 * 
@@ -63,8 +68,10 @@ public class TimeCollector {
 		}
 		return dates.toArray(new Date[] {});
 	}
+
 	/**
 	 * 目前识别有限需要补充几天后这种
+	 * 
 	 * @param mes
 	 * @return
 	 */
@@ -74,8 +81,9 @@ public class TimeCollector {
 			if ("t".equals(term.getNatureStr())) {
 				DomainKeyWord keyWord = DomainDic.domainKeyWord.get(term
 						.getRealName());
-				//如果词典中没有收集这个时间关键词则忽略它
-				if(keyWord == null) continue;
+				// 如果词典中没有收集这个时间关键词则忽略它
+				if (keyWord == null)
+					continue;
 				int diff = Integer.parseInt(keyWord.getValue());
 				if (term.getRealName().contains("星期")
 						|| term.getRealName().contains("周")) {
@@ -89,6 +97,13 @@ public class TimeCollector {
 				}
 			}
 		}
-		return res.toArray(new Date[]{});
+		if (res.size() != 0)
+			return res.toArray(new Date[] {});
+		return null;
+	}
+
+	@Override
+	public Date[] getParam(UserMessage message,ServiceProcessor processor) {
+		return parseDate(message);
 	}
 }

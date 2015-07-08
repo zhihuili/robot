@@ -15,8 +15,8 @@ public class UserMessage {
 	private List<String[]> domainKeyWords;
 	GrammerItem grammerItem;
 	RequestMessage reqMessage;
-	private String lon;
-	private String lat;
+	private GPS gps;
+	
 	
 	public List<Term> getTerms() {
 		return terms;
@@ -42,20 +42,12 @@ public class UserMessage {
 		this.message = message;
 	}
 
-	public String getLon() {
-		return lon;
+	public GPS getGps() {
+		return gps;
 	}
 
-	public void setLon(String lon) {
-		this.lon = lon;
-	}
-
-	public String getLat() {
-		return lat;
-	}
-
-	public void setLat(String lat) {
-		this.lat = lat;
+	public void setGps(GPS gps) {
+		this.gps = gps;
 	}
 
 	public GrammerItem getGrammerItem() {

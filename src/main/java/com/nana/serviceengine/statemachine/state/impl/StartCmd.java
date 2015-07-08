@@ -40,6 +40,8 @@ public class StartCmd implements StateCmd {
 			// 聊天机器人工作
 			RobotResponser.getInstance().responseMessage(ChatRobotCenter.getInstance().getRobotResponse(mes), mes);		
 		} else {
+			//String[] domainKeyWords = mes.getDomainKeyWords().get(userDialog.getProcessors().size()-1);
+			//userDialog.setCurrentDomain(domainKeyWords[domainKeyWords.length-1]);
 			Thread thread = new Thread(userDialog.getProcessors().get(userDialog.getProcessors().size()-1));
 			thread.start();
 		}

@@ -1,5 +1,5 @@
-1 weather com.nana.serviceengine.processor.impl.WeatherServiceProcessor
+1 weather com.nana.serviceengine.domain.weather.processor.WeatherServiceProcessor
 2 not,weather com.recommand
-3 video com.nana.serviceengine.processor.impl.VideoServiceProcessor
+3 video com.nana.serviceengine.domain.video.processor.VideoServiceProcessor
 4 not,video com.recomma
-5 time,temprature com.nana.serviceengine.processor.impl.WeatherServiceProcessor
+5 time,temprature com.nana.serviceengine.domain.weather.processor.WeatherServiceProcessor
