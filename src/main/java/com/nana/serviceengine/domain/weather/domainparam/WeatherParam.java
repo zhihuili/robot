@@ -1,7 +1,6 @@
 package com.nana.serviceengine.domain.weather.domainparam;
 
 import java.util.Date;
-import java.util.List;
 
 import com.nana.serviceengine.common.bean.GPS;
 import com.nana.serviceengine.domain.itemcollector.CityCollector;
@@ -13,12 +12,6 @@ import com.nana.serviceengine.neuron.domainparam.bean.ParamCommand;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 
 public class WeatherParam extends DomainParam<WeatherFuture> {
-	private String location;
-	private Date date;
-
-	private String gpslon;
-	private String gpslat;
-	private List<WeatherFuture> senvenWeathers;
 
 	@Override
 	protected void setParams() {
@@ -26,6 +19,7 @@ public class WeatherParam extends DomainParam<WeatherFuture> {
 		location.setName("location");
 		location.setCollector(CityCollector.getInstance());
 		location.setAlertMes("请问您想知道什么地方的天气？");
+		location.setNeedExternalLoad(true);
 		location.setCmd(new ParamCommand() {
 
 			@Override
@@ -40,6 +34,7 @@ public class WeatherParam extends DomainParam<WeatherFuture> {
 		ParamItem date = new ParamItem();
 		date.setName("date");
 		date.setCollector(TimeCollector.getInstance());
+		date.setNeedExternalLoad(false);
 		date.setCmd(new ParamCommand() {
 
 			@Override
@@ -47,7 +42,7 @@ public class WeatherParam extends DomainParam<WeatherFuture> {
 				if (item.getCollectResult() != null) {
 					return item.getCollectResult();
 				} else {
-					return new Date();
+					return new Date[]{new Date()};
 				}
 			}
 
@@ -55,6 +50,7 @@ public class WeatherParam extends DomainParam<WeatherFuture> {
 		ParamItem gps = new ParamItem();
 		gps.setName("gps");
 		gps.setCollector(GPSCollector.getInstance());
+		gps.setNeedExternalLoad(true);
 		gps.setCmd(new ParamCommand() {
 
 			@Override
@@ -135,45 +131,5 @@ public class WeatherParam extends DomainParam<WeatherFuture> {
 	// }
 	// return "好的";
 	// }
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getGpslon() {
-		return gpslon;
-	}
-
-	public void setGpslon(String gpslon) {
-		this.gpslon = gpslon;
-	}
-
-	public String getGpslat() {
-		return gpslat;
-	}
-
-	public void setGpslat(String gpslat) {
-		this.gpslat = gpslat;
-	}
-
-	public List<WeatherFuture> getSenvenWeathers() {
-		return senvenWeathers;
-	}
-
-	public void setSenvenWeathers(List<WeatherFuture> senvenWeathers) {
-		this.senvenWeathers = senvenWeathers;
-	}
 
 }

@@ -147,6 +147,10 @@ public abstract class DomainParam<T> {
 		return "好的。";
 	} 
 	
+	public List<T> getResult() {
+		return result;
+	}
+
 	public Integer getResultIndex(){
 		if(result != null) return result.size();
 		return null;
