@@ -1,21 +1,15 @@
 package com.nana.serviceengine.domain.weather.processor;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import com.nana.serviceengine.common.bean.UserDialog;
 import com.nana.serviceengine.common.bean.UserMessage;
-import com.nana.serviceengine.common.cacher.UserTheme;
-import com.nana.serviceengine.dao.webapi.SimpleApiAccessor;
+import com.nana.serviceengine.domain.weather.bean.WeatherFuture;
 import com.nana.serviceengine.domain.weather.domainparam.WeatherParam;
 import com.nana.serviceengine.domain.weather.responsecreator.WeatherSentenceCreator;
 import com.nana.serviceengine.domain.weather.webapi.WeatherAPI;
 import com.nana.serviceengine.inout.responsecenter.RobotResponser;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
-import com.nana.serviceengine.statemachine.bean.DialogState;
-import com.nana.serviceengine.statemachine.bean.LoadType;
-import com.nana.serviceengine.statemachine.bean.ParamState;
 
 public class WeatherServiceProcessor extends ServiceProcessor {
 
@@ -60,36 +54,39 @@ public class WeatherServiceProcessor extends ServiceProcessor {
 	// }
 	// }
 
-	private void finalDealRequest(UserMessage mes, WeatherParam wParam) {
-		// 如果使用spring 这里需要修改
-		SimpleApiAccessor apiAccessor = WeatherAPI.getInstance();
-
-		String data = apiAccessor.loadData(wParam);
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("data", data);
-		params.put("date", wParam.getDate());
-		// TODO SEND MSG
-		RobotResponser.getInstance().responseMessage(
-				WeatherSentenceCreator.getInstance().createSentence(params),
-				mes);
-
-	}
+	// private void finalDealRequest(UserMessage mes, WeatherParam wParam) {
+	// // 如果使用spring 这里需要修改
+	// SimpleApiAccessor apiAccessor = WeatherAPI.getInstance();
+	//
+	// String data = apiAccessor.loadData(wParam);
+	// Map<String, Object> params = new HashMap<String, Object>();
+	// params.put("data", data);
+	// params.put("date", wParam.getDate());
+	// // TODO SEND MSG
+	// RobotResponser.getInstance().responseMessage(
+	// WeatherSentenceCreator.getInstance().createSentence(params),
+	// mes);
+	//
+	// }
 
 	@Override
 	protected void externalRequest(UserMessage mes, DomainParam domainParam) {
-		// 如果使用spring 这里需要修改
-				SimpleApiAccessor apiAccessor = WeatherAPI.getInstance();
-				String data = apiAccessor.loadData(domainParam);
-				
-				// TODO SEND MSG
-				RobotResponser.getInstance().responseMessage(
-						WeatherSentenceCreator.getInstance().createSentence(params),
+
+		WeatherAPI apiAccessor = WeatherAPI.getInstance();
+		List<WeatherFuture> weatherFutures = apiAccessor.getWeatherData(domainParam);
+		domainParam.setResult(weatherFutures);
+		// TODO SEND MSG
+		RobotResponser.getInstance().responseMessage(
+						WeatherSentenceCreator.getInstance().createSentence(domainParam),
 						mes);
 	}
 
 	@Override
 	protected void internalRequest(UserMessage mes, DomainParam domainParam) {
-		externalRequest(mes,domainParam);
+		// TODO SEND MSG
+		RobotResponser.getInstance().responseMessage(
+						WeatherSentenceCreator.getInstance().createSentence(domainParam),
+						mes);
 	}
 
 	@Override

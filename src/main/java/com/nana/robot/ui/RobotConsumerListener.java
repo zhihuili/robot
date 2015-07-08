@@ -55,21 +55,20 @@ public class RobotConsumerListener implements ConsumerListener {
 		System.out.println("display:" + resMessage.getDisplayText());
 		
 		
-//		if ("//TODO".equals(output)) {
-//			sendToCS(reqMessage);
-//		} else {
-//			sendToApp(output, reqMessage);
-//		}
+		if ("//TODO".equals(resMessage.getAudioText())) {
+			sendToCS(reqMessage);
+		} else {
+			sendToApp(resMessage, reqMessage);
+		}
 	}
 	public void sendMsg(String mes,RequestMessage reqMessage){
 		System.out.println("robot:"+mes);
 		
-		
-//		if ("//TODO".equals(output)) {
-//			sendToCS(reqMessage);
-//		} else {
-//			sendToApp(output, reqMessage);
-//		}
+		if ("//TODO".equals(mes)) {
+			sendToCS(reqMessage);
+		} else {
+			sendToApp(mes, reqMessage);
+		}
 	}
 	/**
 	 * robot 不能处理该消息，将消息发送到客服中心
@@ -94,6 +93,21 @@ public class RobotConsumerListener implements ConsumerListener {
 		resMessage.setMobileType(reqMessage.getMobileType());
 		appMqProducer.sendMessage("DEV_NANA_3", null, null,
 				JSON.toJSONString(resMessage).getBytes());
+	}
+	
+	
+	/**
+	 * 发送robot结果到消息队列，等待webapi将其推送给App
+	 * 
+	 * @param responseStr
+	 * @param reqMessage
+	 */
+	private void sendToApp(ResponseMessage response, RequestMessage reqMessage) {
+
+		response.setId(reqMessage.getId());
+		response.setMobileType(reqMessage.getMobileType());
+		appMqProducer.sendMessage("DEV_NANA_3", null, null,
+				JSON.toJSONString(response).getBytes());
 	}
 
 }
