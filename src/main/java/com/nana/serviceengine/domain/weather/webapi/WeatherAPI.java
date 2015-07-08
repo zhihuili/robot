@@ -1,4 +1,4 @@
-package com.nana.serviceengine.dao.webapi.impl;
+package com.nana.serviceengine.domain.weather.webapi;
 
 
 import java.util.List;
@@ -8,8 +8,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.nana.serviceengine.common.config.ConfigCenter;
 import com.nana.serviceengine.common.util.HttpServiceRequest;
 import com.nana.serviceengine.dao.webapi.SimpleApiAccessor;
-import com.nana.serviceengine.dao.webapi.bean.WeatherFuture;
-import com.nana.serviceengine.neuron.domainparam.impl.WeatherParam;
+import com.nana.serviceengine.domain.weather.bean.WeatherFuture;
+import com.nana.serviceengine.domain.weather.domainparam.WeatherParam;
 
 /**
  * 这个类的主要工作就是通过调用API获取数据，并把数据放到参数Bean中

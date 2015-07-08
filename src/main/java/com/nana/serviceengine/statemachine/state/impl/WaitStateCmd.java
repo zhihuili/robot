@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.ansj.domain.Term;
 
+import com.nana.serviceengine.common.bean.DomainKeyWord;
 import com.nana.serviceengine.common.bean.UserDialog;
 import com.nana.serviceengine.common.bean.UserMessage;
 import com.nana.serviceengine.common.cacher.UserTheme;
@@ -33,8 +34,8 @@ public class WaitStateCmd implements StateCmd {
 		List<Term> terms = mes.getTerms();
 		boolean hasNo = false;
 		for (int i = 0; i < terms.size(); i++) {
-			if ("not".equals(DomainDic.domainKeyWord.get(
-					terms.get(i).getRealName()).getDomain())) {
+			DomainKeyWord dkw = DomainDic.domainKeyWord.get(terms.get(i).getRealName());
+			if (dkw != null && "not".equals(dkw.getDomain())) {
 				hasNo = true;
 			}
 		}

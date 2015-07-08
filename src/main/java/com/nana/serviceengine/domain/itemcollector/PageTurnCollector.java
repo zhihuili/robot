@@ -1,4 +1,4 @@
-package com.nana.serviceengine.neuron.processor.itemcollector;
+package com.nana.serviceengine.domain.itemcollector;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,10 @@ import java.util.Map;
 import org.ansj.domain.Term;
 
 import com.nana.serviceengine.common.bean.UserMessage;
+import com.nana.serviceengine.neuron.itemcollector.Collector;
+import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
-public class PageTurnCollector {
+public class PageTurnCollector implements Collector<Integer>{
 	private static PageTurnCollector pc = new PageTurnCollector();
 	//这里把切换词直接写在类中，后面可以把词存在外部文件中
 	private Map<String,Integer> turnCmd = null;
@@ -39,6 +41,12 @@ public class PageTurnCollector {
 			}
 		}
 		return res;
+	}
+
+	@Override
+	public Integer getParam(UserMessage message,ServiceProcessor processor) {
+		// TODO Auto-generated method stub
+		return getIndexChange(message);
 	}
 	 
 }

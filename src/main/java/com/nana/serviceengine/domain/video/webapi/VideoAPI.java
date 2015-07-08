@@ -1,10 +1,10 @@
-package com.nana.serviceengine.dao.webapi.impl;
+package com.nana.serviceengine.domain.video.webapi;
 
 import com.nana.serviceengine.common.config.ConfigCenter;
 import com.nana.serviceengine.common.util.EncodeChanger;
 import com.nana.serviceengine.common.util.HttpServiceRequest;
 import com.nana.serviceengine.dao.webapi.SimpleApiAccessor;
-import com.nana.serviceengine.neuron.domainparam.impl.VideoParam;
+import com.nana.serviceengine.domain.video.domainparam.VideoParam;
 
 public class VideoAPI implements SimpleApiAccessor{
 	private static VideoAPI videoAPI = new VideoAPI();
@@ -19,7 +19,7 @@ public class VideoAPI implements SimpleApiAccessor{
 		VideoParam vParam = (VideoParam)param;
 		try{
 			String apiPath = ConfigCenter.getInstance().getProperty("videoapi");
-			String requestParam = "words=" + vParam.getKeyWord();
+			String requestParam = "words=" + vParam.getParams().get("keyWord").getValue();
 			String data = HttpServiceRequest.httpGet(apiPath+"?"+requestParam);	
 			//这里进行了转码
 			data =  EncodeChanger.getInstance().changeCode(data, "iso-8859-1", "utf-8");

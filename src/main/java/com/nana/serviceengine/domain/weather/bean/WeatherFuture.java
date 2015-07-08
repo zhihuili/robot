@@ -1,4 +1,4 @@
-package com.nana.serviceengine.dao.webapi.bean;
+package com.nana.serviceengine.domain.weather.bean;
 
 public class WeatherFuture {
 	private String temperature;

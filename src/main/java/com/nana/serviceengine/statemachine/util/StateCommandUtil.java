@@ -31,7 +31,7 @@ public class StateCommandUtil {
 		userDialog.getProcessors().clear();
 		userDialog.getResMessages().clear();
 		userDialog.getStateInfo().clear();
-		RobotResponser.getInstance().responseMessage("好的。", mes);
+		//RobotResponser.getInstance().responseMessage("好的。", mes);
 		userDialog.setState(DialogState.START);
 		
 	}
