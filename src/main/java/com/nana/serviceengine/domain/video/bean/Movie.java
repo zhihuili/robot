@@ -12,7 +12,7 @@ public class Movie {
 	private String summary;
 
 	public String getImageUrl() {
-		return imageUrl;
+		return "http://112.74.78.96:8080"+imageUrl;
 	}
 
 	public void setImageUrl(String imageUrl) {

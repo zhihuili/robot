@@ -1,7 +1,7 @@
 package com.nana.robot.ui;
 
-import com.nana.robot.api.context.ChartManager;
 import com.nana.serviceengine.common.bean.UserMessage;
+import com.nana.serviceengine.inout.responsecenter.RobotResponser;
 import com.nana.serviceengine.outin.robot.ChatRobotCenter;
 import com.nana.serviceengine.statemachine.ActionSelector;
 import com.nana.serviceengine.statemachine.state.StateCmd;
@@ -24,7 +24,7 @@ public class NaNaRobot {
 			command.doRun(userMessage, null);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			ChatRobotCenter.getInstance().getRobotResponse(userMessage);
+			RobotResponser.getInstance().responseMessage(ChatRobotCenter.getInstance().getRobotResponse(userMessage), userMessage);
 		}
 
 	}

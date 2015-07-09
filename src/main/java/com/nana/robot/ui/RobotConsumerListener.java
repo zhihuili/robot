@@ -7,7 +7,6 @@ import com.nana.common.mq.ConsumerListener;
 import com.nana.common.mq.MqFactory;
 import com.nana.common.mq.MqProducer;
 import com.nana.robot.api.context.ChartManager;
-import com.nana.robot.chatterbean.util.Translate;
 import com.nana.serviceengine.common.bean.UserMessage;
 
 public class RobotConsumerListener implements ConsumerListener {
@@ -94,7 +93,6 @@ public class RobotConsumerListener implements ConsumerListener {
 		appMqProducer.sendMessage("DEV_NANA_3", null, null,
 				JSON.toJSONString(resMessage).getBytes());
 	}
-	
 	
 	/**
 	 * 发送robot结果到消息队列，等待webapi将其推送给App
