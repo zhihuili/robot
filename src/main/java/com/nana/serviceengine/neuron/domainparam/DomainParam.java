@@ -143,7 +143,7 @@ public abstract class DomainParam<T> {
 		if(index>result.size()){
 			return "下面没有了。";
 		}
-		res.add(result.get(index));
+		res.add(result.get(index-1));
 		return "好的。";
 	} 
 	

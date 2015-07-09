@@ -10,7 +10,7 @@ public class HtmlDataFiller {
 	private static HtmlDataFiller hdf = new HtmlDataFiller();
 	private HtmlDataFiller(){}
 	
-	public HtmlDataFiller getInstance(){
+	public static HtmlDataFiller getInstance(){
 		return hdf;
 	}
 	
@@ -65,24 +65,28 @@ public class HtmlDataFiller {
 		while(matcher.find()){
 			String fieldName = matcher.group().substring(2, matcher.group().length()-1);
 			Object value = getFieldValue(methods,dataBean,fieldName);
-			matcher.appendReplacement(res, value.toString());	
+			if(value != null)
+				matcher.appendReplacement(res, value.toString());
+			else
+				matcher.appendReplacement(res, "");
 		}
 		matcher.appendTail(res);
 		return res.toString();
 	}
 	
 	
-	public static void main(String[] args) {
-		String str = "<html><body><image url='{$name}'/><<image url='{$wds}'/> </body></html>";
-		Pattern pattern = Pattern.compile("\\{\\$[\\w]+\\}");
-		StringBuffer res = new StringBuffer();
-		Matcher matcher = pattern.matcher(str);
-		while(matcher.find()){
-			String field = matcher.group();
-			System.out.println(field.substring(2, field.length()-1));
-			matcher.appendReplacement(res, "wds");	
-		}
-		matcher.appendTail(res);
-		System.out.println(res);
-	}
+	// public static void main(String[] args) {
+	// String str =
+	// "<html><body><image url='{$name}'/><<image url='{$wds}'/> </body></html>";
+	// Pattern pattern = Pattern.compile("\\{\\$[\\w]+\\}");
+	// StringBuffer res = new StringBuffer();
+	// Matcher matcher = pattern.matcher(str);
+	// while(matcher.find()){
+	// String field = matcher.group();
+	// System.out.println(field.substring(2, field.length()-1));
+	// matcher.appendReplacement(res, "wds");
+	// }
+	// matcher.appendTail(res);
+	// System.out.println(res);
+	// }
 }
