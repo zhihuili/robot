@@ -88,7 +88,7 @@ public class RobotConsumerListener implements ConsumerListener {
 	 */
 	private void sendToApp(String responseStr, RequestMessage reqMessage) {
 		ResponseMessage resMessage = new ResponseMessage();
-		resMessage.setDisplayText(responseStr);
+		resMessage.setAudioText(responseStr);
 		resMessage.setId(reqMessage.getId());
 		resMessage.setMobileType(reqMessage.getMobileType());
 		appMqProducer.sendMessage("DEV_NANA_3", null, null,
