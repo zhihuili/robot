@@ -18,7 +18,7 @@ public class MovieDisplay {
 	public String getKeywordCountList() {
 		StringBuilder builder = new StringBuilder();
 		for(int i=0;i<movie.getKeywordCountList().size();i++){
-			builder.append(movie.getKeywordCountList().get(i)+"|");
+			builder.append(movie.getKeywordCountList().get(i).getKey()+"|");
 		}
 		if(builder.length() > 0) builder.deleteCharAt(builder.length()-1);
 		return builder.toString();
