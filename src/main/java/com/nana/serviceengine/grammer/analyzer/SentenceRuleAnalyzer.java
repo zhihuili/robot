@@ -15,14 +15,17 @@ import com.nana.serviceengine.grammer.dic.SentenceRule;
 
 public class SentenceRuleAnalyzer {
 	private static SentenceRuleAnalyzer sra = new SentenceRuleAnalyzer();
-	private SentenceRuleAnalyzer(){}
-	
-	public static SentenceRuleAnalyzer getInstance(){
+
+	private SentenceRuleAnalyzer() {
+	}
+
+	public static SentenceRuleAnalyzer getInstance() {
 		return sra;
 	}
-	
+
 	/**
 	 * 找出所有的宾语及其定语
+	 * 
 	 * @param gi
 	 * @param terms
 	 */
@@ -36,8 +39,9 @@ public class SentenceRuleAnalyzer {
 				do {
 					SentenceRuleItem ori = SentenceRule.SentenceRuleModel
 							.get(regex);
-					ois.addAll(getObItems(terms, ori, natures, 0));
-					//如果有补充子规则，则就进行循环
+					List<ObjectItem> tmp = getObItems(terms, ori, natures, 0);
+					ois.addAll(tmp);
+					// 如果有补充子规则，则就进行循环
 					if (!"null".equals(ori.getSubRule())) {
 						regex = ori.getSubRule();
 					} else {
@@ -46,12 +50,13 @@ public class SentenceRuleAnalyzer {
 				} while (regex != null);
 				gi.setObjects(ois);
 				break;
-			}	
+			}
 		}
 	}
 
 	/**
 	 * 判断是否符合句式
+	 * 
 	 * @param natures
 	 * @param regex
 	 * @return
@@ -60,7 +65,6 @@ public class SentenceRuleAnalyzer {
 		Pattern pattern = Pattern.compile(regex);
 		return pattern.matcher(natures).find();
 	}
-	
 
 	/**
 	 * 获取宾语和定语

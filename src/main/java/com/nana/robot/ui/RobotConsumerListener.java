@@ -6,18 +6,15 @@ import com.nana.common.message.ResponseMessage;
 import com.nana.common.mq.ConsumerListener;
 import com.nana.common.mq.MqFactory;
 import com.nana.common.mq.MqProducer;
-import com.nana.robot.api.context.ChartManager;
 import com.nana.serviceengine.common.bean.UserMessage;
 
 public class RobotConsumerListener implements ConsumerListener {
-	private ChartManager chartManager;
 	private NaNaRobot robot;
 	private MqProducer appMqProducer = MqFactory
 			.getMqProducer("PID_DEV_NANA_3");
 	private MqProducer csMqProducer = MqFactory.getMqProducer("PID_DEV_NANA_2");
 
 	private RobotConsumerListener() {
-		chartManager = ChartManager.getInstance();
 		robot  = NaNaRobot.getInstance();
 	}
 

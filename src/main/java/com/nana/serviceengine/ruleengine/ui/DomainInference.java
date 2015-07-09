@@ -44,7 +44,6 @@ public class DomainInference {
 			Map<String, String> tmp = new HashMap<String, String>();
 			List<String> tmpDomains = new ArrayList<String>();
 			for (int i = 0; i < oi.size(); i++) {
-				
 				String domain = DomainDic.domainKeyWord.get(oi.get(i)
 						.getValue()) == null ? null : DomainDic.domainKeyWord
 						.get(oi.get(i).getValue()).getDomain();

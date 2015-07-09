@@ -1,10 +1,8 @@
 package com.nana.serviceengine.neuron.util;
 
-import java.util.List;
 
 import org.ansj.splitWord.analysis.ToAnalysis;
 
-import com.nana.serviceengine.common.bean.UserDialog;
 import com.nana.serviceengine.common.bean.UserMessage;
 import com.nana.serviceengine.inteceptor.MessagePreTreator;
 import com.nana.serviceengine.ruleengine.ui.DomainInference;
