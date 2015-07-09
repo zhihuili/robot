@@ -15,10 +15,11 @@ public class NaNaRobot {
 	public static NaNaRobot getInstance() {
 		return robot;
 	}
-
+	
 	public void getAnswer(UserMessage userMessage) {
 		try {
-
+			userMessage.setMessage(userMessage.getMessage().trim());
+			
 			StateCmd command = ActionSelector.getInstance().getCommand(
 					userMessage);
 			command.doRun(userMessage, null);

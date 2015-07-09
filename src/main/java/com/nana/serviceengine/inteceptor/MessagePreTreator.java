@@ -1,6 +1,5 @@
 package com.nana.serviceengine.inteceptor;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,7 +8,6 @@ import org.ansj.domain.Term;
 
 import com.nana.serviceengine.common.bean.DomainKeyWord;
 import com.nana.serviceengine.common.dic.DomainDic;
-import com.nana.serviceengine.common.util.ListDeepCopyer;
 import com.nana.serviceengine.grammer.analyzer.GrammerAnalyzer;
 import com.nana.serviceengine.grammer.bean.GrammerItem;
 

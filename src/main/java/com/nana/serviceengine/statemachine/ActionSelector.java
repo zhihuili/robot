@@ -2,7 +2,6 @@ package com.nana.serviceengine.statemachine;
 
 import java.util.List;
 
-import com.nana.robot.api.context.ChartManager;
 import com.nana.serviceengine.common.bean.DomainKeyWord;
 import com.nana.serviceengine.common.bean.UserDialog;
 import com.nana.serviceengine.common.bean.UserMessage;
