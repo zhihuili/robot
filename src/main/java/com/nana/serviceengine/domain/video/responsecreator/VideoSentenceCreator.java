@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.nana.serviceengine.adapter.ResponseMessageAdapter;
-import com.nana.serviceengine.common.dic.HtmlDic;
 import com.nana.serviceengine.domain.video.bean.Movie;
 import com.nana.serviceengine.domain.video.bean.MovieDisplay;
 import com.nana.serviceengine.domain.video.domainparam.VideoParam;

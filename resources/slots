@@ -452,5 +452,6 @@
 火车票 traintkt 火车票 ticket
 汽车票 cartkt 汽车票 ticket
 飞机票 planetkt 飞机票 ticket
+航班 planetkt 航班 ticket
 机票 planetkt 机票 ticket
 船票 shiptkt 船票 ticket
