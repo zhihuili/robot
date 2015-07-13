@@ -28,9 +28,7 @@ public class WeatherParam extends DomainParam<WeatherFuture> {
 					return item.getCollectResult();
 				return null;
 			}
-
 		});
-
 		ParamItem date = new ParamItem();
 		date.setName("date");
 		date.setCollector(TimeCollector.getInstance());
