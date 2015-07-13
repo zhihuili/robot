@@ -23,10 +23,7 @@ public class DomainDic {
 				domainKeyWord.put(strs[0], kdw);
 			}
 		}catch(Exception ex){
-			//TODO log
 			ex.printStackTrace();
 		}
 	}
-	
-
 }

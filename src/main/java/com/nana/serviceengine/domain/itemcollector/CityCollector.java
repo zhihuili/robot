@@ -23,7 +23,6 @@ public class CityCollector implements Collector<String[]> {
 
 	/**
 	 * 根据分词后的结果找到句子中的城市名
-	 * 
 	 * @param inputs
 	 * @return
 	 */
