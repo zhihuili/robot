@@ -21,16 +21,41 @@ public class HtmlCenter {
 		return hc;
 	}
 	/**
-	 * 获取Html
+	 * 获取Html通过JavaBean
 	 * @param vmName
 	 * @param object
 	 * @return
 	 */
-	public String getHtml(String vmName, Object object) {
+	public String getHtmlByBean(String vmName, Object object) {
 		String body = formatVM(vmName, object);
 		return addHtmlTags(body);
 	}
-
+	/**
+	 * 获取Html通过List集合
+	 * @param vmName
+	 * @param list
+	 * @param tagName
+	 * @return
+	 */
+	public String getHtmlByList(String vmName, Object list,String tagName) {
+		String body = formatVMByList(vmName, list,tagName);
+		return addHtmlTags(body);
+	}
+	
+	private String formatVMByList(String vmName, Object object,String tagName) {
+		VelocityEngine ve = new VelocityEngine();
+		ve.init();
+		// 配置引擎上下文对象
+		VelocityContext ctx = new VelocityContext();
+		ctx.put(tagName, object);
+		// 加载模板文件
+		Template t = ve.getTemplate(path + vmName);
+		StringWriter sw = new StringWriter();
+		// 渲染模板
+		t.merge(ctx, sw);
+		return sw.toString();
+	}
+	
 	private String formatVM(String vmName, Object object) {
 		VelocityEngine ve = new VelocityEngine();
 		ve.init();

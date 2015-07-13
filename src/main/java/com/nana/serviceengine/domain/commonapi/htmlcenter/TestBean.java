@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class TestBean {
 	private String name;
-	private List<Map<String,String>> inputs=new ArrayList<Map<String,String>>();;
+	private List<Map<String,String>> inputs=new ArrayList<Map<String,String>>();
 	
 	public TestBean(){
 		name="wds";
