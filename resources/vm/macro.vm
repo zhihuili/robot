@@ -1,0 +1,19 @@
+## 生成input表单元素区域的宏
+#macro(input $title $id)
+<div>
+  <label for="$id">$title</label>
+  <input type="text" id="$id" name="$id"/>
+</div>
+#end
+## 生成select表单元素区域的宏
+#macro(select $title $id $items)
+<div>
+  <label for="$id">$title</label>
+  <select id="$id" name="$id">
+## VTL指令紧贴左侧才能确保结果的排版正常（不会有多余空格）
+#foreach($key in $items.keySet())
+    <option value="$key">$items.get($key)</option>
+#end
+  </select>
+</div>
+#end

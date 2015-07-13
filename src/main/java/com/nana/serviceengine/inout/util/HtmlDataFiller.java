@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.nana.serviceengine.common.bean.GPS;
 import com.nana.serviceengine.common.dic.HtmlDic;
 
 public class HtmlDataFiller {
@@ -75,18 +76,21 @@ public class HtmlDataFiller {
 	}
 	
 	
-	// public static void main(String[] args) {
-	// String str =
-	// "<html><body><image url='{$name}'/><<image url='{$wds}'/> </body></html>";
-	// Pattern pattern = Pattern.compile("\\{\\$[\\w]+\\}");
-	// StringBuffer res = new StringBuffer();
-	// Matcher matcher = pattern.matcher(str);
-	// while(matcher.find()){
-	// String field = matcher.group();
-	// System.out.println(field.substring(2, field.length()-1));
-	// matcher.appendReplacement(res, "wds");
-	// }
-	// matcher.appendTail(res);
-	// System.out.println(res);
-	// }
+	 public static void main(String[] args) {
+//	 String str =
+//	 "<html><body><image url='{$name}'/><<image url='{$wds}'/> </body></html>";
+//	 Pattern pattern = Pattern.compile("\\{\\$[\\w]+\\}");
+//	 StringBuffer res = new StringBuffer();
+//	 Matcher matcher = pattern.matcher(str);
+//	 while(matcher.find()){
+//	 String field = matcher.group();
+//	 System.out.println(field.substring(2, field.length()-1));
+//	 	matcher.appendReplacement(res, "wds");
+//	 }
+//	 matcher.appendTail(res);
+//	 System.out.println(res);
+		 Class c = GPS.class;
+		 for(int i=0;i<c.getDeclaredFields().length;i++)
+		 System.out.println(c.getDeclaredFields()[i].getName());
+	 }
 }
