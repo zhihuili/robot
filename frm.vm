@@ -1,0 +1,27 @@
+##表单模板
+##@author fsjohnhuang
+##@version 1.0
+## 引入外部模板文件
+#parse('macro.vm')
+## 主逻辑
+<form action="$action">
+<table>
+	<tr>
+	             <td>
+	                出发时间 <br/>
+	                出发城市
+	             </td>
+	             <td>
+	               航班车次<br/>
+	               ————————
+	             </td>
+	              <td>
+	               到达时间 <br/>
+	               目的城市
+	             </td>
+	</tr>
+#foreach($flight in $flights)
+  #table($flight.starttime $flight.depcity $flight.flightNum $flight.arrtime $flight.arrcity)
+#end
+</table>
+</form>
