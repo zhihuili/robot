@@ -29,53 +29,6 @@ public class WeatherAPI{
 		return weatherApi;
 	}
 
-	// @Override
-	// public String loadData(Object param) {
-	// WeatherParam weatherParam = (WeatherParam) param;
-	// String res = null;
-	// String param1 = null;
-	// try {
-	// String weatherkey = ConfigCenter.getInstance().getProperty(
-	// "juheappkey");
-	// String apiPath = null;
-	// String format = ConfigCenter.getInstance().getProperty("format");
-	// if (weatherParam.getLocation() == null) {
-	// if (weatherParam.getGpslat() != null
-	// && weatherParam.getGpslon() != null) {
-	// param1 = "key=" + weatherkey + "&dtype=json&lon="
-	// + weatherParam.getGpslon() + "&lat="
-	// + weatherParam.getGpslat() + "&cityname="
-	// + weatherParam.getLocation() + "&format=" + format;
-	// apiPath = ConfigCenter.getInstance().getProperty(
-	// "reportbygps");
-	// }
-	//
-	// } else {
-	//
-	// apiPath = ConfigCenter.getInstance().getProperty(
-	// "reportbyidorname");
-	//
-	// // 构建param
-	// param1 = "key=" + weatherkey + "&dtype=json&cityname="
-	// + weatherParam.getLocation() + "&format=" + format;
-	//
-	// //
-	// // if (weatherParam.getDate() == null) {
-	// // // 默认为今天
-	// // weatherParam.setDate(new Date());
-	// // }
-	//
-	// }
-	// if (param1 != null && apiPath != null)
-	// res = HttpServiceRequest.httpGet(apiPath + "?" + param1);
-	// // System.out.println("请求结果：" + res);
-	// return res;
-	// } catch (Exception ex) {
-	// ex.printStackTrace();
-	// return null;
-	// }
-	// }
-
 	public List<WeatherFuture> getWeatherData(DomainParam weatherParam) {
 		String res = null;
 		String param1 = null;
