@@ -28,6 +28,7 @@ public class RobotConsumerListener implements ConsumerListener {
 	public void process(String key, String tag, byte[] body) {
 		RequestMessage reqMessage = JSON.parseObject(new String(body),
 				RequestMessage.class);
+		System.out.println("user say"+reqMessage.getContent());
 		UserMessage mes = new UserMessage();
 		mes.setUserid(reqMessage.getId());
 		mes.setMessage(reqMessage.getContent());

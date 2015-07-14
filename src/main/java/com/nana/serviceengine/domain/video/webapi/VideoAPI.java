@@ -22,7 +22,7 @@ public class VideoAPI implements SimpleApiAccessor{
 			String requestParam = "words=" + vParam.getParams().get("keyWord").getValue();
 			String data = HttpServiceRequest.httpGet(apiPath+"?"+requestParam);	
 			//这里进行了转码
-			data =  EncodeChanger.getInstance().changeCode(data, "iso-8859-1", "utf-8");
+			//data =  EncodeChanger.getInstance().changeCode(data, "utf-8", "utf-8");
 			return data;
 		}catch(Exception ex){
 			ex.printStackTrace();

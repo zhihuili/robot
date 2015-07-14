@@ -5,3 +5,6 @@
 5 time,temprature com.nana.serviceengine.domain.weather.processor.WeatherServiceProcessor
 6 planetkt com.nana.serviceengine.domain.flight.processor.FlightServiceProcessor
 7 not,planetkt com.recommand
+8 cartkt com.nana.serviceengine.domain.coach.processor.BusServiceProcessor
+9 joke com.nana.serviceengine.domain.joke.processor.JokeServiceProcessor
+10 location com.nana.serviceengine.domain.location.processor.LocationServiceProcessor
