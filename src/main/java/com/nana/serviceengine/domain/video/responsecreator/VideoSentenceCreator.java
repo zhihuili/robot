@@ -39,7 +39,6 @@ public class VideoSentenceCreator implements SentenceCreator {
 		// 设置提示的话语
 		rpsMessage.setAudioText(alert);
 		
-		
 		//构造显示在App段的消息
 		if (movieList.size() != 0 && index<=params.getResult().size() && index>0){
 	    	ResponseDisplay responseDisplay = new ResponseDisplay();

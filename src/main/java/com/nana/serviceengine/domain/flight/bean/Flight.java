@@ -15,6 +15,18 @@ public class Flight {
 	private String arrTime;
 	private String dexpected;
 	private String aexpected;
+    private int index;
+	
+	@Override
+	public String toString() {
+		return "Flight [flightNum=" + flightNum + ", airline=" + airline
+				+ ", depcity=" + depcity + ", arrcity=" + arrcity
+				+ ", depCode=" + depCode + ", arrCode=" + arrCode
+				+ ", onTimeRate=" + onTimeRate + ", depTerminal=" + depTerminal
+				+ ", arrTerminal=" + arrTerminal + ", pekDate=" + pekDate
+				+ ", depTime=" + depTime + ", arrTime=" + arrTime
+				+ ", dexpected=" + dexpected + ", aexpected=" + aexpected + "]";
+	}
 
 	public String getFlightNum() {
 		return flightNum;
@@ -126,5 +138,13 @@ public class Flight {
 
 	public void setAexpected(String aexpected) {
 		this.aexpected = aexpected;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 }
