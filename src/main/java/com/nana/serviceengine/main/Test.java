@@ -1,13 +1,11 @@
 package com.nana.serviceengine.main;
 
+
 import java.util.Scanner;
 
-import com.alibaba.fastjson.JSON;
 import com.nana.common.message.RequestMessage;
-import com.nana.common.message.ResponseMessage;
 import com.nana.robot.ui.NaNaRobot;
 import com.nana.serviceengine.common.bean.UserMessage;
-
 public class Test {
 
 	public static void main(String[] args) {
@@ -34,8 +32,5 @@ public class Test {
 			mes.setReqMessage(reqMessage);
 			robot.getAnswer(mes);
 		}
-		
-
 	}
-
 }
