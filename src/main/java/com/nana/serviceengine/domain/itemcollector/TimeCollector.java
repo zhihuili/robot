@@ -29,47 +29,6 @@ public class TimeCollector implements Collector<Date[]>{
 	}
 
 	/**
-	 * 过期 将时间关键词转化为机器能识别的时间
-	 * 
-	 * @param input
-	 * @return
-	 */
-	public Date[] parseDate(String input) {
-		List<Date> dates = new ArrayList<Date>();
-		List<String> timeMapLines = new TxtReader("resources/timemaper")
-				.getContentLineList();
-		if (timeMapLines != null && timeMapLines.size() != 0) {
-			for (String item : timeMapLines) {
-				String[] tmp = item.split(" ");
-				if (input.contains(tmp[0])) {
-					int diff = Integer.parseInt(tmp[1]);
-					dates.add(new Date(new Date().getTime() + diff * 24 * 60
-							* 60 * 1000));
-				}
-			}
-			String strDate = "";
-			try {
-				Pattern p = Pattern.compile("[\\d]{1,2}月[\\d]{1,2}");
-				Matcher mather = p.matcher(input);
-				if (mather.find())
-					strDate = mather.group();
-			} catch (Exception ex) {
-
-			}
-			DateFormat df = new SimpleDateFormat("yyyy年MM月dd");
-			try {
-				if (strDate.matches("[\\d]{1,2}月[\\d]{1,2}"))
-					dates.add(df.parse((new Date().getYear() + 1900) + "年"
-							+ strDate));
-			} catch (ParseException e) {
-				e.printStackTrace();
-				// log
-			}
-		}
-		return dates.toArray(new Date[] {});
-	}
-
-	/**
 	 * 目前识别有限需要补充几天后这种
 	 * 
 	 * @param mes
@@ -101,6 +60,8 @@ public class TimeCollector implements Collector<Date[]>{
 			return res.toArray(new Date[] {});
 		return null;
 	}
+	
+	
 
 	@Override
 	public Date[] getParam(UserMessage message,ServiceProcessor processor) {

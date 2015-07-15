@@ -8,40 +8,54 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
+import com.nana.serviceengine.common.config.ConfigCenter;
+import com.nana.serviceengine.common.dic.HtmlDic;
+
 
 
 public class HtmlCenter {
 	private static HtmlCenter hc = new HtmlCenter();
-	private static String path = "resources/vm/";
+	//模版位置文件夹
+	private static String path;
 
 	private HtmlCenter() {
+		path = ConfigCenter.getInstance().getProperty("vmdir");
 	}
 
 	public static HtmlCenter getInstance() {
 		return hc;
 	}
+	
 	/**
 	 * 获取Html通过JavaBean
 	 * @param vmName
 	 * @param object
 	 * @return
 	 */
-	public String getHtmlByBean(String vmName, Object object) {
+	public String getHtmlByBean(String vmName, Object object,String htmlName) {
 		String body = formatVM(vmName, object);
-		return addHtmlTags(body);
-	}
-	/**
-	 * 获取Html通过List集合
-	 * @param vmName
-	 * @param list
-	 * @param tagName
-	 * @return
-	 */
-	public String getHtmlByList(String vmName, Object list,String tagName) {
-		String body = formatVMByList(vmName, list,tagName);
-		return addHtmlTags(body);
+		return addHtmlTags(body,htmlName);
 	}
 	
+	/**
+	 * 获取Html通过List集合
+	 * @param vmName 模版名称
+	 * @param list 数据集合
+	 * @param tagName 模版中使用数据集合的名称
+	 * @return
+	 */
+	public String getHtmlByList(String vmName, Object list,String tagName,String htmlName) {
+		String body = formatVMByList(vmName, list,tagName);
+		return addHtmlTags(body,htmlName);
+	}
+	
+	/**
+	 * 将集合数据填充到模版中
+	 * @param vmName
+	 * @param object
+	 * @param tagName 集合在模版中的名字
+	 * @return
+	 */
 	private String formatVMByList(String vmName, Object object,String tagName) {
 		VelocityEngine ve = new VelocityEngine();
 		ve.init();
@@ -56,6 +70,12 @@ public class HtmlCenter {
 		return sw.toString();
 	}
 	
+	/**
+	 * 将数据填充到html中，数据源是javabean
+	 * @param vmName
+	 * @param object
+	 * @return
+	 */
 	private String formatVM(String vmName, Object object) {
 		VelocityEngine ve = new VelocityEngine();
 		ve.init();
@@ -76,11 +96,17 @@ public class HtmlCenter {
 		t.merge(ctx, sw);
 		return sw.toString();
 	}
-
-	private String addHtmlTags(String body) {
+	
+	/**
+	 * 为模版加上html头
+	 * @param body
+	 * @param htmlName
+	 * @return
+	 */
+	private String addHtmlTags(String body,String htmlName) {
 		if (body == null)
 			return null;
-		String htmlTmplate = "<!DOCTYPE html><html><head><meta http-equiv='content-type' content='text/html;charset=utf-8'><title>电影列表</title></head><body>body_content</body></html>";
+		String htmlTmplate = HtmlDic.HTMLMAP.get(htmlName);
 		return htmlTmplate.replace("body_content", body);
 	}
 
