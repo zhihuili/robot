@@ -28,7 +28,6 @@ public class SplitWord {
 
 	/**
 	 * 这个对象比较重。支持多线程，请尽量重复使用
-	 * 
 	 * @param model
 	 * @throws Exception
 	 */

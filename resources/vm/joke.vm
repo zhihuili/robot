@@ -1,0 +1,6 @@
+##表单模板
+<form action="$action">
+<div>
+  <input type="text" name="$content"/>
+</div>
+</form>

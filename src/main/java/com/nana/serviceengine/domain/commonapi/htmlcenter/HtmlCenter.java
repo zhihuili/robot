@@ -8,15 +8,11 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
-
-
 public class HtmlCenter {
 	private static HtmlCenter hc = new HtmlCenter();
 	private static String path = "resources/vm/";
-
 	private HtmlCenter() {
 	}
-
 	public static HtmlCenter getInstance() {
 		return hc;
 	}
@@ -68,7 +64,7 @@ public class HtmlCenter {
 			ctx.put(fields[i].getName(),
 					getFieldValue(methods, object, fields[i].getName()));
 		}
-
+		
 		// 加载模板文件
 		Template t = ve.getTemplate(path + vmName,"utf-8");
 		StringWriter sw = new StringWriter();
@@ -83,10 +79,8 @@ public class HtmlCenter {
 		String htmlTmplate = "<!DOCTYPE html><html><head><meta http-equiv='content-type' content='text/html;charset=utf-8'><title>电影列表</title></head><body>body_content</body></html>";
 		return htmlTmplate.replace("body_content", body);
 	}
-
 	/**
 	 * 指定方法名来获取对象中的field值，只适用于获取bean的属性，且属性必须指定get方法
-	 * 
 	 * @param methods
 	 * @param target
 	 * @param fieldName

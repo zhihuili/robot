@@ -1,4 +1,4 @@
-package com.nana.serviceengine.domain.coach.webapi;
+package com.nana.serviceengine.domain.joke.webapi;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,38 +17,31 @@ import com.alibaba.fastjson.JSONObject;
 import com.nana.serviceengine.common.config.ConfigCenter;
 import com.nana.serviceengine.domain.coach.bean.Bus;
 import com.nana.serviceengine.domain.coach.bean.Coach;
+import com.nana.serviceengine.domain.joke.bean.Joke;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
-public class BusAPI {
-	public static BusAPI coachAPI = new BusAPI();
+public class JokeAPI {
+	public static JokeAPI coachAPI = new JokeAPI();
 
-	public static BusAPI getInstance() {
+	public static JokeAPI getInstance() {
 		if (coachAPI != null)
 			return coachAPI;
 		else
-			coachAPI = new BusAPI();
+			coachAPI = new JokeAPI();
 		return coachAPI;
 	}
 
-	public BusAPI() {
+	public JokeAPI() {
 	}
-  public List<Bus> getCityCoachinfo(DomainParam coachParam) throws UnsupportedEncodingException{
+     public List<Joke> getJoke() throws UnsupportedEncodingException{
 	  ConfigCenter config=ConfigCenter.getInstance();
 	  String apiKey=config.getProperty("");
 	  String apiUrl=config.getProperty("");
-	  Map<String,ParamItem> param=coachParam.getParams();
-	  String start=(String) param.get("start").getValue();
-	  String end=(String) param.get("end").getValue();
-//	  ParamItem start=param.get("start"); 
-//	  System.out.println("START"+start.getCollectResult());
-//	  ParamItem end=param.get("end"); 
-//	  System.out.println("END:"+end.getCollectResult());
 	  BufferedReader reader = null;
-	  List<Bus> carGroup=null;
+	  List<Joke> jokeGroup=null;
 	  StringBuffer sbf = new StringBuffer();
-	  String path=new StringBuffer("http://op.juhe.cn/onebox/bus/query_ab?key=").append("e1d18e22f25b9b6e43d00e56af10de64").append("&from=").append(start).append("&to=").append(end).toString();
-	System.out.println(path);
-	URL url;
+	   String path=new String("http://japi.juhe.cn/joke/content/text.from?key=097ea8eb5ce816fe73efdede77872d87&page=1&pagesize=20");//此处参数稍后处理
+     URL url;
 	try {
 		url = new URL(path);
 		HttpURLConnection connection;
@@ -56,7 +49,7 @@ public class BusAPI {
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setReadTimeout(5000);
-			connection.setConnectTimeout(3000);
+			connection.setConnectTimeout(5000);
 			connection.connect();
 			InputStream is = connection.getInputStream();
 			reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -65,16 +58,20 @@ public class BusAPI {
 				sbf.append(strRead);
 				sbf.append("\r\n");
 			}
-			reader.close();
-			JSONObject oject = (JSONObject) JSONObject.parse(sbf.toString());
-			carGroup=JSON.parseArray(oject.getJSONObject("result").getJSONArray("list").toString(),Bus.class);
 			
+			JSONObject oject = (JSONObject) JSONObject.parse(sbf.toString());
+			
+			 jokeGroup = JSON.parseArray(oject.getJSONObject("result")
+					.getJSONArray("data").toString(), Joke.class);
+			 reader.close();
+				is.close();		 
+			 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	} catch (MalformedURLException e) {
 		e.printStackTrace();
 	}
-	return carGroup;
+	return jokeGroup;
   }
 }

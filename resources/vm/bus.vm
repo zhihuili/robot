@@ -1,0 +1,11 @@
+##表单模板
+<form action="$action">
+#foreach($input in $inputs)
+<div>
+  <input type="text" name="$input.start"/>
+  <input type="text" name="$input.arrive"/>
+  <input type="text" name="$input.date"/>
+  <input type="text" name="$input.price"/>
+</div>
+#end
+</form>
