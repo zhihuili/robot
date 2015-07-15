@@ -1,10 +1,10 @@
 package com.nana.serviceengine.domain.flight.responsecreator;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.nana.serviceengine.adapter.ResponseMessageAdapter;
+import com.nana.serviceengine.domain.commonapi.htmlcenter.HtmlCenter;
 import com.nana.serviceengine.domain.flight.bean.Flight;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
@@ -22,30 +22,38 @@ public class FlightSentenceCreator implements SentenceCreator {
 		return flightSentenceCreator;
 	}
 
-
 	@Override
 	public ResponseMessageAdapter createSentence(DomainParam params) {
        ResponseMessageAdapter rma = new ResponseMessageAdapter();
        Map<String,ParamItem> paramItems = params.getParams();
-	   List<Flight> data = params.getResult();
+	   List<Flight>  allflights = params.getResult();
+	   //设置元素的下标
+	   for(int i = 0; i < allflights.size(); i++){
+		   allflights.get(i).setIndex(i+1);
+	   }
+	
 	   String res = null;
-	   
-	   if(data == null && data.size() == 0){
+	   if(allflights == null && allflights.size() == 0){
 			rma.setAudioText("哎呀，没有数据。");
 			return rma;
+	    }
+	   Integer index = (Integer) paramItems.get("indexChange").getValue();
+		// 获取结果
+		String alert = params.getResult(allflights, index);
+		// 设置提示的话语
+		rma.setAudioText(alert);
+		//分页的启示值,每页显示5个
+		int start = (index-1)*5;
+		int end  = index*5;
+		if(index*5 > allflights.size())
+			end = allflights.size()-1;
+	    List<Flight> flights = allflights.subList(start,end);
+	    	
+	   if (flights != null) {
+		   res = HtmlCenter.getInstance().getHtmlByList("flightfrm.vm", flights, "flights");
 		}
-	     
-	   if (data != null) {
-			Date starttime = new Date(data.get(0).getDepTime());
-			Date arrtime = new Date(data.get(0).getArrTime());
-			res = "航班的班次" + data.get(0).getFlightNum() + "目的地"
-					+ data.get(0).getArrcity()
-					+ data.get(0).getAirline() + "起飞时间"+
-					starttime.getMonth()+"月"+starttime.getDay()+"日"+starttime.getHours()+"点"+starttime.getMinutes()+"分"
-					+ data.get(0).getDepTime() + "到达时间"+
-					arrtime.getMonth()+"月"+arrtime.getDay()+"日"+arrtime.getHours()+"点"+arrtime.getMinutes()+"分";
-		}
-	   rma.setAudioText(res);
+	   rma.setDisplayText(res);
+	   //rma.setAudioText(res);
 	   return rma;
 	}
 }
