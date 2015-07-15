@@ -72,9 +72,11 @@ public class FlightAPI {
 	 */
 	public  List<Flight> searchFligthResult(DomainParam flightParam) {
         //获取appkey以及访问的api路径
-		ConfigCenter config =  ConfigCenter.getInstance();
-		String key = config.getProperty("flightkey");
-		String url = config.getProperty("flightapi");
+		//ConfigCenter config =  ConfigCenter.getInstance();
+		//String key = config.getProperty("flightkey");
+		//String url = config.getProperty("flightapi");
+		String key = "4e2d9dc19b6ea56b66e3900cbeeebf2c";
+		String url = "http://apis.juhe.cn/plan/bc";
 		
 		String start =null;//起始站
 		String end = null;//终点站

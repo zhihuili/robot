@@ -1,0 +1,22 @@
+## 生成table表单元素区域的
+#macro(table $index $starttime $depcity $flightNum $arrtime  $arrcity)
+
+      <tr>
+                 <td>
+                     $index
+                 </td>
+	             <td>
+	                 $starttime<br/>
+	                 $depcity
+	             </td>
+	             <td>
+	               $flightNum <br/>
+	               ————————
+	             </td>
+	              <td>
+	                $arrtime
+	                <br/>
+	                $arrcity
+	             </td>
+      </tr>
+#end

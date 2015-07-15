@@ -25,6 +25,9 @@ public class Test {
 		    String str= scann.next();
 		    reqMessage.setId("2545535b30537ba130b673750d38dcb12485b7aa56a3845c7fc796b36187fb46");
 		    reqMessage.setContent(str);
+		    
+		    
+		    
 			NaNaRobot robot = NaNaRobot.getInstance();
 			UserMessage mes = new UserMessage();
 			mes.setUserid("2545535b30537ba130b673750d38dcb12485b7aa56a3845c7fc796b36187fb46");
