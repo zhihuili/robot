@@ -7,7 +7,7 @@
 <form action="$action">
 <table>
 #foreach($flight in $flights)
-  #table($flight.index $flight.depTime $flight.depcity &flight.airline $flight.flightNum $flight.arrTime $flight.arrcity)
+  #table($flight.index $flight.depTime $flight.depcity $flight.airline $flight.flightNum $flight.arrTime $flight.arrcity)
 #end
 </table>
 </form>
