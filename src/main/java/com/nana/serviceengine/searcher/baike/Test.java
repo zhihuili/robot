@@ -19,15 +19,15 @@ public class Test {
 
 		try {
 			// 创建httpget.
-			HttpGet httpget = new HttpGet("http://baike.baidu.com/search/word?word=茜拉");
+			HttpGet httpget = new HttpGet("http://zhidao.baidu.com/search?word=茜拉和邓紫棋谁更厉害");
 			// 执行get请求.
 			CloseableHttpResponse response = httpclient.execute(httpget);
 			try {
 				// 获取响应实体
 				HttpEntity entity = response.getEntity();
 				if (entity != null) {
-					String tmp = EntityUtils.toString(entity);
-					System.out.println(new String(tmp.getBytes("iso-8859-1"),"utf-8"));
+					String tmp = EntityUtils.toString(entity,"gbk");
+					System.out.println(tmp);
 				}
 			} finally {
 				response.close();
