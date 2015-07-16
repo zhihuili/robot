@@ -39,6 +39,7 @@ public class JokeSentenceCreator implements SentenceCreator {
 		List<Joke> list=new ArrayList<Joke>();
 		List<Joke> data = params.getResult();
 		String pesponse="";
+		String content=null;
 		if(data == null && data.size() == 0){
 			rma.setAudioText("不好意思，没有查询到相关数据");
 			return rma;
@@ -48,7 +49,7 @@ public class JokeSentenceCreator implements SentenceCreator {
 			     *  joke：20条数据随机返回一个
 			     */
 			int i=new Random().nextInt(20)%(21) + 0;
-			String content=(String) data.get(i).getContent().replace("?", "");
+			 content=(String) data.get(i).getContent().replace("?", "");
 			//Joke joke=new Joke(content,data.get(i).getHashId(),data.get(i).getUnixtime(),data.get(i).getUpdatetime());
 			Joke joke=new Joke();
 			joke.setContent(content);
@@ -60,8 +61,7 @@ public class JokeSentenceCreator implements SentenceCreator {
 			pesponse=HtmlCenter.getInstance().getHtmlByBean("joke.vm", joke,"videohtml");
 			//pesponse=HtmlCenter.getInstance().getHtmlByList("joke.vm", joke, "inputs");
 		}
-		rma.setAudioText(pesponse);
-		
+		rma.setAudioText(content);
 		return rma;
 	}
 
