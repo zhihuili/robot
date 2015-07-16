@@ -38,7 +38,7 @@ public class FlightAPI {
 	 */
 	public  Map<String, String> getCitycode() {
 
-		String key = "4e2d9dc19b6ea56b66e3900cbeeebf2c"; // 获取全国城市的key
+		String key = "425aadada6687141b2aebddf22e1bd1b"; // 获取全国城市的key
 		String url = "http://apis.juhe.cn/plan/city?key=";
 		
 		String urlAll = new StringBuffer(url).append(key).toString();
@@ -75,7 +75,7 @@ public class FlightAPI {
 		//ConfigCenter config =  ConfigCenter.getInstance();
 		//String key = config.getProperty("flightkey");
 		//String url = config.getProperty("flightapi");
-		String key = "4e2d9dc19b6ea56b66e3900cbeeebf2c";
+		String key = "425aadada6687141b2aebddf22e1bd1b";
 		String url = "http://apis.juhe.cn/plan/bc";
 		
 		String start =null;//起始站

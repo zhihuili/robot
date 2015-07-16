@@ -1,11 +1,15 @@
 package com.nana.serviceengine.domain.flight.domainparam;
 
+import java.awt.Choice;
 import java.util.Date;
+
+import javax.swing.GroupLayout.ParallelGroup;
 
 import com.nana.serviceengine.common.bean.GPS;
 import com.nana.serviceengine.domain.flight.bean.Flight;
 import com.nana.serviceengine.domain.itemcollector.BusEndStationCollector;
 import com.nana.serviceengine.domain.itemcollector.BusStartStationCollector;
+import com.nana.serviceengine.domain.itemcollector.ChoiceCollector;
 import com.nana.serviceengine.domain.itemcollector.CityCollector;
 import com.nana.serviceengine.domain.itemcollector.PageTurnCollector;
 import com.nana.serviceengine.domain.itemcollector.TimeCollector;
@@ -45,7 +49,7 @@ public class FlightParam extends DomainParam<Flight>{
 		originStation.setName("start");
 		originStation.setCollector(BusStartStationCollector.getInstance());
 		originStation.setAlertMes("请问您想知道从哪里出发的航班");
-		
+		originStation.setNeedExternalLoad(true);
 		originStation.setCmd(new ParamCommand() {
 			
 			@Override
@@ -61,6 +65,8 @@ public class FlightParam extends DomainParam<Flight>{
 		endStation.setName("end");
 		endStation.setCollector(BusEndStationCollector.getInstance());
 		endStation.setAlertMes("请问您想知道您的目的地的航班");
+		endStation.setNeedExternalLoad(true);
+		
 		endStation.setCmd(new ParamCommand() {
 			
 			@Override
@@ -74,6 +80,7 @@ public class FlightParam extends DomainParam<Flight>{
 		ParamItem date = new  ParamItem();
 		date.setName("date");
 		date.setCollector(TimeCollector.getInstance());
+		date.setNeedExternalLoad(true);
 		date.setCmd(new ParamCommand() {
 			
 			@Override
@@ -98,10 +105,27 @@ public class FlightParam extends DomainParam<Flight>{
 				return null;
 			}
 		});
+		
+	   //获取用户选择第几条航班信息
+		ParamItem choice = new ParamItem();
+        choice.setName("choice");		
+		choice.setCollector(ChoiceCollector.getInstance());
+		choice.setCmd(new ParamCommand() {
+			
+			@Override
+			public Object doProcess(ParamItem item) {
+				 if(item.getCollectResult() != null && (Integer)item.getCollectResult() != -1){
+					 return item.getCollectResult() ;
+				 }
+				return -1;
+			}
+		});
+		
 		params.put(indexChange.getName(), indexChange);
 		params.put(originStation.getName(), originStation);
 		params.put(endStation.getName(), endStation);
 		params.put(date.getName(), date);
-		params.put(timeslot.getName(), timeslot);
+		params.put(choice.getName(), choice);
+	    //params.put(timeslot.getName(), timeslot);
 	}
 }
