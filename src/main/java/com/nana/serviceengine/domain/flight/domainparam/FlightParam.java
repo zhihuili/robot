@@ -8,6 +8,8 @@ import com.nana.serviceengine.domain.itemcollector.BusEndStationCollector;
 import com.nana.serviceengine.domain.itemcollector.BusStartStationCollector;
 import com.nana.serviceengine.domain.itemcollector.CityCollector;
 import com.nana.serviceengine.domain.itemcollector.PageTurnCollector;
+import com.nana.serviceengine.domain.itemcollector.TimeCollector;
+import com.nana.serviceengine.domain.itemcollector.TimeSlotCollector;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamCommand;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
@@ -71,19 +73,35 @@ public class FlightParam extends DomainParam<Flight>{
 		
 		ParamItem date = new  ParamItem();
 		date.setName("date");
-		date.setCollector(CityCollector.getInstance());
+		date.setCollector(TimeCollector.getInstance());
 		date.setCmd(new ParamCommand() {
 			
 			@Override
 			public Object doProcess(ParamItem item) {
 				if(item.getCollectResult() != null)
-				 return item.getCollectResult();
+				 return ((Date[])item.getCollectResult())[0];
 				return new Date();
+			}
+		});
+		
+		//搜集时间段
+		ParamItem timeslot = new ParamItem();
+		timeslot.setName("timeslot");
+		timeslot.setCollector(TimeSlotCollector.getinstance());
+		timeslot.setCmd(new ParamCommand() {
+			
+			@Override
+			public Object doProcess(ParamItem item) {
+				if(item.getCollectResult() != null && ((String[])item.getCollectResult()).length>0){
+					return ((String[])item.getCollectResult())[0];
+				}
+				return null;
 			}
 		});
 		params.put(indexChange.getName(), indexChange);
 		params.put(originStation.getName(), originStation);
 		params.put(endStation.getName(), endStation);
 		params.put(date.getName(), date);
+		params.put(timeslot.getName(), timeslot);
 	}
 }
