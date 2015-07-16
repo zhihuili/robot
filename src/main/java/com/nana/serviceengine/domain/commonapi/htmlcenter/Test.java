@@ -10,7 +10,7 @@ public class Test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TestBean bean = new TestBean();
-		String res = HtmlCenter.getInstance().getHtmlByBean("frm.vm", bean);
+		String res = HtmlCenter.getInstance().getHtmlByBean("frm.vm", bean,"videohtml");
 		System.out.println(res);
 		
 //		List<Map<String,String>> inputs=new ArrayList<Map<String,String>>();
