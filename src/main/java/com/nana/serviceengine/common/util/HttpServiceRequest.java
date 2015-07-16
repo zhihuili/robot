@@ -14,11 +14,22 @@ import org.apache.http.util.EntityUtils;
 public class HttpServiceRequest {
 	/**
 	 * 通过get方式请求，返回结果字符串
+	 * 
 	 * @param url
 	 * @return
 	 */
 	public static String httpGet(String url) {
-	    url = url.replaceAll(" ", "%20");
+		return httpGet(url,null);
+	}
+
+	/**
+	 * 通过get方式请求，返回结果字符串
+	 * 
+	 * @param url
+	 * @return
+	 */
+	public static String httpGet(String url, String charSet) {
+		url = url.replaceAll(" ", "%20");
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
 		try {
@@ -30,7 +41,9 @@ public class HttpServiceRequest {
 				// 获取响应实体
 				HttpEntity entity = response.getEntity();
 				if (entity != null) {
-					return EntityUtils.toString(entity);
+					if (charSet == null || "".equals(charSet))
+						return EntityUtils.toString(entity);
+					return EntityUtils.toString(entity, charSet);
 				}
 			} finally {
 				response.close();
