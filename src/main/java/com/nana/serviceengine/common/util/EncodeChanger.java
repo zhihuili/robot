@@ -15,7 +15,7 @@ public class EncodeChanger {
 	public String changeCode(String originData,String origin,String aim){
 		String data = null;
 		try {
-			data = new String(originData.getBytes("iso-8859-1"), "utf-8");
+			data = new String(originData.getBytes(origin), aim);
 			return data;
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
