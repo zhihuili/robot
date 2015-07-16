@@ -57,10 +57,11 @@ public class JokeSentenceCreator implements SentenceCreator {
 			joke.setUpdatetime(data.get(i).getUpdatetime());
 			list.add(joke);
 			System.out.println(joke.getContent());
-			pesponse=HtmlCenter.getInstance().getHtmlByBean("joke.vm", joke);
+			pesponse=HtmlCenter.getInstance().getHtmlByBean("joke.vm", joke,"videohtml");
 			//pesponse=HtmlCenter.getInstance().getHtmlByList("joke.vm", joke, "inputs");
 		}
 		rma.setAudioText(pesponse);
+		
 		return rma;
 	}
 

@@ -34,8 +34,6 @@ public class BusAPI {
 	}
   public List<Bus> getCityCoachinfo(DomainParam coachParam) throws UnsupportedEncodingException{
 	  ConfigCenter config=ConfigCenter.getInstance();
-	  String apiKey=config.getProperty("");
-	  String apiUrl=config.getProperty("");
 	  Map<String,ParamItem> param=coachParam.getParams();
 	  String start=(String) param.get("start").getValue();
 	  String end=(String) param.get("end").getValue();
@@ -46,7 +44,7 @@ public class BusAPI {
 	  BufferedReader reader = null;
 	  List<Bus> carGroup=null;
 	  StringBuffer sbf = new StringBuffer();
-	  String path=new StringBuffer("http://op.juhe.cn/onebox/bus/query_ab?key=").append("e1d18e22f25b9b6e43d00e56af10de64").append("&from=").append(start).append("&to=").append(end).toString();
+	  String path=new StringBuffer("http://op.juhe.cn/onebox/bus/query_ab?key=").append("ea4cebd7b772697a603101f958825669").append("&from=").append(start).append("&to=").append(end).toString();
 	System.out.println(path);
 	URL url;
 	try {

@@ -43,8 +43,46 @@ public class BusSentenceCreator implements SentenceCreator {
 			return rma;
 		}
 		if(data!=null){
-			// 输出html
-			 res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data, "inputs");
+			int index1=(Integer) paramItems.get("indexChange").getValue();
+			System.out.println("你说的是"+index1);
+			if(data.size()<5){
+				
+				 if(((index1 -1)* 5>data.size())){
+					  Bus bus=new Bus();
+					  bus.setArrive("没有数据了");
+					  bus.setDate("没有数据了");
+					  bus.setPrice("没有数据了");
+					  bus.setStart("没有数据了");
+					  List<Bus> data1 =new ArrayList<Bus>();  
+					  data1.add(bus);
+					 res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data1, "inputs","videohtml");	 
+					}
+				 else{
+					 res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data, "inputs","videohtml");	
+				 }
+			}
+			else if(data.size()>5){
+				int index=(Integer) paramItems.get("indexChange").getValue();
+				if((Integer) paramItems.get("indexChange").getValue()!=null&&((data.subList(index * 5 -5, data.size()).size())>=5)){
+					res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data.subList(index * 5 -5, index * 5), "inputs","videohtml");	
+				}
+				else if((data.subList(index * 5 -5, data.size()).size())<5){
+					if(index*5>data.size()){
+						System.out.println("无数据");
+						 Bus bus=new Bus();
+						  bus.setArrive("没有数据了");
+						  bus.setDate("没有数据了");
+						  bus.setPrice("没有数据了");
+						  bus.setStart("没有数据了");
+						  List<Bus> data1 =new ArrayList<Bus>();  
+						  data1.add(bus);
+						 res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data1, "inputs","videohtml");	
+						
+					}else{
+						res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data.subList(index * 5 -5, data.size()), "inputs","videohtml");	
+					}
+				}
+			}
 		}
 		rma.setAudioText(res);
 		return rma;

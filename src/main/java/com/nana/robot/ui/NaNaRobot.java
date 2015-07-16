@@ -19,7 +19,6 @@ public class NaNaRobot {
 	public void getAnswer(UserMessage userMessage) {
 		try {
 			userMessage.setMessage(userMessage.getMessage().trim());
-			
 			StateCmd command = ActionSelector.getInstance().getCommand(
 					userMessage);
 			command.doRun(userMessage, null);

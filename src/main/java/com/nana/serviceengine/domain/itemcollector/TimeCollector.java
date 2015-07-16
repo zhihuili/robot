@@ -20,17 +20,13 @@ import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
 public class TimeCollector implements Collector<Date[]>{
 	private static TimeCollector tc = new TimeCollector();
-
 	private TimeCollector() {
 	}
-
 	public static TimeCollector getInstance() {
 		return tc;
 	}
-
 	/**
 	 * 过期 将时间关键词转化为机器能识别的时间
-	 * 
 	 * @param input
 	 * @return
 	 */
@@ -43,8 +39,7 @@ public class TimeCollector implements Collector<Date[]>{
 				String[] tmp = item.split(" ");
 				if (input.contains(tmp[0])) {
 					int diff = Integer.parseInt(tmp[1]);
-					dates.add(new Date(new Date().getTime() + diff * 24 * 60
-							* 60 * 1000));
+					dates.add(new Date(new Date().getTime() + diff * 24 * 60 * 60 * 1000));
 				}
 			}
 			String strDate = "";
@@ -68,10 +63,8 @@ public class TimeCollector implements Collector<Date[]>{
 		}
 		return dates.toArray(new Date[] {});
 	}
-
 	/**
 	 * 目前识别有限需要补充几天后这种
-	 * 
 	 * @param mes
 	 * @return
 	 */
