@@ -1,22 +1,21 @@
 ## 生成table表单元素区域的
-#macro(table $index $starttime $depcity $flightNum $arrtime  $arrcity)
+#macro(table $index $starttime $depcity $airline $flightNum $arrtime  $arrcity)
 
       <tr>
                  <td>
-                     $index
+                    <font size="1" color="＃4876FF"> $index </font>
                  </td>
 	             <td>
-	                 $starttime<br/>
-	                 $depcity
+	               <font size="1" color="＃4876FF">$starttime</font><br/>
+	               <font size="1" color="＃4876FF">$depcity
 	             </td>
 	             <td>
-	               $flightNum <br/>
-	               ————————
+	               <font size="1" color="＃4876FF">$airline</font><br/>
+	               <font size="1" color="＃4876FF">$flightNum </font>
 	             </td>
 	              <td>
-	                $arrtime
-	                <br/>
-	                $arrcity
+	               <font size="1" color="＃4876FF">$arrtime </font><br/>
+	               <font size="1" color="＃4876FF">$arrcity</font>
 	             </td>
       </tr>
 #end

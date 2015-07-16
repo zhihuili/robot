@@ -44,7 +44,7 @@ public class BusStartStationCollector implements Collector<String[]> {
 			if (dkw1 != null && "address".equals(dkw1.getDomain())) {// 判断是否是一个地名
 
 				if ((i - 1) < 0
-					 || !("到".equals(terms.get(i - 1).getRealName()) || "去"
+					 || !("到达".equals(terms.get(i-1).getRealName())||"到".equals(terms.get(i - 1).getRealName()) || "去"
 								.equals(terms.get(i - 1).getRealName()))) {
 					res.add(dkw.getValue());
 				}
@@ -54,7 +54,6 @@ public class BusStartStationCollector implements Collector<String[]> {
 			return res.toArray(new String[] {});
 		}
 		//如果没有起始站信息，就默认起始站时gps定位的城市
-		System.out.println(message.getGps());
 		if(message.getGps() != null){
 			String city = MapAPI.getInstance().getDetailInfoByGps(message.getGps())
 					.getCity();
