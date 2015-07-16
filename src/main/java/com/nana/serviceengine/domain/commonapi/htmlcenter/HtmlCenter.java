@@ -56,7 +56,7 @@ public class HtmlCenter {
 		VelocityContext ctx = new VelocityContext();
 		ctx.put(tagName, object);
 		// 加载模板文件
-		Template t = ve.getTemplate(path + vmName);
+		Template t = ve.getTemplate(path + vmName,"utf-8");
 		StringWriter sw = new StringWriter();
 		// 渲染模板
 		t.merge(ctx, sw);
