@@ -40,6 +40,7 @@
             <artifactId>velocity</artifactId>
             <version>1.7</version>
     </dependency>
+    		<dependency>
                         <groupId>org.nlpcn</groupId>
                         <artifactId>nlp-lang</artifactId>
                         <version>0.2</version>
