@@ -40,7 +40,9 @@ public class TrainAPI {
 		to = params.get("end").getValue().toString();
 		Date date = (Date) params.get("date").getValue();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		type = params.get("type").getValue().toString();
+		if(params.get("type")!=null){
+			type = params.get("type").getValue().toString();
+		}
        System.out.println(date);
 		if(type==null){
 			restTickets=queryTicketsByDate(sdf.format(date).toString(),from,to);
