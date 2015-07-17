@@ -44,8 +44,7 @@ public class BusAPI {
 	  BufferedReader reader = null;
 	  List<Bus> carGroup=null;
 	  StringBuffer sbf = new StringBuffer();
-	  String path=new StringBuffer("http://op.juhe.cn/onebox/bus/query_ab?key=").append("ea4cebd7b772697a603101f958825669").append("&from=").append(start).append("&to=").append(end).toString();
-	  System.out.println(path);
+	  String path=new StringBuffer("http://op.juhe.cn/onebox/bus/query_ab?key=").append("cc12dbba24917a2f97d4e3aecbb0c5d7").append("&from=").append(start).append("&to=").append(end).toString();
 	URL url;
 	try {
 		url = new URL(path);
@@ -66,7 +65,6 @@ public class BusAPI {
 			reader.close();
 			JSONObject oject = (JSONObject) JSONObject.parse(sbf.toString());
 			carGroup=JSON.parseArray(oject.getJSONObject("result").getJSONArray("list").toString(),Bus.class);
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
