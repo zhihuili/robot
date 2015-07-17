@@ -3,6 +3,7 @@ package com.nana.serviceengine.domain.coach.daomainparam;
 import com.nana.serviceengine.domain.coach.bean.Bus;
 import com.nana.serviceengine.domain.itemcollector.BusEndStationCollector;
 import com.nana.serviceengine.domain.itemcollector.BusStartStationCollector;
+import com.nana.serviceengine.domain.itemcollector.ChoiceCollector;
 import com.nana.serviceengine.domain.itemcollector.CityCollector;
 import com.nana.serviceengine.domain.itemcollector.PageTurnCollector;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
@@ -34,7 +35,19 @@ public class BusParam extends DomainParam<Bus> {
 				}
 			}
 		});
-		
+		ParamItem choice = new ParamItem();
+        choice.setName("choice");		
+		choice.setCollector(ChoiceCollector.getInstance());
+		choice.setCmd(new ParamCommand() {
+			
+			@Override
+			public Object doProcess(ParamItem item) {
+				 if(item.getCollectResult() != null && (Integer)item.getCollectResult() != -1){
+					 return item.getCollectResult() ;
+				 }
+				return -1;
+			}
+		});
 		
 		ParamItem starStation=new ParamItem();
 		starStation.setName("start");
@@ -49,6 +62,7 @@ public class BusParam extends DomainParam<Bus> {
 					return ((String[])item.getCollectResult())[0];
 				return null;
 			}
+	
 		});
 		ParamItem endStation = new  ParamItem();
 		endStation.setName("end");
@@ -63,6 +77,7 @@ public class BusParam extends DomainParam<Bus> {
 				return null;
 			}
 		});
+		params.put(choice.getName(), choice);
 		params.put(index.getName(), index);
 		params.put(starStation.getName(), starStation);
 		params.put(endStation.getName(), endStation);

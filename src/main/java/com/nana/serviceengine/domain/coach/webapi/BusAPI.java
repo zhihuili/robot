@@ -45,7 +45,7 @@ public class BusAPI {
 	  List<Bus> carGroup=null;
 	  StringBuffer sbf = new StringBuffer();
 	  String path=new StringBuffer("http://op.juhe.cn/onebox/bus/query_ab?key=").append("ea4cebd7b772697a603101f958825669").append("&from=").append(start).append("&to=").append(end).toString();
-	System.out.println(path);
+	  System.out.println(path);
 	URL url;
 	try {
 		url = new URL(path);
