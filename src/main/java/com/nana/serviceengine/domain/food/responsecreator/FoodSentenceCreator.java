@@ -3,9 +3,11 @@ package com.nana.serviceengine.domain.food.responsecreator;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
 import com.nana.serviceengine.adapter.ResponseMessageAdapter;
 import com.nana.serviceengine.domain.commonapi.htmlcenter.HtmlCenter;
 import com.nana.serviceengine.domain.food.bean.Foods;
+import com.nana.serviceengine.inout.bean.ResponseDisplay;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.responsecreator.SentenceCreator;
@@ -34,11 +36,13 @@ public class FoodSentenceCreator implements SentenceCreator {
 
 		String res = null;
 		if (foods != null) {
-			res = HtmlCenter.getInstance().getHtmlByList("foodfrm.vm", foods,
-					"foods","videohtml");
+			ResponseDisplay rd = new ResponseDisplay();
+			rd.setDataType("1");
+			rd.setHeight("0.8");
+			rd.setContent(HtmlCenter.getInstance().getHtmlByList("food.vm", foods,
+					"foods","videohtml"));
+			rma.setDisplayText(JSON.toJSONString(rd));
 		}
-		rma.setDisplayText(res);
-
 		return rma;
 	}
 

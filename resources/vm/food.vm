@@ -1,0 +1,19 @@
+<table>
+#foreach($food in $foods)
+<tr>
+	<td rowspan="3">
+		<img src="$food.photos" width="45" height="65"/>
+	</td>
+ 	<td>
+ 	<font size="1px">$food.name</font> 
+ 	 <font color="red" size="2" face="黑体">均价<B>$food.avg_price</B></font><font size="0.5" color="#A9A9A9">元</font>
+ 	 </td>	
+</tr>
+<tr>
+	<td><font size="0.5" color="#A9A9A9">$food.phone</td>
+</tr>
+<tr>
+	<td><font size="0">$food.address</font></td>
+</tr>
+#end
+</table>

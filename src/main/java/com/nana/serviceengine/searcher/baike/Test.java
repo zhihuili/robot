@@ -1,4 +1,4 @@
-package com.nana.serviceengine.common.util;
+package com.nana.serviceengine.searcher.baike;
 
 import java.io.IOException;
 
@@ -11,39 +11,23 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-public class HttpServiceRequest {
-	/**
-	 * 通过get方式请求，返回结果字符串
-	 * 
-	 * @param url
-	 * @return
-	 */
-	public static String httpGet(String url) {
-		return httpGet(url,null);
-	}
+public class Test {
 
-	/**
-	 * 通过get方式请求，返回结果字符串
-	 * 
-	 * @param url
-	 * @return
-	 */
-	public static String httpGet(String url, String charSet) {
-		url = url.replaceAll(" ", "%20");
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
 		try {
 			// 创建httpget.
-			HttpGet httpget = new HttpGet(url);
+			HttpGet httpget = new HttpGet("http://zhidao.baidu.com/search?word=茜拉和邓紫棋谁更厉害");
 			// 执行get请求.
 			CloseableHttpResponse response = httpclient.execute(httpget);
 			try {
 				// 获取响应实体
 				HttpEntity entity = response.getEntity();
 				if (entity != null) {
-					if (charSet == null || "".equals(charSet))
-						return EntityUtils.toString(entity);
-					return EntityUtils.toString(entity, charSet);
+					String tmp = EntityUtils.toString(entity,"gbk");
+					System.out.println(tmp);
 				}
 			} finally {
 				response.close();
@@ -58,7 +42,8 @@ public class HttpServiceRequest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
 	}
+
+	
 
 }
