@@ -1,6 +1,7 @@
 package com.nana.serviceengine.domain.train.bean;
 
 public class Train {
+	private int index;
 	private String train_no;
 	private String start_station_name;
 	private String end_station_name;
@@ -22,7 +23,6 @@ public class Train {
 	private String ze_num;
 	private String zy_num;
 	private String swz_num;
-	private int index;
 
 	@Override
 	public String toString() {
@@ -34,6 +34,14 @@ public class Train {
 				+ " " + rw_num + " " + rz_num + " " + tz_num + " " + wz_num
 				+ " " + yw_num + " " + yz_num + " " + ze_num + " " + zy_num
 				+ " " + swz_num;
+	}
+	
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 	public String getTrain_no() {
@@ -202,14 +210,6 @@ public class Train {
 
 	public void setSwz_num(String swz_num) {
 		this.swz_num = swz_num;
-	}
-
-	public int getIndex() {
-		return index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
 	}
 
 }
