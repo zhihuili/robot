@@ -36,13 +36,16 @@ public class BusParam extends DomainParam<Bus> {
 			}
 		});
 		ParamItem choice = new ParamItem();
+		
         choice.setName("choice");		
 		choice.setCollector(ChoiceCollector.getInstance());
+		
 		choice.setCmd(new ParamCommand() {
 			
 			@Override
 			public Object doProcess(ParamItem item) {
 				 if(item.getCollectResult() != null && (Integer)item.getCollectResult() != -1){
+					 System.out.println("收集结果"+item.getCollectResult());
 					 return item.getCollectResult() ;
 				 }
 				return -1;

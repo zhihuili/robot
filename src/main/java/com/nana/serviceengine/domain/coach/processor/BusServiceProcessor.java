@@ -5,11 +5,9 @@ import java.util.List;
 
 import com.nana.serviceengine.common.bean.UserMessage;
 import com.nana.serviceengine.domain.coach.bean.Bus;
-import com.nana.serviceengine.domain.coach.bean.Coach;
 import com.nana.serviceengine.domain.coach.daomainparam.BusParam;
 import com.nana.serviceengine.domain.coach.responsecreator.BusSentenceCreator;
 import com.nana.serviceengine.domain.coach.webapi.BusAPI;
-import com.nana.serviceengine.domain.video.responsecreator.VideoSentenceCreator;
 import com.nana.serviceengine.inout.responsecenter.RobotResponser;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;

@@ -16,11 +16,12 @@ import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.responsecreator.SentenceCreator;
 
 public class BusSentenceCreator implements SentenceCreator {
-	
+
 	private static BusSentenceCreator wsc = new BusSentenceCreator();
-	private String mStr="mStr";
-	Map<String,List<Bus>> map = new HashMap<String,List<Bus>>();
-	private int i=1;
+	private String mStr = "mStr";
+	Map<String, List<Bus>> map = new HashMap<String, List<Bus>>();
+	private int i = 1;
+
 	private BusSentenceCreator() {
 
 	}
@@ -32,69 +33,118 @@ public class BusSentenceCreator implements SentenceCreator {
 	@Override
 	public ResponseMessageAdapter createSentence(DomainParam params) {
 		ResponseMessageAdapter rma = new ResponseMessageAdapter();
-		Map<String,ParamItem> paramItems = params.getParams();
-		List<Bus> allflights = params.getResult();
-		// 设置元素的下标
-				for (int i = 0; i < allflights.size(); i++) {
-					allflights.get(i).setIndex(i + 1);
-				}
+		Map<String, ParamItem> paramItems = params.getParams();
+		ResponseDisplay responseDisplay = new ResponseDisplay();
+		Integer index = (Integer) paramItems.get("indexChange").getValue();
+		int choice = (Integer) paramItems.get("choice").getValue();
+		List<Bus> bus = params.getResult();
+		if (bus.size() <= 5) {
+			if (index != 1) {
+				rma.setAudioText("对不起，已经没有数据。");
+				return rma;
+			}
+			if (choice != -1 && choice < bus.size()) {
+				String choiceContent1 = HtmlCenter.getInstance().getHtmlByList(
+						"bus.vm", bus.get(choice), "inputs", "videohtml");
+				responseDisplay.setDataType("1");
+				responseDisplay.setHeight("0.8");
+				responseDisplay.setContent(choiceContent1);
+				rma.setDisplayText(JSON.toJSONString(responseDisplay));
+				return rma;
+			} else if (choice != -1 && choice > bus.size()) {
+				rma.setAudioText("对不起，此列表没有您选择的班次信息，请重新选择");
+				return rma;
+			}
 
-				String res = null;
-				if (allflights == null && allflights.size() == 0) {
-					rma.setAudioText("哎呀，没有你想要汽车信息。");
+			String choiceContent = HtmlCenter.getInstance().getHtmlByList(
+					"bus.vm", bus, "inputs", "videohtml");
+			responseDisplay.setDataType("1");
+			responseDisplay.setHeight("0.8");
+			responseDisplay.setContent(choiceContent);
+			rma.setDisplayText(JSON.toJSONString(responseDisplay));
+			return rma;
+		}
+
+		else if (bus.size() > 5) {
+
+			if (index == 1 && (index * 5) <= bus.size()) {
+				if (choice != -1 && choice > 5) {
+					rma.setAudioText("对不起，此列表没有您选择的班次信息，请重新选择");
 					return rma;
-				}
-				// 获取第几页
-				Integer index = (Integer) paramItems.get("indexChange").getValue();
-
-				// 分页的启示值,每页显示5个
-				int start = (index - 1) * 5;
-				int end = index * 5;
-				// 获取结果
-				String alert = params.getResult(allflights, start+1);
-				// 设置提示的话语
-				rma.setAudioText(alert);
-				if (index * 5 > allflights.size())
-					end = allflights.size() - 1;
-				List<Bus> flights = allflights.subList(start, end);
-				// 重新设置下标为1-5
-				for (int i = 0; i < flights.size(); i++) {
-					flights.get(i).setIndex(i + 1);
-				}
-		       
-				// 获取用户的选择的那一航班信息
-				int choice = (Integer) paramItems.get("choice").getValue();
-				if (choice != -1) {// 搜集到了用户的选择
-					if (choice >= 1 && choice <= 5) {// 在选择范围
-						int choose = start + choice - 1;
-						if (choose < allflights.size()) {// 在搜索的航班中数据
-							List<Bus> order = new ArrayList<Bus>();
-							order.add(allflights.get(choose));
-							ResponseDisplay responseDisplay = new ResponseDisplay();
-							responseDisplay.setDataType("1");
-							responseDisplay.setHeight("0.2");
-							responseDisplay.setContent(HtmlCenter.getInstance()
-									.getHtmlByList("bus.vm", order, "inputs",
-											"demandhtml"));
-							rma.setDisplayText(JSON.toJSONString(responseDisplay));
-							return rma;
-						} else {
-							rma.setAudioText("对不起，没有找到您想要的下单的汽车信息");
-							return rma;
-						}
-					} else {
-						rma.setAudioText("当前选择无效，请您选重新选择");
-						return rma;
-					}
-				}
-				if (flights != null) {
-					ResponseDisplay responseDisplay = new ResponseDisplay();
+				} else if (choice != -1 && choice < 5) {
+					String choiceContent = HtmlCenter.getInstance()
+							.getHtmlByList("bus.vm", bus.get(choice), "inputs",
+									"videohtml");
 					responseDisplay.setDataType("1");
 					responseDisplay.setHeight("0.8");
-					responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList(
-							"bus.vm", flights, "inputs", "videohtml"));
+					responseDisplay.setContent(choiceContent);
 					rma.setDisplayText(JSON.toJSONString(responseDisplay));
+					return rma;
 				}
-		 		return rma;
+				String choiceContent = HtmlCenter.getInstance().getHtmlByList(
+						"bus.vm", bus.subList(0, 5), "inputs", "videohtml");
+				responseDisplay.setDataType("1");
+				responseDisplay.setHeight("0.8");
+				responseDisplay.setContent(choiceContent);
+				rma.setDisplayText(JSON.toJSONString(responseDisplay));
+				return rma;
+
+			} else if (index != 1 && (index * 5) < bus.size()) { // 显示中间结果
+
+				if (choice != -1 && choice > 5) {
+					rma.setAudioText("对不起，此列表没有您选择的班次信息，请重新选择");
+					return rma;
+				}
+				if (choice != -1 && choice < 5) {
+					String choiceContent1 = HtmlCenter.getInstance()
+							.getHtmlByList("bus.vm", bus.get(choice), "inputs",
+									"videohtml");
+					responseDisplay.setDataType("1");
+					responseDisplay.setHeight("0.8");
+					responseDisplay.setContent(choiceContent1);
+					rma.setDisplayText(JSON.toJSONString(responseDisplay));
+					return rma;
+				}
+				String choiceContent = HtmlCenter.getInstance().getHtmlByList(
+						"bus.vm", bus.subList((index - 1) * 5, index * 5),
+						"inputs", "videohtml");
+				responseDisplay.setDataType("1");
+				responseDisplay.setHeight("0.8");
+				responseDisplay.setContent(choiceContent);
+				rma.setDisplayText(JSON.toJSONString(responseDisplay));
+				return rma;
+			} 
+			else if (index != 1 && (index * 5) > bus.size()) {// 显示末尾页结果
+				if (index > (bus.size() / 5 + 1)) {
+					rma.setAudioText("对不起，已经没有数据");
+					return rma;
+				}
+				if (choice != -1 && choice > bus.size() % 5) {
+					rma.setAudioText("对不起，此列表没有您选择的班次信息，请重新选择");
+					return rma;
+				} else if (choice != -1 && choice <= bus.size() % 5) {
+					String choiceContent1 = HtmlCenter.getInstance()
+							.getHtmlByList("bus.vm",
+									bus.get((index - 1) * 5 + choice - 1),
+									"inputs", "videohtml");
+					responseDisplay.setDataType("1");
+					responseDisplay.setHeight("0.8");
+					responseDisplay.setContent(choiceContent1);
+					rma.setDisplayText(JSON.toJSONString(responseDisplay));
+					return rma;
+				}
+
+				String choiceContent = HtmlCenter.getInstance().getHtmlByList(
+						"bus.vm", bus.subList((index - 1) * 5, bus.size()),
+						"inputs", "videohtml");
+				responseDisplay.setDataType("1");
+				responseDisplay.setHeight("0.8");
+				responseDisplay.setContent(choiceContent);
+				rma.setDisplayText(JSON.toJSONString(responseDisplay));
+				return rma;
 			}
+
 		}
+		return rma;
+	}
+}
