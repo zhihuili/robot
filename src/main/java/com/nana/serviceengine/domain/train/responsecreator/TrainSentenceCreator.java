@@ -57,8 +57,8 @@ public class TrainSentenceCreator implements SentenceCreator {
 			end = allTrain.size() - 1;
 		List<Train> trains = allTrain.subList(start, end);
 		// 重新设置下标为1-5
-		for (int i = 0; i < allTrain.size(); i++) {
-			allTrain.get(i).setIndex(i + 1);
+		for (int i = 0; i < trains.size(); i++) {
+			trains.get(i).setIndex(i + 1);
 		}
 		// 获取用户的选择的那一班列车信息
 		int choice = (Integer) paramItems.get("choice").getValue();

@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,19 +33,19 @@ public class TrainAPI {
 	public List<Train> getTrainData(DomainParam trainParam) {
 		String from = null;
 		String to = null;
-		String date = null;
 		String type = null;
 		Map<String, ParamItem> params = trainParam.getParams();
 		List<Train> restTickets = new ArrayList<Train>();
 		from = params.get("start").getValue().toString();
 		to = params.get("end").getValue().toString();
-		date = params.get("date").getValue().toString();
+		Date date = (Date) params.get("date").getValue();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		type = params.get("type").getValue().toString();
        System.out.println(date);
 		if(type==null){
-			restTickets=queryTicketsByDate(date,from,to);
+			restTickets=queryTicketsByDate(sdf.format(date).toString(),from,to);
 		}else{
-			restTickets=queryByTraintype(date, from, to, type);
+			restTickets=queryByTraintype(sdf.format(date).toString(), from, to, type);
 		}
 		return restTickets;
 	}
