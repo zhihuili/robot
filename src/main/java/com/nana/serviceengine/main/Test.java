@@ -25,7 +25,7 @@ public class Test {
 			robot.getAnswer(mes);
 		}
 		
-		
+
 	}
-	
+
 }

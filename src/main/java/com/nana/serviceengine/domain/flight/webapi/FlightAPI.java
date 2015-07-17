@@ -5,14 +5,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.nana.serviceengine.common.config.ConfigCenter;
 import com.nana.serviceengine.domain.flight.bean.Flight;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
@@ -84,11 +86,11 @@ public class FlightAPI {
 		Map<String, ParamItem> params = flightParam.getParams();
 		start = params.get("start").getValue().toString();
 		end = params.get("end").getValue().toString();
-		String date = params.get("date").toString();
-		
+		Date date = (Date) params.get("date").getValue();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String urlAll = new StringBuffer(url).append("?key=").append(key).append("&start=")
 				.append(start).append("&end=").append(end).append("&date=")
-				.append(date).toString();
+				.append(sdf.format(date)).toString();
 
 		String charset = "UTF-8";
 		String jsonResult = get(urlAll, charset);
