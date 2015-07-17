@@ -24,5 +24,8 @@ public class Test {
 			mes.setReqMessage(reqMessage);
 			robot.getAnswer(mes);
 		}
+		
+		
 	}
+	
 }
