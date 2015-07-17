@@ -5,4 +5,5 @@ import com.nana.serviceengine.neuron.domainparam.DomainParam;
 
 public interface SentenceCreator {
 	ResponseMessageAdapter createSentence(DomainParam params);
+	
 }
