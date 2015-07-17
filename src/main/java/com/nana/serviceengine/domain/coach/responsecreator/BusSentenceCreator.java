@@ -1,21 +1,15 @@
 package com.nana.serviceengine.domain.coach.responsecreator;
 
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
 
 import com.alibaba.fastjson.JSON;
 import com.nana.serviceengine.adapter.ResponseMessageAdapter;
 import com.nana.serviceengine.domain.coach.bean.Bus;
-import com.nana.serviceengine.domain.coach.bean.Coach;
 import com.nana.serviceengine.domain.commonapi.htmlcenter.HtmlCenter;
+import com.nana.serviceengine.domain.flight.bean.Flight;
 import com.nana.serviceengine.inout.bean.ResponseDisplay;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
@@ -24,7 +18,9 @@ import com.nana.serviceengine.neuron.responsecreator.SentenceCreator;
 public class BusSentenceCreator implements SentenceCreator {
 	
 	private static BusSentenceCreator wsc = new BusSentenceCreator();
-
+	private String mStr="mStr";
+	Map<String,List<Bus>> map = new HashMap<String,List<Bus>>();
+	private int i=1;
 	private BusSentenceCreator() {
 
 	}
@@ -35,73 +31,70 @@ public class BusSentenceCreator implements SentenceCreator {
 
 	@Override
 	public ResponseMessageAdapter createSentence(DomainParam params) {
-		
 		ResponseMessageAdapter rma = new ResponseMessageAdapter();
 		Map<String,ParamItem> paramItems = params.getParams();
-		List<Bus> data = params.getResult();
-		ResponseDisplay responseDisplay = null; 
-		String res="";
-		if(data == null && data.size() == 0){
-			rma.setAudioText("不好意思，没有查询到相关数据");
-			return rma;
-		}
-		if(data!=null){
-			 responseDisplay = new ResponseDisplay();
-			int index1=(Integer) paramItems.get("indexChange").getValue();
-			System.out.println("你说的是"+index1);
-			if(data.size()<5){
-				
-				 if(((index1 -1)* 5>data.size())){
-					  Bus bus=new Bus();
-					  bus.setArrive("没有数据了");
-					  bus.setDate("没有数据了");
-					  bus.setPrice("没有数据了");
-					  bus.setStart("没有数据了");
-					  List<Bus> data1 =new ArrayList<Bus>();  
-					  data1.add(bus);
-					  responseDisplay.setHeight("0.3");
-					  responseDisplay.setDataType("1");
-					  responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList("bus.vm", data1, "inputs","videohtml"));
-					// res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data1, "inputs","videohtml");	 
-					}
-				 else{
-					 res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data, "inputs","videohtml");	
-				 }
-			}
-			else if(data.size()>5){
-				int index=(Integer) paramItems.get("indexChange").getValue();
-				if((Integer) paramItems.get("indexChange").getValue()!=null&&((data.subList(index * 5 -5, data.size()).size())>=5)){
-					 responseDisplay.setHeight("0.3");
-					  responseDisplay.setDataType("1");
-					  responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList("bus.vm", data.subList(index * 5 -5, index * 5), "inputs","videohtml"));
-					//res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data.subList(index * 5 -5, index * 5), "inputs","videohtml");	
+		List<Bus> allflights = params.getResult();
+		// 设置元素的下标
+				for (int i = 0; i < allflights.size(); i++) {
+					allflights.get(i).setIndex(i + 1);
 				}
-				else if((data.subList(index * 5 -5, data.size()).size())<5){
-					if(index*5>data.size()){
-						System.out.println("无数据");
-						 Bus bus=new Bus();
-						  bus.setArrive("没有数据了");
-						  bus.setDate("没有数据了");
-						  bus.setPrice("没有数据了");
-						  bus.setStart("没有数据了");
-						  List<Bus> data1 =new ArrayList<Bus>();  
-						  data1.add(bus);
-						  responseDisplay.setHeight("0.3");
-						  responseDisplay.setDataType("1");
-						  responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList("bus.vm", data1, "inputs","videohtml")); 
-						// res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data1, "inputs","videohtml");	
-						
-					}else{
-						 responseDisplay.setHeight("0.3");
-						  responseDisplay.setDataType("1");
-						  responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList("bus.vm", data.subList(index * 5 -5, data.size()), "inputs","videohtml"));
-						//res = HtmlCenter.getInstance().getHtmlByList("bus.vm", data.subList(index * 5 -5, data.size()), "inputs","videohtml");	
+
+				String res = null;
+				if (allflights == null && allflights.size() == 0) {
+					rma.setAudioText("哎呀，没有你想要汽车信息。");
+					return rma;
+				}
+				// 获取第几页
+				Integer index = (Integer) paramItems.get("indexChange").getValue();
+
+				// 分页的启示值,每页显示5个
+				int start = (index - 1) * 5;
+				int end = index * 5;
+				// 获取结果
+				String alert = params.getResult(allflights, start+1);
+				// 设置提示的话语
+				rma.setAudioText(alert);
+				if (index * 5 > allflights.size())
+					end = allflights.size() - 1;
+				List<Bus> flights = allflights.subList(start, end);
+				// 重新设置下标为1-5
+				for (int i = 0; i < flights.size(); i++) {
+					flights.get(i).setIndex(i + 1);
+				}
+		       
+				// 获取用户的选择的那一航班信息
+				int choice = (Integer) paramItems.get("choice").getValue();
+				if (choice != -1) {// 搜集到了用户的选择
+					if (choice >= 1 && choice <= 5) {// 在选择范围
+						int choose = start + choice - 1;
+						if (choose < allflights.size()) {// 在搜索的航班中数据
+							List<Bus> order = new ArrayList<Bus>();
+							order.add(allflights.get(choose));
+							ResponseDisplay responseDisplay = new ResponseDisplay();
+							responseDisplay.setDataType("1");
+							responseDisplay.setHeight("0.2");
+							responseDisplay.setContent(HtmlCenter.getInstance()
+									.getHtmlByList("bus.vm", order, "inputs",
+											"demandhtml"));
+							rma.setDisplayText(JSON.toJSONString(responseDisplay));
+							return rma;
+						} else {
+							rma.setAudioText("对不起，没有找到您想要的下单的汽车信息");
+							return rma;
+						}
+					} else {
+						rma.setAudioText("当前选择无效，请您选重新选择");
+						return rma;
 					}
 				}
+				if (flights != null) {
+					ResponseDisplay responseDisplay = new ResponseDisplay();
+					responseDisplay.setDataType("1");
+					responseDisplay.setHeight("0.8");
+					responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList(
+							"bus.vm", flights, "inputs", "videohtml"));
+					rma.setDisplayText(JSON.toJSONString(responseDisplay));
+				}
+		 		return rma;
 			}
 		}
-		rma.setDisplayText(JSON.toJSONString(responseDisplay));
-		//rma.setAudioText(res);
-		return rma;
-	}
-}

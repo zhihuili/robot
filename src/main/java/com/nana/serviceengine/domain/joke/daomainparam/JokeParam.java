@@ -18,7 +18,7 @@ public class JokeParam extends DomainParam<Joke> {
 		indexChange.setCmd(new ParamCommand() {
 			@Override
 			public Object doProcess(ParamItem item) {
-				Integer old = (Integer)item.getValue();
+				Integer old = (Integer)item.getValue();						
 				if (old == null){
 					old =new Integer(1);
 				}

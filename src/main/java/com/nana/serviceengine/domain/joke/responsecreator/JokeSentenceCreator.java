@@ -12,11 +12,13 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
+import com.alibaba.fastjson.JSON;
 import com.nana.serviceengine.adapter.ResponseMessageAdapter;
 import com.nana.serviceengine.domain.coach.bean.Bus;
 import com.nana.serviceengine.domain.coach.bean.Coach;
 import com.nana.serviceengine.domain.commonapi.htmlcenter.HtmlCenter;
 import com.nana.serviceengine.domain.joke.bean.Joke;
+import com.nana.serviceengine.inout.bean.ResponseDisplay;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.responsecreator.SentenceCreator;
@@ -24,6 +26,7 @@ import com.nana.serviceengine.neuron.responsecreator.SentenceCreator;
 public class JokeSentenceCreator implements SentenceCreator {
 	
 	private static JokeSentenceCreator wsc = new JokeSentenceCreator();
+	
 
 	private JokeSentenceCreator() {
 
@@ -35,6 +38,7 @@ public class JokeSentenceCreator implements SentenceCreator {
 	@Override
 	public ResponseMessageAdapter createSentence(DomainParam params) {
 		ResponseMessageAdapter rma = new ResponseMessageAdapter();
+		ResponseDisplay responseDisplay=new ResponseDisplay();
 		Map<String,ParamItem> paramItems = params.getParams();
 		List<Joke> list=new ArrayList<Joke>();
 		List<Joke> data = params.getResult();
@@ -58,10 +62,15 @@ public class JokeSentenceCreator implements SentenceCreator {
 			joke.setUpdatetime(data.get(i).getUpdatetime());
 			list.add(joke);
 			System.out.println(joke.getContent());
-			pesponse=HtmlCenter.getInstance().getHtmlByBean("joke.vm", joke,"videohtml");
+			
+			  responseDisplay.setHeight("0.5");
+			  responseDisplay.setDataType("1");
+			  responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByBean("joke.vm", joke,"videohtml")); 
+			
+			//pesponse=HtmlCenter.getInstance().getHtmlByBean("joke.vm", joke,"videohtml");
 			//pesponse=HtmlCenter.getInstance().getHtmlByList("joke.vm", joke, "inputs");
 		}
-		rma.setAudioText(content);
+		rma.setDisplayText(JSON.toJSONString(responseDisplay));
 		return rma;
 	}
 
