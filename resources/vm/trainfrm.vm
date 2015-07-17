@@ -1,0 +1,9 @@
+#parse('resources/vm/trainmacro.vm')
+## 主逻辑
+<form action="$action">
+<table>
+#foreach($train in $trains)
+  #table($train.index $train_no $start_station_name $end_station_name $from_station_name $to_station_name $start_time $arrive_time $train_class_name $day_difference $lishi $gr_num $qt_num $rw_num $rz_num $tz_num $wz_num $yw_num $yz_num $ze_num $zy_num $swz_num)
+#end
+</table>
+</form>
