@@ -8,6 +8,7 @@ import org.ansj.domain.Term;
 import com.nana.serviceengine.common.bean.DomainKeyWord;
 import com.nana.serviceengine.common.bean.UserMessage;
 import com.nana.serviceengine.common.dic.DomainDic;
+import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
@@ -25,7 +26,7 @@ public class BusEndStationCollector implements Collector<String[]> {
 	}
 
 	@Override
-	public String[] getParam(UserMessage message, ServiceProcessor processor) {
+	public String[] getParam(ParamItem paramItem,UserMessage message, ServiceProcessor processor) {
 		return parseCity(message.getTerms());
 	}
 
@@ -34,22 +35,15 @@ public class BusEndStationCollector implements Collector<String[]> {
 		for (int i = 0; i < terms.size(); i++) {
 
 			if (terms.get(i).getRealName().equals("到")
+					&& (i + 1) < terms.size()||terms.get(i).getRealName().equals("到达")
+					&& (i + 1) < terms.size()||terms.get(i).getRealName().equals("去")
+					&& (i + 1) < terms.size()||terms.get(i).getRealName().equals("至")
 					&& (i + 1) < terms.size()) {// 终点站
 				DomainKeyWord dkw1 = DomainDic.domainKeyWord.get(terms.get(
 						i + 1).getRealName());
 				if ("address".equals(dkw1.getDomain())) {
 					res.add(dkw1.getValue());
 					i++;
-				}
-
-			}
-			if (terms.get(i).getRealName().equals("去")
-					&& (i + 1) < terms.size()) {// 终点站
-				DomainKeyWord dkw2 = DomainDic.domainKeyWord.get(terms.get(
-						i + 1).getRealName());
-				if ("address".equals(dkw2.getDomain())) {// 判断是否是一个地名
-					res.add(dkw2.getValue());
-					i++;// 往后移一位
 				}
 			}
 		}
