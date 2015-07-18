@@ -16,6 +16,8 @@ public class ParamItem<T,V> {
 	private String alertMes;
 	//是否需要加载新的外部数据
 	private boolean isNeedExternalLoad;
+	
+	private boolean isClearWhenExLoad;
 	//当获取到消息以后处理办法
 	private ParamCommand cmd;
 	
@@ -69,6 +71,12 @@ public class ParamItem<T,V> {
 	}
 	public void setParamItemState(ParamItemState paramItemState) {
 		this.paramItemState = paramItemState;
+	}
+	public boolean isClearWhenExLoad() {
+		return isClearWhenExLoad;
+	}
+	public void setClearWhenExLoad(boolean isClearWhenExLoad) {
+		this.isClearWhenExLoad = isClearWhenExLoad;
 	}
 	
 	
