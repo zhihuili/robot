@@ -82,8 +82,9 @@ public class FinishedCmd implements StateCmd {
 				thread.start();
 				return;
 			} 
-		}
+		}	
 		// 如果确定转换领域
+		StateCommandUtil.getInstance().clearState(userDialog, mes);
 		userDialog.setState(DialogState.START);
 		userDialog.setProcessors(processors);
 		userDialog.setParam(null);

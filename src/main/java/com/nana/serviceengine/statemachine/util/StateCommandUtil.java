@@ -28,6 +28,7 @@ public class StateCommandUtil {
 	 * @param mes
 	 */
 	public void clearState(UserDialog userDialog,UserMessage mes){
+		userDialog.setParam(null);
 		userDialog.getProcessors().clear();
 		userDialog.getResMessages().clear();
 		userDialog.getStateInfo().clear();

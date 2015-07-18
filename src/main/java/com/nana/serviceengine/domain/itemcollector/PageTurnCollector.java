@@ -7,6 +7,7 @@ import java.util.Map;
 import org.ansj.domain.Term;
 
 import com.nana.serviceengine.common.bean.UserMessage;
+import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
@@ -44,7 +45,7 @@ public class PageTurnCollector implements Collector<Integer>{
 	}
 
 	@Override
-	public Integer getParam(UserMessage message,ServiceProcessor processor) {
+	public Integer getParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
 		// TODO Auto-generated method stub
 		return getIndexChange(message);
 	}
