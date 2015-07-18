@@ -79,6 +79,7 @@ public abstract class DomainParam<T> {
 		// 这里换页优先于性质切换
 		if (isNeedExternal) {
 			loadType = LoadType.EXTERNALLOAD;
+			clearParamItemValue();
 		}
 		if (isNeedInternal) {
 			loadType = LoadType.INTERNALLOAD;
@@ -100,8 +101,7 @@ public abstract class DomainParam<T> {
 			Map.Entry<String, ParamItem> item = (Entry<String, ParamItem>) iterator.next();
 			ParamItem param = item.getValue();
 			// 找关键词
-			Object coRes = param.getCollector().getParam(param,mes,processor);
-			
+			Object coRes = param.getCollector().getParam(param,mes,processor);		
 			param.setCollectResult(coRes);
 			Object newValue = param.getCmd().doProcess(param);
 			// 没值的话
@@ -126,6 +126,23 @@ public abstract class DomainParam<T> {
 		} else {
 			loadType = LoadType.NOLOAD;
 			return res;
+		}
+	}
+	
+	/**
+	 * 清空ParamItem中的数据
+	 */
+	private void clearParamItemValue(){
+		Iterator iterator = params.entrySet().iterator();
+
+		while (iterator.hasNext()) {
+			Map.Entry<String, ParamItem> item = (Entry<String, ParamItem>) iterator
+					.next();
+			ParamItem param = item.getValue();
+			if(param.isClearWhenExLoad()){
+				param.setValue(null);
+				param.setCollectResult(null);
+			}
 		}
 	}
 
@@ -185,10 +202,6 @@ public abstract class DomainParam<T> {
 	public void setLoadType(LoadType loadType) {
 		this.loadType = loadType;
 	}
-
-//	public List<T> getResult() {
-//		return result;
-//	}
 
 	public void setResult(List<T> result) {
 		this.result = result;
