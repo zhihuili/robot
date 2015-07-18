@@ -10,7 +10,7 @@ import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
-public class TimeSlotCollector implements Collector<String[]> {
+public class TimeSlotCollector extends Collector<String[]> {
 
 	private static final TimeSlotCollector timeCollector = new TimeSlotCollector();
 
@@ -21,7 +21,10 @@ public class TimeSlotCollector implements Collector<String[]> {
 		return timeCollector;
 	}
 
-	public static String[] parsetime(List<Term> terms) {
+	@Override
+	public String[] initCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		List<Term> terms = message.getTerms();
 		List<String> res = new ArrayList<String>();
 
 		for (int i = 0; i < terms.size(); i++) {
@@ -43,8 +46,19 @@ public class TimeSlotCollector implements Collector<String[]> {
 	}
 
 	@Override
-	public String[] getParam(ParamItem paramItem,UserMessage message, ServiceProcessor processor) {
-		return parsetime(message.getTerms());
+	public String[] lackCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public String[] finishCollectParam(ParamItem paramItem,
+			UserMessage message, ServiceProcessor processor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

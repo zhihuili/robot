@@ -12,8 +12,9 @@ import com.nana.serviceengine.domain.commonapi.map.MapAPI;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
+import com.nana.serviceengine.statemachine.bean.ParamItemState;
 
-public class BusStartStationCollector implements Collector<String[]> {
+public class BusStartStationCollector extends Collector<String[]> {
 
 	private static final BusStartStationCollector ssc = new BusStartStationCollector();
 
@@ -25,28 +26,19 @@ public class BusStartStationCollector implements Collector<String[]> {
 		return ssc;
 	}
 
-	/**
-	 * 
-	 * @param terms
-	 *            根据分词结找到起始站和终点站
-	 * @return
-	 */
-	public static String[] parsestation(ParamItem paramItem,UserMessage message) {
+	@Override
+	public String[] initCollectParam(UserMessage message,
+			ServiceProcessor processor) {
 		List<String> res = new ArrayList<String>();
 		List<Term> terms = message.getTerms();
-		if(true){
-			
-		}
 		
 		for (int i = 0; i < terms.size(); i++) {
 			DomainKeyWord dkw = DomainDic.domainKeyWord.get(terms.get(i)
 					.getRealName());
 			if (dkw == null)
 				continue;
-
-			DomainKeyWord dkw1 = DomainDic.domainKeyWord.get(terms.get(i)
-					.getRealName());
-			if (dkw1 != null && "address".equals(dkw1.getDomain())) {// 判断是否是一个地名
+			
+			if ("address".equals(dkw.getDomain())) {// 判断是否是一个地名
 
 				if ((i - 1) < 0
 					 || !("到达".equals(terms.get(i-1).getRealName())||"到".equals(terms.get(i - 1).getRealName()) || "去"
@@ -72,7 +64,41 @@ public class BusStartStationCollector implements Collector<String[]> {
 	}
 
 	@Override
-	public String[] getParam(ParamItem paramItem,UserMessage message, ServiceProcessor processor) {
-		return parsestation(paramItem, message);
+	public String[] lackCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		List<String> res = new ArrayList<String>();
+		List<Term> terms = message.getTerms();
+		for(int i = 0; i< terms.size(); i++){
+	    	 DomainKeyWord dkw = DomainDic.domainKeyWord.get(terms.get(i)
+						.getRealName());
+				if (dkw == null)
+					continue;
+				if ("address".equals(dkw.getDomain())) {// 判断是否是一个地名
+                    res.add(dkw.getValue());
+					return res.toArray(new String[]{});
+				}
+	      }
+		return null;
+	}
+
+	@Override
+	public String[] finishCollectParam(ParamItem paramItem,
+		UserMessage message, ServiceProcessor processor) {
+		List<String> res = new ArrayList<String>();
+		List<Term> terms = message.getTerms();
+		
+		for(int i = 0; i< terms.size(); i++){
+	    	 DomainKeyWord dkw = DomainDic.domainKeyWord.get(terms.get(i)
+						.getRealName());
+				if (dkw == null)
+					continue;
+				if("address".equals(dkw.getDomain())) {// 判断是否是一个地名
+					if((i-1)>=0&&"从".equals(terms.get(i-1).getRealName())){
+						res.add(dkw.getValue());
+						return res.toArray(new String[]{});	
+					}
+				}
+	      }
+		return null;
 	}
 }

@@ -19,16 +19,13 @@ public abstract class Collector<T> {
 		ParamItemState pis = paramItem.getParamItemState();
 		switch (pis) {
 		case INIT:{
-			initCollectParam(message, processor);
-			break;
+			return initCollectParam(message, processor);
 		}
 		case LACK: {
-			lackCollectParam(message, processor);
-			break;
+			return lackCollectParam(message, processor);
 		}
 		case FINISH: {
-			finishCollectParam(paramItem,message, processor);
-			break;
+			return finishCollectParam(paramItem,message, processor);
 		}
 		}
 		return null;
