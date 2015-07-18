@@ -6,7 +6,7 @@ import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
-public class GPSCollector implements Collector<GPS>{
+public class GPSCollector extends Collector<GPS>{
 	private static GPSCollector gpsCollector = new GPSCollector();
 
 	private GPSCollector() {
@@ -16,8 +16,23 @@ public class GPSCollector implements Collector<GPS>{
 		return gpsCollector;
 	}
 
-	@Override
-	public GPS getParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {		
+	public GPS collectParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {		
 		return message.getGps();
+	}
+
+	@Override
+	public GPS initCollectParam(UserMessage message, ServiceProcessor processor) {
+		return collectParam(null,message,processor);
+	}
+
+	@Override
+	public GPS lackCollectParam(UserMessage message, ServiceProcessor processor) {
+		return collectParam(null,message,processor);
+	}
+
+	@Override
+	public GPS finishCollectParam(ParamItem paramItem, UserMessage message,
+			ServiceProcessor processor) {
+		return collectParam(paramItem,message,processor);
 	}
 }

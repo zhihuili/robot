@@ -19,7 +19,7 @@ import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
-public class TimeCollector implements Collector<Date[]>{
+public class TimeCollector extends Collector<Date[]>{
 	private static TimeCollector tc = new TimeCollector();
 	private TimeCollector() {
 	}
@@ -72,32 +72,47 @@ public class TimeCollector implements Collector<Date[]>{
 	public Date[] parseDate(UserMessage mes) {
 		List<Date> res = new ArrayList<Date>();
 		for (Term term : mes.getTerms()) {
-			if ("t".equals(term.getNatureStr())) {
+			try{
 				DomainKeyWord keyWord = DomainDic.domainKeyWord.get(term
 						.getRealName());
-				// 如果词典中没有收集这个时间关键词则忽略它
-				if (keyWord == null)
-					continue;
-				int diff = Integer.parseInt(keyWord.getValue());
-				if (term.getRealName().contains("星期")
-						|| term.getRealName().contains("周")) {
-					int now = new Date().getDay();
-					int tmp = diff > now ? diff - now : diff + 7 - now;
-					res.add(new Date(new Date().getTime() + tmp * 24 * 60 * 60
-							* 1000));
-				} else {
-					res.add(new Date(new Date().getTime() + diff * 24 * 60 * 60
-							* 1000));
+				if("time".equals(keyWord.getDomain())){
+					int diff = Integer.parseInt(keyWord.getValue());
+					if (term.getRealName().contains("星期")
+							|| term.getRealName().contains("周")) {
+						int now = new Date().getDay();
+						int tmp = diff > now ? diff - now : diff + 7 - now;
+						res.add(new Date(new Date().getTime() + tmp * 24 * 60 * 60
+								* 1000));
+					} else {
+						res.add(new Date(new Date().getTime() + diff * 24 * 60 * 60
+								* 1000));
+					}
 				}
+				
+			}catch(Exception ex){
+				continue;
 			}
+			
 		}
 		if (res.size() != 0)
 			return res.toArray(new Date[] {});
 		return null;
 	}
 
+	
 	@Override
-	public Date[] getParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
+	public Date[] initCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return parseDate(message);
+	}
+	@Override
+	public Date[] lackCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return parseDate(message);
+	}
+	@Override
+	public Date[] finishCollectParam(ParamItem paramItem, UserMessage message,
+			ServiceProcessor processor) {
 		return parseDate(message);
 	}
 }

@@ -11,7 +11,7 @@ import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
-public class PageTurnCollector implements Collector<Integer>{
+public class PageTurnCollector extends Collector<Integer>{
 	private static PageTurnCollector pc = new PageTurnCollector();
 	//这里把切换词直接写在类中，后面可以把词存在外部文件中
 	private Map<String,Integer> turnCmd = null;
@@ -44,9 +44,22 @@ public class PageTurnCollector implements Collector<Integer>{
 		return res;
 	}
 
+
 	@Override
-	public Integer getParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
-		// TODO Auto-generated method stub
+	public Integer initCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return getIndexChange(message);
+	}
+
+	@Override
+	public Integer lackCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return getIndexChange(message);
+	}
+
+	@Override
+	public Integer finishCollectParam(ParamItem paramItem, UserMessage message,
+			ServiceProcessor processor) {
 		return getIndexChange(message);
 	}
 	 
