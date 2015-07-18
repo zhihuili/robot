@@ -65,7 +65,7 @@ public abstract class DomainParam<T> {
 			param.setCollectResult(coRes);
 			Object newValue = param.getCmd().doProcess(param);
 			// 如果得到的关键字和以前的相同则跳过
-			if (newValue == null || param.getValue().equals(newValue))
+			if (newValue == null || (param.getValue() != null && param.getValue().equals(newValue)))
 				continue;
 			param.setValue(newValue);
 			

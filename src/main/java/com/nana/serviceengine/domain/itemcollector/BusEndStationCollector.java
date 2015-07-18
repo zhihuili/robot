@@ -127,6 +127,7 @@ public class BusEndStationCollector extends Collector<String[]> {
 				}
 			}
 		}
+		if(res.size() ==0 ) return null;
 		return res.toArray(new String[] {});
 	}
 }
