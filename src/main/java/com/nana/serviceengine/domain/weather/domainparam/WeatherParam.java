@@ -67,67 +67,6 @@ public class WeatherParam extends DomainParam<WeatherFuture> {
 		params.put(gps.getName(), gps);
 	}
 
-	// @Override
-	// protected String dataCollectFinish(UserMessage mes) {
-	// String[] locations = CityCollector.getInstance().parseCity(
-	// mes.getTerms());
-	// String lon = mes.getLon();
-	// String lat = mes.getLat();
-	// Date[] dates = TimeCollector.getInstance().parseDate(mes);
-	// if ((locations != null && locations.length == 1 && !location
-	// .equals(locations[0]))
-	// ) {
-	// count++;
-	// location = locations[0];
-	// loadType = LoadType.EXTERNALLOAD;
-	//
-	// }
-	// if((dates != null && dates.length == 1 && !date
-	// .equals(dates[0]))){
-	// date = dates[0];
-	// count++;
-	// loadType = LoadType.EXTERNALLOAD;
-	// }
-	// return "好的。";
-	// }
-	//
-	// @Override
-	// protected String dataLack(UserMessage mes) {
-	// boolean hasLoc = false;
-	// boolean hasDate = false;
-	// if (location == null) {
-	// String[] locations = CityCollector.getInstance().parseCity(
-	// mes.getTerms());
-	// String lon = mes.getLon();
-	// String lat = mes.getLat();
-	// if (locations != null && locations.length == 1) {
-	// location = locations[0];
-	// hasLoc = true;
-	// } else if (lon != null && !"".equals(lon) && lat != null
-	// && !"".equals(lat)) {
-	// gpslon = lon;
-	// gpslat = lat;
-	// hasLoc = true;
-	// }
-	// }
-	//
-	// if(date == null){
-	// Date[] dates = TimeCollector.getInstance().parseDate(mes);
-	// if(dates == null || dates.length <1){
-	// date = new Date();
-	// }else{
-	// date = dates[0];
-	// }
-	// hasDate = true;
-	// }
-	// if(!hasLoc){
-	// loadType = LoadType.NOLOAD;
-	// return "请问您想知道什么地方的天气？";
-	// }else{
-	// loadType = LoadType.EXTERNALLOAD;
-	// count=1;
-	// }
-	// return "好的";
-	// }
+	
 
 }

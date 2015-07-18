@@ -16,7 +16,7 @@ import com.nana.serviceengine.neuron.processor.ServiceProcessor;
  * @author wds
  *
  */
-public class ChoiceCollector implements Collector<Integer>{
+public class ChoiceCollector extends Collector<Integer>{
 	private static ChoiceCollector cc = new ChoiceCollector();
 
 	private ChoiceCollector() {
@@ -26,9 +26,7 @@ public class ChoiceCollector implements Collector<Integer>{
 		return cc;
 	}
 
-	
-	@Override
-	public Integer getParam(ParamItem paramItem,UserMessage message, ServiceProcessor processor) {
+	public Integer collectParam(ParamItem paramItem,UserMessage message, ServiceProcessor processor) {
 		List<Term> terms = message.getTerms();
 		boolean isHasChoice = false;
 		boolean isHasNum = false;
@@ -48,6 +46,24 @@ public class ChoiceCollector implements Collector<Integer>{
 			return index;
 		}
 		return null;
+	}
+
+	@Override
+	public Integer initCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return collectParam(null,message,processor);
+	}
+
+	@Override
+	public Integer lackCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return collectParam(null,message,processor);
+	}
+
+	@Override
+	public Integer finishCollectParam(ParamItem paramItem, UserMessage message,
+			ServiceProcessor processor) {
+		return collectParam(paramItem,message,processor);
 	}
 	
 	

@@ -1,6 +1,7 @@
 package com.nana.serviceengine.domain.weather.bean;
 
 public class WeatherFuture {
+	
 	private String temperature;
 	private String weather;
 	private String wind;

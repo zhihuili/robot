@@ -16,7 +16,7 @@ import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 import com.nana.serviceengine.statemachine.bean.DialogState;
 
-public class AttriCollector implements Collector<String> {
+public class AttriCollector extends Collector<String> {
 	private static AttriCollector ac = new AttriCollector();
 
 	private AttriCollector() {
@@ -123,8 +123,7 @@ public class AttriCollector implements Collector<String> {
 	/**
 	 * 获取定语，如果是多领域处理，则按顺序来处理，处理完之后要删除对应的宾语
 	 */
-	@Override
-	public String getParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
+	public String collectParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
 		UserDialog userDialog = UserTheme.UserDialog.get(message.getUserid());
 		switch(userDialog.getState()){
 			case START:{
@@ -139,5 +138,23 @@ public class AttriCollector implements Collector<String> {
 					return deleteDomaintoGetAttri(message,processor.getDomainKeyWord());
 			}	
 		}
+	}
+
+	@Override
+	public String initCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return collectParam(null,message,processor);
+	}
+
+	@Override
+	public String lackCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return collectParam(null,message,processor);
+	}
+
+	@Override
+	public String finishCollectParam(ParamItem paramItem, UserMessage message,
+			ServiceProcessor processor) {		
+		return collectParam(paramItem,message,processor);
 	}
 }

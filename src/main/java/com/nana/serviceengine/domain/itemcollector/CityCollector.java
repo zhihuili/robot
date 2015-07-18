@@ -12,7 +12,7 @@ import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
-public class CityCollector implements Collector<String[]> {
+public class CityCollector extends Collector<String[]> {
 	private static CityCollector cc = new CityCollector();
 
 	private CityCollector() {
@@ -43,8 +43,25 @@ public class CityCollector implements Collector<String[]> {
 		return null;
 	}
 
-	@Override
-	public String[] getParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
+	public String[] collectParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
 		return parseCity(message.getTerms());
+	}
+
+	@Override
+	public String[] initCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return collectParam(null,message,processor);
+	}
+
+	@Override
+	public String[] lackCollectParam(UserMessage message,
+			ServiceProcessor processor) {
+		return collectParam(null,message,processor);
+	}
+
+	@Override
+	public String[] finishCollectParam(ParamItem paramItem,
+			UserMessage message, ServiceProcessor processor) {
+		return collectParam(paramItem,message,processor);
 	}
 }
