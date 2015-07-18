@@ -52,9 +52,7 @@ public class PreQuitCmd implements StateCmd {
 		}
 		//如果用户选择了放弃，则释放相关数据
 		if(quit){
-			userDialog.setState(DialogState.START);
-			userDialog.getResMessages().clear();
-			userDialog.getStateInfo().clear();
+			StateCommandUtil.getInstance().clearState(userDialog, mes);
 			RobotResponser.getInstance().responseMessage(answer, mes);
 		}else{
 			StateCommandUtil.getInstance().cancelQuit(mes, userDialog); 

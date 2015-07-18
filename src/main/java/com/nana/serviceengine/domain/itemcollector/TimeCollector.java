@@ -15,6 +15,7 @@ import com.nana.serviceengine.common.bean.DomainKeyWord;
 import com.nana.serviceengine.common.bean.UserMessage;
 import com.nana.serviceengine.common.dic.DomainDic;
 import com.nana.serviceengine.common.util.TxtReader;
+import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
@@ -96,7 +97,7 @@ public class TimeCollector implements Collector<Date[]>{
 	}
 
 	@Override
-	public Date[] getParam(UserMessage message,ServiceProcessor processor) {
+	public Date[] getParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
 		return parseDate(message);
 	}
 }

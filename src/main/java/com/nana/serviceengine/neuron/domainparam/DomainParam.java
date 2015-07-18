@@ -11,6 +11,7 @@ import com.nana.serviceengine.domain.itemcollector.PageTurnCollector;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 import com.nana.serviceengine.statemachine.bean.LoadType;
+import com.nana.serviceengine.statemachine.bean.ParamItemState;
 import com.nana.serviceengine.statemachine.bean.ParamState;
 
 public abstract class DomainParam<T> {
@@ -56,7 +57,7 @@ public abstract class DomainParam<T> {
 					.next();
 			ParamItem param = item.getValue();
 			// 找关键词
-			Object coRes = param.getCollector().getParam(mes,processor);
+			Object coRes = param.getCollector().getParam(param,mes,processor);
 			// 如果找到的关键词为空，那么跳过
 			if (coRes == null)
 				continue;
@@ -67,6 +68,7 @@ public abstract class DomainParam<T> {
 			if (newValue == null || param.getValue().equals(newValue))
 				continue;
 			param.setValue(newValue);
+			
 			// 有属性被改变
 			if (param.isNeedExternalLoad()) {
 				isNeedExternal = true;
@@ -98,8 +100,8 @@ public abstract class DomainParam<T> {
 			Map.Entry<String, ParamItem> item = (Entry<String, ParamItem>) iterator.next();
 			ParamItem param = item.getValue();
 			// 找关键词
-			Object coRes = param.getCollector().getParam(mes,processor);
-
+			Object coRes = param.getCollector().getParam(param,mes,processor);
+			
 			param.setCollectResult(coRes);
 			Object newValue = param.getCmd().doProcess(param);
 			// 没值的话
@@ -109,9 +111,13 @@ public abstract class DomainParam<T> {
 					continue;
 				res = param.getAlertMes();
 				isFinished = false;
+				//第一次没有收集到信息则ParamItem的状态设置为Lack
+				param.setParamItemState(ParamItemState.LACK);
 				break;
 			} else {
 				param.setValue(newValue);
+				//正确收集了信息之后则把ParamItem的状态设置为收集完成状态
+				param.setParamItemState(ParamItemState.FINISH);
 			}
 		}
 		if (isFinished) {

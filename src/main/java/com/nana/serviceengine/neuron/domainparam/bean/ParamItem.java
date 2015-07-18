@@ -1,6 +1,7 @@
 package com.nana.serviceengine.neuron.domainparam.bean;
 
 import com.nana.serviceengine.neuron.itemcollector.Collector;
+import com.nana.serviceengine.statemachine.bean.ParamItemState;
 
 public class ParamItem<T,V> {
 	//参数名称
@@ -17,6 +18,8 @@ public class ParamItem<T,V> {
 	private boolean isNeedExternalLoad;
 	//当获取到消息以后处理办法
 	private ParamCommand cmd;
+	
+	private ParamItemState paramItemState = ParamItemState.INIT;
 	
 	public String getName() {
 		return name;
@@ -60,6 +63,12 @@ public class ParamItem<T,V> {
 	}
 	public void setNeedExternalLoad(boolean isNeedExternalLoad) {
 		this.isNeedExternalLoad = isNeedExternalLoad;
+	}
+	public ParamItemState getParamItemState() {
+		return paramItemState;
+	}
+	public void setParamItemState(ParamItemState paramItemState) {
+		this.paramItemState = paramItemState;
 	}
 	
 	
