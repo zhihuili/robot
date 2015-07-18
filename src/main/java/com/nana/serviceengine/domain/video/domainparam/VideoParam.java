@@ -48,9 +48,8 @@ public class VideoParam extends DomainParam<Movie> {
 					return old;
 				} else {
 					int tmp = (Integer) item.getCollectResult();
-					int value = (Integer) item.getValue();
-					value += tmp;
-					return new Integer(value);
+					old += tmp;
+					return new Integer(old);
 				}
 
 			}

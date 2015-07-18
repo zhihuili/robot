@@ -44,12 +44,13 @@ public class FlightSentenceCreator implements SentenceCreator {
 		}
 		// 获取第几页
 		Integer index = (Integer) paramItems.get("indexChange").getValue();
-
+		if (index == null)
+			index = 1;
 		// 分页的启示值,每页显示5个
 		int start = (index - 1) * 5;
 		int end = index * 5;
 		// 获取结果
-		String alert = params.getResult(allflights, start+1);
+		String alert = params.getResult(allflights, start + 1);
 		// 设置提示的话语
 		rma.setAudioText(alert);
 		if (index * 5 > allflights.size())
@@ -59,10 +60,11 @@ public class FlightSentenceCreator implements SentenceCreator {
 		for (int i = 0; i < flights.size(); i++) {
 			flights.get(i).setIndex(i + 1);
 		}
-       
+
+		
 		// 获取用户的选择的那一航班信息
-		int choice = (Integer) paramItems.get("choice").getValue();
-		if (choice != -1) {// 搜集到了用户的选择
+		Integer choice= (Integer)paramItems.get("choice").getValue();
+		if (choice != null && choice != -1) {// 搜集到了用户的选择
 			if (choice >= 1 && choice <= 5) {// 在选择范围
 				int choose = start + choice - 1;
 				if (choose < allflights.size()) {// 在搜索的航班中数据
@@ -94,6 +96,6 @@ public class FlightSentenceCreator implements SentenceCreator {
 					"flightfrm.vm", flights, "flights", "videohtml"));
 			rma.setDisplayText(JSON.toJSONString(responseDisplay));
 		}
- 		return rma;
+		return rma;
 	}
 }

@@ -26,6 +26,7 @@ public class FlightParam extends DomainParam<Flight>{
 		ParamItem indexChange = new ParamItem();
 		indexChange.setCollector(PageTurnCollector.getInstance());
 		indexChange.setName("indexChange");
+		indexChange.setClearWhenExLoad(true);
 		indexChange.setNeedExternalLoad(false);
 		indexChange.setCmd(new ParamCommand() {
 			@Override
@@ -38,9 +39,8 @@ public class FlightParam extends DomainParam<Flight>{
 					return old;
 				} else {
 					int tmp = (Integer) item.getCollectResult();
-					int value = (Integer) item.getValue();
-					value += tmp;
-					return new Integer(value);
+					old += tmp;
+					return new Integer(old);
 				}
 			}
 		});
@@ -110,6 +110,7 @@ public class FlightParam extends DomainParam<Flight>{
 		ParamItem choice = new ParamItem();
         choice.setName("choice");		
 		choice.setCollector(ChoiceCollector.getInstance());
+		choice.setClearWhenExLoad(true);
 		choice.setCmd(new ParamCommand() {
 			
 			@Override
