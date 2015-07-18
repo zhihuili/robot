@@ -17,7 +17,6 @@ public class FlightServiceProcessor extends ServiceProcessor {
 	protected void externalRequest(UserMessage mes, DomainParam domainParam) {
 		// TODO Auto-generated method stub
 		FlightAPI flightApi = FlightAPI.getinstance();
-
 		List<Flight> flights = flightApi.searchFligthResult(domainParam);
 		domainParam.setResult(flights);
 		// send msg
