@@ -9,6 +9,7 @@ import com.nana.serviceengine.common.bean.DomainKeyWord;
 import com.nana.serviceengine.common.bean.UserMessage;
 import com.nana.serviceengine.common.dic.DomainDic;
 import com.nana.serviceengine.domain.commonapi.map.MapAPI;
+import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
 
@@ -30,9 +31,13 @@ public class BusStartStationCollector implements Collector<String[]> {
 	 *            根据分词结找到起始站和终点站
 	 * @return
 	 */
-	public static String[] parsestation(UserMessage message) {
+	public static String[] parsestation(ParamItem paramItem,UserMessage message) {
 		List<String> res = new ArrayList<String>();
 		List<Term> terms = message.getTerms();
+		if(true){
+			
+		}
+		
 		for (int i = 0; i < terms.size(); i++) {
 			DomainKeyWord dkw = DomainDic.domainKeyWord.get(terms.get(i)
 					.getRealName());
@@ -62,11 +67,12 @@ public class BusStartStationCollector implements Collector<String[]> {
 				res.add(city);
 			}
 		}
+		
 		return res.toArray(new String[]{});
 	}
 
 	@Override
-	public String[] getParam(UserMessage message, ServiceProcessor processor) {
-		return parsestation(message);
+	public String[] getParam(ParamItem paramItem,UserMessage message, ServiceProcessor processor) {
+		return parsestation(paramItem, message);
 	}
 }
