@@ -9,7 +9,7 @@ public class BaikeDataAnalysis {
 		url = ConfigCenter.getInstance().getProperty("baikepath");
 	}
 	
-	private static BaikeDataAnalysis getInstance(){
+	public static BaikeDataAnalysis getInstance(){
 		return ba;
 	}
 	
