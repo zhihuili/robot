@@ -43,7 +43,6 @@ public class TrainAPI {
 		if(params.get("type")!=null){
 			type = params.get("type").getValue().toString();
 		}
-       System.out.println(date);
 		if(type==null){
 			restTickets=queryTicketsByDate(sdf.format(date).toString(),from,to);
 		}else{
