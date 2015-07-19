@@ -1,1 +1,17 @@
-div..<div class="list" id="wgt-list" data-log-area="list">..null
+1..getElementById..String|wgt-list
+2..getElementsByTag..String|dl
+3..getElementsByTag..String|a
+4..get..int|0
+5..text
+6..attr..String|href
+7..getElementsByAttributeValue..String|class,String|ml-10 f-black
+8..getElementsByClass..String|i-agree
+9..getElementsByAttributeValue..String|class,String|dd answer
+tag_reduce
+1
+2
+property_collector
+setQuestion..3,4,5
+setQuestionUrl..3,4,6
+setAnswer..9,5
+setGoodNum..7,5
