@@ -27,7 +27,7 @@ public class BusStartStationCollector extends Collector<String[]> {
 	}
 
 	@Override
-	public String[] initCollectParam(UserMessage message,
+	public String[] initCollectParam(UserMessage message,   
 			ServiceProcessor processor) {
 		List<String> res = new ArrayList<String>();
 		List<Term> terms = message.getTerms();
@@ -42,7 +42,7 @@ public class BusStartStationCollector extends Collector<String[]> {
 
 				if ((i - 1) < 0
 					 || !("到达".equals(terms.get(i-1).getRealName())||"到".equals(terms.get(i - 1).getRealName()) || "去"
-								.equals(terms.get(i - 1).getRealName()))) {
+								.equals(terms.get(i - 1).getRealName()) || "至".equals(terms.get(i - 1).getRealName()))) {
 					res.add(dkw.getValue());
 				}
 			}
@@ -54,9 +54,10 @@ public class BusStartStationCollector extends Collector<String[]> {
 		if(message.getGps() != null){
 			String city = MapAPI.getInstance().getDetailInfoByGps(message.getGps())
 					.getCity();
-			DomainKeyWord citydkw = DomainDic.domainKeyWord.get(city);
+			String district = city.substring(0,city.length()-1);//去掉级别名称 省 市 县
+			DomainKeyWord citydkw = DomainDic.domainKeyWord.get(district);
 			if(citydkw!=null &&"address".equals(citydkw.getDomain()) ){// 判断是否是一个地名
-				res.add(city);
+				res.add(district);
 			}
 		}
 		
