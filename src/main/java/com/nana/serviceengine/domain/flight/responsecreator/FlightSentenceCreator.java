@@ -38,7 +38,7 @@ public class FlightSentenceCreator implements SentenceCreator {
 		}
 
 		String res = null;
-		if (allflights == null && allflights.size() == 0) {
+		if (allflights == null || allflights.size() == 0) {
 			rma.setAudioText("哎呀，没有你想要航班信息。");
 			return rma;
 		}
@@ -53,8 +53,10 @@ public class FlightSentenceCreator implements SentenceCreator {
 		String alert = params.getResult(allflights, start + 1);
 		// 设置提示的话语
 		rma.setAudioText(alert);
-		if (index * 5 > allflights.size())
+		if (index * 5 > allflights.size()){
 			end = allflights.size() - 1;
+		}
+		
 		List<Flight> flights = allflights.subList(start, end);
 		// 重新设置下标为1-5
 		for (int i = 0; i < flights.size(); i++) {
