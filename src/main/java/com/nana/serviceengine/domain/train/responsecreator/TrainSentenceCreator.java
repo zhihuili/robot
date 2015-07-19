@@ -40,7 +40,7 @@ public class TrainSentenceCreator implements SentenceCreator {
 		}
 
 		String res = null;
-		if (allTrain == null && allTrain.size() == 0) {
+		if (allTrain == null || allTrain.size() == 0) {
 			rma.setAudioText("哎呀，没有找到你想要的列车信息。");
 			return rma;
 		}
