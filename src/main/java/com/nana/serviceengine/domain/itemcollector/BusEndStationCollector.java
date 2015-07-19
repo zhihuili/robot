@@ -54,7 +54,6 @@ public class BusEndStationCollector extends Collector<String[]> {
 
 		if (res.size() != 0)
 			return res.toArray(new String[] {});
-
 		return null;
 	}
 
@@ -82,6 +81,7 @@ public class BusEndStationCollector extends Collector<String[]> {
 				}
 			}
 		}
+		if(res.size() ==0)return null;
 		return res.toArray(new String[] {});
 	}
 
@@ -100,6 +100,7 @@ public class BusEndStationCollector extends Collector<String[]> {
 				return res.toArray(new String[] {});
 			}
 		}
+		if(res.size() ==0 ) return null;
 		return null;
 	}
 

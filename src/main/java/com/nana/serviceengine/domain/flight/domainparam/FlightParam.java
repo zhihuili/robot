@@ -64,7 +64,7 @@ public class FlightParam extends DomainParam<Flight>{
 		ParamItem endStation = new  ParamItem();
 		endStation.setName("end");
 		endStation.setCollector(BusEndStationCollector.getInstance());
-		endStation.setAlertMes("请问您想知道您的目的地的航班");
+		endStation.setAlertMes("请问您想知道您的目的地");
 		endStation.setNeedExternalLoad(true);
 		
 		endStation.setCmd(new ParamCommand() {

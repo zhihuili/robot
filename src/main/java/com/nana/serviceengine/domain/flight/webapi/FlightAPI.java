@@ -101,8 +101,6 @@ public class FlightAPI {
 		String code = object.getString("error_code");
 
 		if (code.equals("0")) { // 访问成功
-			System.out.println("error_code:" + code + ",reason:"
-					+ object.getString("reason"));
 			listinfo = JSON.parseArray(
 					object.getJSONArray("result").toString(), Flight.class);
 
