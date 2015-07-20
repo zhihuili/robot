@@ -20,7 +20,7 @@ public class VideoAPI implements SimpleApiAccessor{
 		try{
 			String apiPath = ConfigCenter.getInstance().getProperty("videoapi");
 			String requestParam = "words=" + vParam.getParams().get("keyWord").getValue();
-			String data = HttpServiceRequest.httpGet(apiPath+"?"+requestParam);	
+			String data = HttpServiceRequest.httpGet(apiPath+"?"+requestParam,"utf-8");	
 			//这里进行了转码
 			//data =  EncodeChanger.getInstance().changeCode(data, "utf-8", "utf-8");
 			return data;
