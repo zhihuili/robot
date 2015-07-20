@@ -64,7 +64,7 @@ public class WeatherParam extends DomainParam<WeatherFuture> {
 
 		params.put(location.getName(), location);
 		params.put(date.getName(), date);
-		params.put(gps.getName(), gps);
+		//params.put(gps.getName(), gps);
 	}
 
 	

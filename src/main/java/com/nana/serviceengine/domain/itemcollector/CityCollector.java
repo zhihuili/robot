@@ -8,6 +8,8 @@ import org.ansj.domain.Term;
 import com.nana.serviceengine.common.bean.DomainKeyWord;
 import com.nana.serviceengine.common.bean.UserMessage;
 import com.nana.serviceengine.common.dic.DomainDic;
+import com.nana.serviceengine.domain.commonapi.map.MapAPI;
+import com.nana.serviceengine.domain.commonapi.map.bean.Address;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
 import com.nana.serviceengine.neuron.itemcollector.Collector;
 import com.nana.serviceengine.neuron.processor.ServiceProcessor;
@@ -27,7 +29,8 @@ public class CityCollector extends Collector<String[]> {
 	 * @param inputs
 	 * @return
 	 */
-	public String[] parseCity(List<Term> terms) {
+	public String[] parseCity(UserMessage message) {
+		List<Term> terms = message.getTerms();
 		List<String> res = new ArrayList<String>();
 		for (int i = 0; i < terms.size(); i++) {
 			DomainKeyWord dkw = DomainDic.domainKeyWord.get(terms.get(i)
@@ -40,11 +43,19 @@ public class CityCollector extends Collector<String[]> {
 		}
 		if (res.size() != 0)
 			return res.toArray(new String[] {});
+		else{
+			Address address =MapAPI.getInstance().getDetailInfoByGps(message.getGps());
+			if(address != null && address.getCity()!= null && !"".equals(address.getCity())){
+				res.add(address.getCity());
+				return res.toArray(new String[] {});
+			}
+		}
 		return null;
 	}
 
+
 	public String[] collectParam(ParamItem paramItem,UserMessage message,ServiceProcessor processor) {
-		return parseCity(message.getTerms());
+		return parseCity(message);
 	}
 
 	@Override
