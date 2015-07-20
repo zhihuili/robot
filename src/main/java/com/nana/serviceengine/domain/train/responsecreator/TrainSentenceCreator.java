@@ -40,7 +40,7 @@ public class TrainSentenceCreator implements SentenceCreator {
 		}
 
 		String res = null;
-		if (allTrain == null && allTrain.size() == 0) {
+		if (allTrain == null || allTrain.size() == 0) {
 			rma.setAudioText("哎呀，没有找到你想要的列车信息。");
 			return rma;
 		}
@@ -61,8 +61,9 @@ public class TrainSentenceCreator implements SentenceCreator {
 			trains.get(i).setIndex(i + 1);
 		}
 		// 获取用户的选择的那一班列车信息
-		int choice = (Integer) paramItems.get("choice").getValue();
-		if (choice != -1) {
+		Integer choice = (Integer) paramItems.get("choice").getValue();
+
+		if (choice != null && choice != -1) {
 			if (choice >= 1 && choice <= 5) {
 				int choose = start + choice - 1;
 				if (choose < allTrain.size()) {
@@ -71,7 +72,9 @@ public class TrainSentenceCreator implements SentenceCreator {
 					ResponseDisplay responseDisplay = new ResponseDisplay();
 					responseDisplay.setDataType("1");
 					responseDisplay.setHeight("0.2");
-					responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList("trainfrm.vm", order, "trains","demandhtml"));
+					responseDisplay.setContent(HtmlCenter.getInstance()
+							.getHtmlByList("trainfrm.vm", order, "trains",
+									"demandhtml"));
 					rma.setDisplayText(JSON.toJSONString(responseDisplay));
 					return rma;
 				} else {

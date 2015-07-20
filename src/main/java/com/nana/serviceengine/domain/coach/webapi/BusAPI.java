@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.nana.serviceengine.common.config.ConfigCenter;
 import com.nana.serviceengine.domain.coach.bean.Bus;
+import com.nana.serviceengine.domain.coach.bean.BusErrorCode;
 import com.nana.serviceengine.domain.coach.bean.Coach;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
@@ -64,7 +65,13 @@ public class BusAPI {
 			}
 			reader.close();
 			JSONObject oject = (JSONObject) JSONObject.parse(sbf.toString());
-			carGroup=JSON.parseArray(oject.getJSONObject("result").getJSONArray("list").toString(),Bus.class);
+			BusErrorCode errorCode = JSON.parseObject(sbf.toString(), BusErrorCode.class);
+			if(!errorCode.equals("0")){
+				carGroup=null;
+			}else{
+			    carGroup=JSON.parseArray(oject.getJSONObject("result").getJSONArray("list").toString(),Bus.class);
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -18,6 +18,7 @@ public class BusParam extends DomainParam<Bus> {
 		index.setName("indexChange");
 		index.setCollector(PageTurnCollector.getInstance());
 		index.setNeedExternalLoad(false);
+		index.setClearWhenExLoad(true);
 		index.setCmd(new ParamCommand() {
 			@Override
 			public Object doProcess(ParamItem item) {
@@ -28,24 +29,21 @@ public class BusParam extends DomainParam<Bus> {
 				if (item.getCollectResult() == null) {
 					return old;
 				} else {
-				 int tmp = (Integer) item.getCollectResult();
-				 int value = (Integer) item.getValue();
-					value += tmp;
-					return new Integer(value);
+					int tmp = (Integer) item.getCollectResult();
+					old += tmp;
+					return new Integer(old);
 				}
 			}
 		});
-		ParamItem choice = new ParamItem();
-		
-        choice.setName("choice");		
+		ParamItem choice = new ParamItem();		
+        choice.setName("choice");	
 		choice.setCollector(ChoiceCollector.getInstance());
-		
+		choice.setClearWhenExLoad(true);
 		choice.setCmd(new ParamCommand() {
 			
 			@Override
 			public Object doProcess(ParamItem item) {
 				 if(item.getCollectResult() != null && (Integer)item.getCollectResult() != -1){
-					 System.out.println("收集结果"+item.getCollectResult());
 					 return item.getCollectResult() ;
 				 }
 				return -1;
@@ -71,6 +69,7 @@ public class BusParam extends DomainParam<Bus> {
 		endStation.setName("end");
 		endStation.setCollector(BusEndStationCollector.getInstance());
 		endStation.setAlertMes("请告诉我您要查询汽车站的终点");
+		endStation.setNeedExternalLoad(true);
 		endStation.setCmd(new ParamCommand() {
 			
 			@Override
