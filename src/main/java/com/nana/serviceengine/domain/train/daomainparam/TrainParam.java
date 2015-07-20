@@ -44,7 +44,7 @@ public class TrainParam extends DomainParam<Train> {
 		ParamItem startStation = new ParamItem();
 		startStation.setName("start");
 		startStation.setCollector(BusStartStationCollector.getInstance());
-		startStation.setAlertMes("请告诉我您从哪里出发?");
+		startStation.setAlertMes("请告诉我您的出发站?");
 		startStation.setNeedExternalLoad(true);
 		startStation.setCmd(new ParamCommand() {
 
@@ -63,7 +63,7 @@ public class TrainParam extends DomainParam<Train> {
 		ParamItem endStation = new ParamItem();
 		endStation.setName("end");
 		endStation.setCollector(BusEndStationCollector.getInstance());
-		endStation.setAlertMes("请告诉您的目的站?");
+		endStation.setAlertMes("请告诉我您的目的站?");
 		endStation.setNeedExternalLoad(true);
 		endStation.setCmd(new ParamCommand() {
 

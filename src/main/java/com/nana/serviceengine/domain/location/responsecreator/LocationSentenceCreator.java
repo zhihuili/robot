@@ -31,14 +31,23 @@ public class LocationSentenceCreator implements SentenceCreator {
 		Map<String, ParamItem> paramItems = params.getParams();
 		List<Position> data = params.getResult();
 		String res = null;
+		try {
+			if (data == null && data.size() == 0) {
+				rma.setAudioText("很抱歉，没有查询到相关地址信息！");
+				return rma;
+			} else {
 
-		if (data == null && data.size() == 0) {
-			rma.setAudioText("哎呀，没有数据。");
-			return rma;
-		}else{
-			res="地址:"+data.get(0).getAddress() +" "+"标志:"+data.get(0).getBusiness();
+				if (data.get(0).getAddress().equals("")) {
+					rma.setAudioText("很抱歉，没有查询到相关地址信息！");
+				}
+				res = "地址:" + data.get(0).getAddress() + " " + "标志:"
+						+ data.get(0).getBusiness();
+			}
+			rma.setAudioText(res);
+		} catch (Exception ex) {
+			rma.setAudioText("很抱歉，没有查询到相关地址信息！");
 		}
-		rma.setAudioText(res);
 		return rma;
+
 	}
 }
