@@ -41,7 +41,7 @@ public class TrainSentenceCreator implements SentenceCreator {
 
 		String res = null;
 		if (allTrain == null || allTrain.size() == 0) {
-			rma.setAudioText("哎呀，没有找到你想要的列车信息。");
+			rma.setAudioText("很抱歉!没有找到你想要的列车信息。");
 			return rma;
 		}
 		Integer index = (Integer) paramItems.get("indexChange").getValue();
@@ -78,11 +78,11 @@ public class TrainSentenceCreator implements SentenceCreator {
 					rma.setDisplayText(JSON.toJSONString(responseDisplay));
 					return rma;
 				} else {
-					rma.setAudioText("对不起，没有找到您想要的下单的列车信息");
+					rma.setAudioText("对不起，没有找到您想要下单的列车信息");
 					return rma;
 				}
 			} else {
-				rma.setAudioText("当前选择无效，请您选重新选择");
+				rma.setAudioText("当前选择无效，请您重新选择");
 				return rma;
 			}
 		}
@@ -90,7 +90,7 @@ public class TrainSentenceCreator implements SentenceCreator {
 		if (trains != null) {
 			ResponseDisplay responseDisplay = new ResponseDisplay();
 			responseDisplay.setDataType("1");
-			responseDisplay.setHeight("0.8");
+			responseDisplay.setHeight("0.5");
 			responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList(
 					"trainfrm.vm", trains, "trains", "videohtml"));
 			rma.setDisplayText(JSON.toJSONString(responseDisplay));
