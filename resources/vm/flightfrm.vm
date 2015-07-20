@@ -5,7 +5,7 @@
 #parse('resources/vm/flightmacro.vm')
 ## 主逻辑
 <form action="$action">
-<table cellpadding="1px">
+<table cellpadding="10px">
 #foreach($flight in $flights)
   #table($flight.index $flight.depTime $flight.depcity $flight.airline $flight.flightNum $flight.arrTime $flight.arrcity)
 #end
