@@ -63,7 +63,7 @@ public class BusSentenceCreator implements SentenceCreator {
 				String choiceContent1 = HtmlCenter.getInstance().getHtmlByList(
 						"bus.vm", busDingdan, "inputs", "demandhtml");
 				responseDisplay.setDataType("1");
-				responseDisplay.setHeight("0.8");
+				responseDisplay.setHeight("0.5");
 				responseDisplay.setContent(choiceContent1);
 				rma.setDisplayText(JSON.toJSONString(responseDisplay));
 				return rma;
@@ -78,7 +78,7 @@ public class BusSentenceCreator implements SentenceCreator {
 			String choiceContent = HtmlCenter.getInstance().getHtmlByList(
 					"bus.vm", bus, "inputs", "videohtml");
 			responseDisplay.setDataType("1");
-			responseDisplay.setHeight("0.8");
+			responseDisplay.setHeight("0.5");
 			responseDisplay.setContent(choiceContent);
 			rma.setDisplayText(JSON.toJSONString(responseDisplay));
 			return rma;
@@ -97,7 +97,7 @@ public class BusSentenceCreator implements SentenceCreator {
 							.getHtmlByList("bus.vm",busDingdan, "inputs",
 									"demandhtml");
 					responseDisplay.setDataType("1");
-					responseDisplay.setHeight("0.8");
+					responseDisplay.setHeight("0.5");
 					responseDisplay.setContent(choiceContent);
 					rma.setDisplayText(JSON.toJSONString(responseDisplay));
 					return rma;
@@ -105,7 +105,7 @@ public class BusSentenceCreator implements SentenceCreator {
 				String choiceContent = HtmlCenter.getInstance().getHtmlByList(
 						"bus.vm", bus.subList(0, 5), "inputs", "videohtml");
 				responseDisplay.setDataType("1");
-				responseDisplay.setHeight("0.8");
+				responseDisplay.setHeight("0.5");
 				responseDisplay.setContent(choiceContent);
 				rma.setDisplayText(JSON.toJSONString(responseDisplay));
 				return rma;
@@ -123,7 +123,7 @@ public class BusSentenceCreator implements SentenceCreator {
 							.getHtmlByList("bus.vm", busDingdan, "inputs",
 									"demandhtml");
 					responseDisplay.setDataType("1");
-					responseDisplay.setHeight("0.8");
+					responseDisplay.setHeight("0.5");
 					responseDisplay.setContent(choiceContent1);
 					rma.setDisplayText(JSON.toJSONString(responseDisplay));
 					return rma;
@@ -132,7 +132,7 @@ public class BusSentenceCreator implements SentenceCreator {
 						"bus.vm", bus.subList((index - 1) * 5, index * 5),
 						"inputs", "videohtml");
 				responseDisplay.setDataType("1");
-				responseDisplay.setHeight("0.8");
+				responseDisplay.setHeight("0.5");
 				responseDisplay.setContent(choiceContent);
 				rma.setDisplayText(JSON.toJSONString(responseDisplay));
 				return rma;
@@ -153,7 +153,7 @@ public class BusSentenceCreator implements SentenceCreator {
 									busDingdan,
 									"inputs", "videohtml");
 					responseDisplay.setDataType("1");
-					responseDisplay.setHeight("0.8");
+					responseDisplay.setHeight("0.5");
 					responseDisplay.setContent(choiceContent1);
 					rma.setDisplayText(JSON.toJSONString(responseDisplay));
 					return rma;
@@ -163,7 +163,7 @@ public class BusSentenceCreator implements SentenceCreator {
 						"bus.vm", bus.subList((index - 1) * 5, bus.size()),
 						"inputs", "videohtml");
 				responseDisplay.setDataType("1");
-				responseDisplay.setHeight("0.8");
+				responseDisplay.setHeight("0.5");
 				responseDisplay.setContent(choiceContent);
 				rma.setDisplayText(JSON.toJSONString(responseDisplay));
 				return rma;
