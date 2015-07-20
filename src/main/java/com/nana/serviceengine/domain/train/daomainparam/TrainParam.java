@@ -112,6 +112,7 @@ public class TrainParam extends DomainParam<Train> {
 		ParamItem choice = new ParamItem();
         choice.setName("choice");		
 		choice.setCollector(ChoiceCollector.getInstance());
+		choice.setClearWhenExLoad(true);
 		choice.setCmd(new ParamCommand() {
 			
 			@Override

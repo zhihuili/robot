@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>zhidao</title>
+</head>
+<body>
+<h3><a href="$questionUrl">$question</a></h3>
+    <div>
+     <font size="1" color="#6495ED">
+	$answer
+	</font>
+    </div>
+    <hr/>
+     <div align="right">
+      <font size = "1" color="#6495ED">被赞：$goodNum次:</font>
+     </div>
+</body>
+</html>

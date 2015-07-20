@@ -48,8 +48,15 @@ public class HtmlCenter {
 		String body = formatVMByList(vmName, list, tagName);
 		return addHtmlTags(body,htmlName);
 	}
-
-	private String formatVMByList(String vmName, Object object, String tagName) {
+	
+	/**
+	 * 将list集合和模版合并
+	 * @param vmName
+	 * @param object
+	 * @param tagName
+	 * @return
+	 */
+	public String formatVMByList(String vmName, Object object, String tagName) {
 		VelocityEngine ve = new VelocityEngine();
 		ve.init();
 		// 配置引擎上下文对象
@@ -63,7 +70,13 @@ public class HtmlCenter {
 		return sw.toString();
 	}
 
-	private String formatVM(String vmName, Object object) {
+	/**
+	 * 将bean合并到模版
+	 * @param vmName
+	 * @param object
+	 * @return
+	 */
+	public String formatVM(String vmName, Object object) {
 		VelocityEngine ve = new VelocityEngine();
 		ve.init();
 		// 配置引擎上下文对象

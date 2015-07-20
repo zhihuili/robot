@@ -43,7 +43,7 @@ public class RobotConsumerListener implements ConsumerListener {
 		System.out.println("display:" + resMessage.getDisplayText());
 
 		if ("//TODO".equals(resMessage.getAudioText())) {
-			sendToCS(reqMessage);
+			sendToCS(reqMessage);					
 		} else {
 			sendToApp(resMessage, reqMessage);
 		}

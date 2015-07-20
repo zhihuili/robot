@@ -1,3 +1,7 @@
-frame..getElementById..wgt-list
-frame..getElementsByTag..dl
-bean..
+1..getElementById..wgt-list
+2..getElementsByTag..dl
+tag_reduce
+1
+2
+property_collector
+1.. 
