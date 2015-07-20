@@ -6,21 +6,18 @@ import com.nana.common.message.ResponseMessage;
 import com.nana.common.mq.ConsumerListener;
 import com.nana.common.mq.MqFactory;
 import com.nana.common.mq.MqProducer;
-import com.nana.robot.api.context.ChartManager;
-import com.nana.robot.chatterbean.util.Translate;
-import com.nana.serviceengine.bean.UserMessage;
-import com.nana.serviceengine.util.NaNaRobot;
+import com.nana.common.utils.Property;
+import com.nana.serviceengine.common.bean.UserMessage;
 
 public class RobotConsumerListener implements ConsumerListener {
-	private ChartManager chartManager;
 	private NaNaRobot robot;
-	private MqProducer appMqProducer = MqFactory
-			.getMqProducer("PID_DEV_NANA_3");
-	private MqProducer csMqProducer = MqFactory.getMqProducer("PID_DEV_NANA_2");
+	private MqProducer appMqProducer = MqFactory.getMqProducer(Property
+			.getInstance().getCfg("pid3"));
+	private MqProducer csMqProducer = MqFactory.getMqProducer(Property
+			.getInstance().getCfg("pid2"));
 
 	private RobotConsumerListener() {
-		chartManager = ChartManager.getInstance();
-		robot = new NaNaRobot();
+		robot = NaNaRobot.getInstance();
 	}
 
 	private static RobotConsumerListener instance = new RobotConsumerListener();
@@ -33,21 +30,32 @@ public class RobotConsumerListener implements ConsumerListener {
 	public void process(String key, String tag, byte[] body) {
 		RequestMessage reqMessage = JSON.parseObject(new String(body),
 				RequestMessage.class);
+		System.out.println("user say" + reqMessage.getContent());
 		UserMessage mes = new UserMessage();
 		mes.setUserid(reqMessage.getId());
 		mes.setMessage(reqMessage.getContent());
-		
-		
-		String input = reqMessage.getContent();
-		System.out.println("user input: " + input);
-		String tmp = Translate.translateString(input);
-		//String output = chartManager.response(tmp);
-		String output = robot.getAnswer(mes);
-		System.out.println("robot answer: " + output);
-		if ("//TODO".equals(output)) {
+		mes.setReqMessage(reqMessage);
+		robot.getAnswer(mes);
+	}
+
+	public void sendMsg(ResponseMessage resMessage, RequestMessage reqMessage) {
+		System.out.println("robot:" + resMessage.getAudioText());
+		System.out.println("display:" + resMessage.getDisplayText());
+
+		if ("//TODO".equals(resMessage.getAudioText())) {
 			sendToCS(reqMessage);
 		} else {
-			sendToApp(output, reqMessage);
+			sendToApp(resMessage, reqMessage);
+		}
+	}
+
+	public void sendMsg(String mes, RequestMessage reqMessage) {
+		System.out.println("robot:" + mes);
+
+		if ("//TODO".equals(mes)) {
+			sendToCS(reqMessage);
+		} else {
+			sendToApp(mes, reqMessage);
 		}
 	}
 
@@ -57,7 +65,7 @@ public class RobotConsumerListener implements ConsumerListener {
 	 * @param reqMessage
 	 */
 	private void sendToCS(RequestMessage reqMessage) {
-		csMqProducer.sendMessage("DEV_NANA_2", null, null,
+		csMqProducer.sendMessage(Property.getInstance().getCfg("topic2"), null, null,
 				JSON.toJSONString(reqMessage).getBytes());
 	}
 
@@ -69,11 +77,25 @@ public class RobotConsumerListener implements ConsumerListener {
 	 */
 	private void sendToApp(String responseStr, RequestMessage reqMessage) {
 		ResponseMessage resMessage = new ResponseMessage();
-		resMessage.setDisplayText(responseStr);
+		resMessage.setAudioText(responseStr);
 		resMessage.setId(reqMessage.getId());
 		resMessage.setMobileType(reqMessage.getMobileType());
-		appMqProducer.sendMessage("DEV_NANA_3", null, null,
+		appMqProducer.sendMessage(Property.getInstance().getCfg("topic3"), null, null,
 				JSON.toJSONString(resMessage).getBytes());
+	}
+
+	/**
+	 * 发送robot结果到消息队列，等待webapi将其推送给App
+	 * 
+	 * @param responseStr
+	 * @param reqMessage
+	 */
+	private void sendToApp(ResponseMessage response, RequestMessage reqMessage) {
+
+		response.setId(reqMessage.getId());
+		response.setMobileType(reqMessage.getMobileType());
+		appMqProducer.sendMessage(Property.getInstance().getCfg("topic3"), null, null,
+				JSON.toJSONString(response).getBytes());
 	}
 
 }

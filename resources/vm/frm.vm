@@ -1,0 +1,12 @@
+##表单模板
+##@author fsjohnhuang
+##@version 1.0
+## 引入外部模板文件
+#parse('resources/vm/macro.vm')
+## 主逻辑
+<form action="$action">
+$name
+#foreach($input in $inputs)
+#input($input.title $input.id)
+#end
+</form>

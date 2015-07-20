@@ -1,0 +1,6 @@
+##表单模板
+<form action="$action">
+<body>
+  <h5> $content<h5>
+</body>
+</form>

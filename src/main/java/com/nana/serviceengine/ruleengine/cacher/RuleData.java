@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.nana.serviceengine.common.util.TxtReader;
 import com.nana.serviceengine.ruleengine.bean.Rule;
 import com.nana.serviceengine.ruleengine.bean.RuleReverseItem;
-import com.nana.serviceengine.util.TxtReader;
 
 public class RuleData {
 	public static Map<String, Rule> Rules = new HashMap<String, Rule>();

@@ -1,17 +1,23 @@
 package com.nana.serviceengine.inteceptor;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.ansj.domain.Term;
 
-import com.nana.serviceengine.bean.DomainKeyWord;
-import com.nana.serviceengine.dic.DomainDic;
-import com.nana.serviceengine.util.ListDeepCopyer;
+import com.nana.serviceengine.common.bean.DomainKeyWord;
+import com.nana.serviceengine.common.dic.DomainDic;
+import com.nana.serviceengine.grammer.analyzer.GrammerAnalyzer;
+import com.nana.serviceengine.grammer.bean.GrammerItem;
 
+/**
+ * 消息预处理
+ * @author wds
+ *
+ */
 public class MessagePreTreator {
+	
 	private static MessagePreTreator ppt = new MessagePreTreator();
 
 	private MessagePreTreator() {
@@ -21,11 +27,11 @@ public class MessagePreTreator {
 		return ppt;
 	}
 	
-	public String[] getDomainKeys(String[] sortedWords){
+	public String[] getDomainKeys(String[] domainKeyWords){
 		try{
 			List<String> domains = new ArrayList<String>();
-			for(int i = 0;i<sortedWords.length;i++){
-				DomainKeyWord tmp  = DomainDic.domainKeyWord.get(sortedWords[i]);
+			for(int i = 0;i<domainKeyWords.length;i++){
+				DomainKeyWord tmp  = DomainDic.domainKeyWord.get(domainKeyWords[i]);
 				if(tmp!=null){
 					domains.add(tmp.getDomain());
 				}
@@ -36,44 +42,17 @@ public class MessagePreTreator {
 		}
 		return null;
 	}
+
 	/**
-	 * 获取以排序的分词词组 
+	 * 分析语法结构 目前只分析了否定语、宾语和其的定语和连词 需完善
 	 * @param terms
 	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws IOException
 	 */
-	public String[] getSortedWords(List<Term> terms)
-			throws ClassNotFoundException, IOException {
-		try {
-			deleWTag(terms);
-			deleUJWords(terms);
-			int termSize = terms.size();
-			List<Term> tmp = ListDeepCopyer.copy(terms);
-			List<Term> tmp1 = new ArrayList<Term>(); 
-			String[] keyWords = new String[termSize];
-			Iterator iterator = tmp.iterator();
-			while(iterator.hasNext()){
-				Term term = (Term) iterator.next();
-				if("n".equals(term.getNatureStr())){
-					tmp1.add(term);
-					iterator.remove();
-				}
-			}
-			for(int i=0;i<tmp1.size();i++){
-				keyWords[i] = tmp1.get(i).getRealName();
-			}
-			for(int i=0;i<tmp.size();i++){
-				keyWords[i+tmp1.size()] = tmp.get(i).getRealName();		
-			}
-			return keyWords;
-		} catch (Exception ex) {
-			//TODO log
-			ex.printStackTrace();
-		}
-		return null;
+	public GrammerItem getGrammerItem(List<Term> terms){
+		GrammerItem gi = new GrammerItem();
+	    GrammerAnalyzer.getInstance().analysisAll(gi, terms);
+		return gi;
 	}
-
 	/**
 	 * 删除标点符号 并返回句子中名词的数量
 	 * 

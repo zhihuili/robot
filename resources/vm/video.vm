@@ -1,0 +1,20 @@
+<table>
+<tr>
+<td rowspan="3"><img src="$imageUrl" width="45" height="65"/></td>
+<td><font size="1px">$name</font>  <font color="red" size="2" face="黑体"><B>$score</B></font><font size="0.5" color="#A9A9A9">分</font></td>	
+</tr>
+<tr>
+<td><font size="0.5" color="#A9A9A9">
+#foreach($keyword in $keywordCountList)
+#if($velocityCount == 1)
+	$keyword.key
+#else
+	|$keyword.key
+#end
+#end
+</font></td>
+</tr>
+<tr>
+<td><font size="0">$summary</font></td>
+</tr>
+</table>

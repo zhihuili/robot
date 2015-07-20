@@ -25,12 +25,22 @@
 		</repository>
 	</repositories>
 	<dependencies>
-<dependency>
-                        <groupId>org.json</groupId>
-                        <artifactId>json</artifactId>
-                        <version>20141113</version>
-                </dependency>                
-<dependency>
+		<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.2.1</version>
+    </dependency>
+	<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.0</version>
+    </dependency>
+	<dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+    </dependency>
+    		<dependency>
                         <groupId>org.nlpcn</groupId>
                         <artifactId>nlp-lang</artifactId>
                         <version>0.2</version>

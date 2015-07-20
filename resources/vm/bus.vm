@@ -1,0 +1,26 @@
+##表单模板
+<form action="$action">
+<table>
+	<tr>
+	           <td size="1" color="#4876FF">出发站</td>
+	           <td size="1" color="#4876FF">到达站</td>
+	           <td size="1" color="#4876FF">
+	               出发时间
+	             </td>
+	              <td size="1" color="#4876FF">	              
+	               目的城市
+	             </td>
+	</tr>
+#foreach($input in $inputs)
+  <tr>
+                 <td size="1" color="#4876FF">$input.start</td>
+	             <td size="1" color="#4876FF">$input.arrive</td>
+	             <td size="1" color="#4876FF">
+	              $input.date
+	             </td>
+	              <td size="1" color="#4876FF">	            
+	               $input.price
+	             </td>
+      </tr>
+#end
+</form>

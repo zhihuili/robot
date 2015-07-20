@@ -1,440 +1,531 @@
-北京 address 北京
-西城 address 西城
-东城 address 东城
-崇文 address 崇文
-宣武 address 宣武
-朝阳 address 朝阳
-海淀 address 海淀
-丰台 address 丰台
-石景山 address 石景山
-门头沟 address 门头沟
-房山 address 房山
-通州 address 通州
-顺义 address 顺义
-大兴 address 大兴
-昌平 address 昌平
-平谷 address 平谷
-怀柔 address 怀柔
-密云 address 密云
-延庆  address 延庆 
-天津 address 天津
-青羊 address 青羊
-河东 address 河东
-河西 address 河西
-南开 address 南开
-河北 address 河北
-红桥 address 红桥
-塘沽 address 塘沽
-汉沽 address 汉沽
-大港 address 大港
-东丽 address 东丽
-西青 address 西青
-北辰 address 北辰
-津南 address 津南
-武清 address 武清
-宝坻 address 宝坻
-静海 address 静海
-宁河 address 宁河
-蓟县 address 蓟县
-开发区 address 开发区
-河北 address 河北
-石家庄 address 石家庄
-秦皇岛 address 秦皇岛
-廊坊 address 廊坊
-保定 address 保定
-邯郸 address 邯郸
-唐山 address 唐山
-邢台 address 邢台
-衡水 address 衡水
-张家口 address 张家口
-承德 address 承德
-沧州 address 沧州
-衡水  address 衡水 
-山西 address 山西
-太原 address 太原
-大同 address 大同
-长治 address 长治
-晋中 address 晋中
-阳泉 address 阳泉
-朔州 address 朔州
-运城 address 运城
-临汾 address 临汾
-内蒙古 address 内蒙古
-呼和浩特 address 呼和浩特
-赤峰 address 赤峰
-通辽 address 通辽
-锡林郭勒 address 锡林郭勒
-兴安 address 兴安
-辽宁 address 辽宁
-大连 address 大连
-沈阳 address 沈阳
-鞍山 address 鞍山
-抚顺 address 抚顺
-营口 address 营口
-锦州 address 锦州
-丹东 address 丹东
-朝阳 address 朝阳
-辽阳 address 辽阳
-阜新 address 阜新
-铁岭 address 铁岭
-盘锦 address 盘锦
-本溪 address 本溪
-葫芦岛 address 葫芦岛
-吉林 address 吉林
-长春 address 长春
-吉林 address 吉林
-四平 address 四平
-辽源 address 辽源
-通化 address 通化
-延吉 address 延吉
-白城 address 白城
-辽源 address 辽源
-松原 address 松原
-临江 address 临江
-珲春 address 珲春
-黑龙江 address 黑龙江
-哈尔滨 address 哈尔滨
-齐齐哈尔 address 齐齐哈尔
-大庆 address 大庆
-牡丹江 address 牡丹江
-鹤岗 address 鹤岗
-佳木斯 address 佳木斯
-绥化 address 绥化
-上海 address 上海
-浦东 address 浦东
-杨浦 address 杨浦
-徐汇 address 徐汇
-静安 address 静安
-卢湾 address 卢湾
-黄浦 address 黄浦
-普陀 address 普陀
-闸北 address 闸北
-虹口 address 虹口
-长宁 address 长宁
-宝山 address 宝山
-闵行 address 闵行
-嘉定 address 嘉定
-金山 address 金山
-松江 address 松江
-青浦 address 青浦
-崇明 address 崇明
-奉贤 address 奉贤
-南汇 address 南汇
-江苏 address 江苏
-南京 address 南京
-苏州 address 苏州
-无锡 address 无锡
-常州 address 常州
-扬州 address 扬州
-徐州 address 徐州
-南通 address 南通
-镇江 address 镇江
-泰州 address 泰州
-淮安 address 淮安
-连云港 address 连云港
-宿迁 address 宿迁
-盐城 address 盐城
-淮阴 address 淮阴
-沐阳 address 沐阳
-张家港 address 张家港
-浙江 address 浙江
-杭州 address 杭州
-金华 address 金华
-宁波 address 宁波
-温州 address 温州
-嘉兴 address 嘉兴
-绍兴 address 绍兴
-丽水 address 丽水
-湖州 address 湖州
-台州 address 台州
-舟山 address 舟山
-衢州 address 衢州
-安徽 address 安徽
-合肥 address 合肥
-马鞍山 address 马鞍山
-蚌埠 address 蚌埠
-黄山 address 黄山
-芜湖 address 芜湖
-淮南 address 淮南
-铜陵 address 铜陵
-阜阳 address 阜阳
-宣城 address 宣城
-安庆 address 安庆
-福建 address 福建
-福州 address 福州
-厦门 address 厦门
-泉州 address 泉州
-漳州 address 漳州
-南平 address 南平
-龙岩 address 龙岩
-莆田 address 莆田
-三明 address 三明
-宁德 address 宁德
-江西 address 江西
-南昌 address 南昌
-景德镇 address 景德镇
-上饶 address 上饶
-萍乡 address 萍乡
-九江 address 九江
-吉安 address 吉安
-宜春 address 宜春
-鹰潭 address 鹰潭
-新余 address 新余
-赣州 address 赣州
-山东 address 山东
-青岛 address 青岛
-济南 address 济南
-淄博 address 淄博
-烟台 address 烟台
-泰安 address 泰安
-临沂 address 临沂
-日照 address 日照
-德州 address 德州
-威海 address 威海
-东营 address 东营
-荷泽 address 荷泽
-济宁 address 济宁
-潍坊 address 潍坊
-枣庄 address 枣庄
-聊城 address 聊城
-河南 address 河南
-郑州 address 郑州
-洛阳 address 洛阳
-开封 address 开封
-平顶山 address 平顶山
-濮阳 address 濮阳
-安阳 address 安阳
-许昌 address 许昌
-南阳 address 南阳
-信阳 address 信阳
-周口 address 周口
-新乡 address 新乡
-焦作 address 焦作
-三门峡 address 三门峡
-商丘 address 商丘
-湖北 address 湖北
-武汉 address 武汉
-襄樊 address 襄樊
-孝感 address 孝感
-十堰 address 十堰
-荆州 address 荆州
-黄石 address 黄石
-宜昌 address 宜昌
-黄冈 address 黄冈
-恩施 address 恩施
-鄂州 address 鄂州
-江汉 address 江汉
-随枣 address 随枣
-荆沙 address 荆沙
-咸宁 address 咸宁
-湖南 address 湖南
-长沙 address 长沙
-湘潭 address 湘潭
-岳阳 address 岳阳
-株洲 address 株洲
-怀化 address 怀化
-永州 address 永州
-益阳 address 益阳
-张家界 address 张家界
-常德 address 常德
-衡阳 address 衡阳
-湘西 address 湘西
-邵阳 address 邵阳
-娄底 address 娄底
-郴州 address 郴州
-广东 address 广东
-广州 address 广州
-深圳 address 深圳
-东莞 address 东莞
-佛山 address 佛山
-珠海 address 珠海
-汕头 address 汕头
-韶关 address 韶关
-江门 address 江门
-梅州 address 梅州
-揭阳 address 揭阳
-中山 address 中山
-河源 address 河源
-惠州 address 惠州
-茂名 address 茂名
-湛江 address 湛江
-阳江 address 阳江
-潮州 address 潮州
-云浮 address 云浮
-汕尾 address 汕尾
-潮阳 address 潮阳
-肇庆 address 肇庆
-顺德 address 顺德
-清远 address 清远
-广西 address 广西
-南宁 address 南宁
-桂林 address 桂林
-柳州 address 柳州
-梧州 address 梧州
-来宾 address 来宾
-贵港 address 贵港
-玉林 address 玉林
-贺州 address 贺州
-海南 address 海南
-海口 address 海口
-三亚 address 三亚
-重庆 address 重庆
-渝中 address 渝中
-大渡口 address 大渡口
-江北 address 江北
-沙坪坝 address 沙坪坝
-九龙坡 address 九龙坡
-南岸 address 南岸
-北碚 address 北碚
-万盛 address 万盛
-双桥 address 双桥
-渝北 address 渝北
-巴南 address 巴南
-万州 address 万州
-涪陵 address 涪陵
-黔江 address 黔江
-长寿 address 长寿
-四川 address 四川
-成都 address 成都
-达州 address 达州
-南充 address 南充
-乐山 address 乐山
-绵阳 address 绵阳
-德阳 address 德阳
-内江 address 内江
-遂宁 address 遂宁
-宜宾 address 宜宾
-巴中 address 巴中
-自贡 address 自贡
-康定 address 康定
-攀枝花 address 攀枝花
-贵州 address 贵州
-贵阳 address 贵阳
-遵义 address 遵义
-安顺 address 安顺
-黔西南 address 黔西南
-都匀 address 都匀
-云南 address 云南
-昆明 address 昆明
-丽江 address 丽江
-昭通 address 昭通
-玉溪 address 玉溪
-临沧 address 临沧
-文山 address 文山
-红河 address 红河
-楚雄 address 楚雄
-大理 address 大理
-西藏 address 西藏
-拉萨 address 拉萨
-林芝 address 林芝
-日喀则 address 日喀则
-昌都 address 昌都
-陕西 address 陕西
-西安 address 西安
-咸阳 address 咸阳
-延安 address 延安
-汉中 address 汉中
-榆林 address 榆林
-商南 address 商南
-略阳 address 略阳
-宜君 address 宜君
-麟游 address 麟游
-白河 address 白河
-甘肃 address 甘肃
-兰州 address 兰州
-金昌 address 金昌
-天水 address 天水
-武威 address 武威
-张掖 address 张掖
-平凉 address 平凉
-酒泉 address 酒泉
-青海 address 青海
-黄南 address 黄南
-海南 address 海南
-西宁 address 西宁
-海东 address 海东
-海西 address 海西
-海北 address 海北
-果洛 address 果洛
-玉树 address 玉树
-宁夏 address 宁夏
-银川 address 银川
-吴忠 address 吴忠
-新疆 address 新疆
-乌鲁木齐 address 乌鲁木齐
-哈密 address 哈密
-喀什 address 喀什
-巴音郭楞 address 巴音郭楞
-昌吉 address 昌吉
-伊犁 address 伊犁
-阿勒泰 address 阿勒泰
-克拉玛依 address 克拉玛依
-博尔塔拉 address 博尔塔拉
-香港 address 香港
-中西区 address 中西区
-湾仔区 address 湾仔区
-东区 address 东区
-南区 address 南区
-九龙-油尖旺区 address 九龙-油尖旺区
-九龙-深水埗区 address 九龙-深水埗区
-九龙-九龙城区 address 九龙-九龙城区
-九龙-黄大仙区 address 九龙-黄大仙区
-九龙-观塘区 address 九龙-观塘区
-新界-北区 address 新界-北区
-新界-大埔区 address 新界-大埔区
-新界-沙田区 address 新界-沙田区
-新界-西贡区 address 新界-西贡区
-新界-荃湾区 address 新界-荃湾区
-新界-屯门区 address 新界-屯门区
-新界-元朗区 address 新界-元朗区
-新界-葵青区 address 新界-葵青区
-新界-离岛区 address 新界-离岛区
-澳门 address 澳门
-花地玛堂区 address 花地玛堂区
-圣安多尼堂区 address 圣安多尼堂区
-大堂区 address 大堂区
-望德堂区 address 望德堂区
-风顺堂区 address 风顺堂区
-嘉模堂区 address 嘉模堂区
-圣方济各堂区 address 圣方济各堂区
-路氹城 address 路氹城
-今天 time 0
-明天 time 1
-后天 time 2
-3天后 time 3
-4天后 time 4
-5天后 time 5
-昨天 time -1
-前天 time -2
-星期一 time 1
-星期二 time 2
-星期三 time 3
-星期四 time 4
-星期五 time 5
-星期六 time 6
-星期天 time 7
-星期1 time 1
-星期2 time 2
-星期3 time 3
-星期4 time 4
-星期5 time 5
-星期6 time 6
-天气 weather 天气
-气温 weather 气温
-温度 weather 温度
-雨 weather 雨
-雪 weather 雪
-雾 weather 雾
-风 weather 风
-霾 weather 霾
-寒 temprature 寒
-冷 temprature 冷
-热 temprature 热
-电影 video 电影
-影片 video 影片
-想 want 想 
-要 want 想
-看 action 看
-观 action 观
-不想 not 不想 
-不要 not 不要
+北京 address 北京 null
+西城 address 西城 null
+东城 address 东城 null
+崇文 address 崇文 null
+宣武 address 宣武 null
+朝阳 address 朝阳 null
+海淀 address 海淀 null
+丰台 address 丰台 null
+石景山 address 石景山 null
+门头沟 address 门头沟 null
+房山 address 房山 null
+通州 address 通州 null
+顺义 address 顺义 null
+大兴 address 大兴 null
+昌平 address 昌平 null
+平谷 address 平谷 null
+怀柔 address 怀柔 null
+密云 address 密云 null
+延庆 address 延庆 null
+天津 address 天津 null
+青羊 address 青羊 null
+河东 address 河东 null
+河西 address 河西 null
+南开 address 南开 null
+河北 address 河北 null
+红桥 address 红桥 null
+塘沽 address 塘沽 null
+汉沽 address 汉沽 null
+大港 address 大港 null
+东丽 address 东丽 null
+西青 address 西青 null
+北辰 address 北辰 null
+津南 address 津南 null
+武清 address 武清 null
+宝坻 address 宝坻 null
+静海 address 静海 null
+宁河 address 宁河 null
+蓟县 address 蓟县 null
+开发区 address 开发区 null
+河北 address 河北 null
+石家庄 address 石家庄 null
+秦皇岛 address 秦皇岛 null
+廊坊 address 廊坊 null
+保定 address 保定 null
+邯郸 address 邯郸 null
+唐山 address 唐山 null
+邢台 address 邢台 null
+衡水 address 衡水 null
+张家口 address 张家口 null
+承德 address 承德 null
+沧州 address 沧州 null
+衡水 address 衡水 null
+山西 address 山西 null
+太原 address 太原 null
+大同 address 大同 null
+长治 address 长治 null
+晋中 address 晋中 null
+阳泉 address 阳泉 null
+朔州 address 朔州 null
+运城 address 运城 null
+临汾 address 临汾 null
+内蒙古 address 内蒙古 null
+呼和浩特 address 呼和浩特 null
+赤峰 address 赤峰 null
+通辽 address 通辽 null
+锡林郭勒 address 锡林郭勒 null
+兴安 address 兴安 null
+辽宁 address 辽宁 null
+大连 address 大连 null
+沈阳 address 沈阳 null
+鞍山 address 鞍山 null
+抚顺 address 抚顺 null
+营口 address 营口 null
+锦州 address 锦州 null
+丹东 address 丹东 null
+朝阳 address 朝阳 null
+辽阳 address 辽阳 null
+阜新 address 阜新 null
+铁岭 address 铁岭 null
+盘锦 address 盘锦 null
+本溪 address 本溪 null
+葫芦岛 address 葫芦岛 null
+吉林 address 吉林 null
+长春 address 长春 null
+吉林 address 吉林 null
+四平 address 四平 null
+辽源 address 辽源 null
+通化 address 通化 null
+延吉 address 延吉 null
+白城 address 白城 null
+辽源 address 辽源 null
+松原 address 松原 null
+临江 address 临江 null
+珲春 address 珲春 null
+黑龙江 address 黑龙江 null
+哈尔滨 address 哈尔滨 null
+齐齐哈尔 address 齐齐哈尔 null
+大庆 address 大庆 null
+牡丹江 address 牡丹江 null
+鹤岗 address 鹤岗 null
+佳木斯 address 佳木斯 null
+绥化 address 绥化 null
+上海 address 上海 null
+浦东 address 浦东 null
+杨浦 address 杨浦 null
+徐汇 address 徐汇 null
+静安 address 静安 null
+卢湾 address 卢湾 null
+黄浦 address 黄浦 null
+普陀 address 普陀 null
+闸北 address 闸北 null
+虹口 address 虹口 null
+长宁 address 长宁 null
+宝山 address 宝山 null
+闵行 address 闵行 null
+嘉定 address 嘉定 null
+金山 address 金山 null
+松江 address 松江 null
+青浦 address 青浦 null
+崇明 address 崇明 null
+奉贤 address 奉贤 null
+南汇 address 南汇 null
+江苏 address 江苏 null
+南京 address 南京 null
+苏州 address 苏州 null
+无锡 address 无锡 null
+常州 address 常州 null
+扬州 address 扬州 null
+徐州 address 徐州 null
+南通 address 南通 null
+镇江 address 镇江 null
+泰州 address 泰州 null
+淮安 address 淮安 null
+连云港 address 连云港 null
+宿迁 address 宿迁 null
+盐城 address 盐城 null
+淮阴 address 淮阴 null
+沐阳 address 沐阳 null
+张家港 address 张家港 null
+浙江 address 浙江 null
+杭州 address 杭州 null
+金华 address 金华 null
+宁波 address 宁波 null
+温州 address 温州 null
+嘉兴 address 嘉兴 null
+绍兴 address 绍兴 null
+丽水 address 丽水 null
+湖州 address 湖州 null
+台州 address 台州 null
+舟山 address 舟山 null
+衢州 address 衢州 null
+安徽 address 安徽 null
+合肥 address 合肥 null
+马鞍山 address 马鞍山 null
+蚌埠 address 蚌埠 null
+黄山 address 黄山 null
+芜湖 address 芜湖 null
+淮南 address 淮南 null
+铜陵 address 铜陵 null
+阜阳 address 阜阳 null
+宣城 address 宣城 null
+安庆 address 安庆 null
+福建 address 福建 null
+福州 address 福州 null
+厦门 address 厦门 null
+泉州 address 泉州 null
+漳州 address 漳州 null
+南平 address 南平 null
+龙岩 address 龙岩 null
+莆田 address 莆田 null
+三明 address 三明 null
+宁德 address 宁德 null
+江西 address 江西 null
+南昌 address 南昌 null
+景德镇 address 景德镇 null
+上饶 address 上饶 null
+萍乡 address 萍乡 null
+九江 address 九江 null
+吉安 address 吉安 null
+宜春 address 宜春 null
+鹰潭 address 鹰潭 null
+新余 address 新余 null
+赣州 address 赣州 null
+山东 address 山东 null
+青岛 address 青岛 null
+济南 address 济南 null
+淄博 address 淄博 null
+烟台 address 烟台 null
+泰安 address 泰安 null
+临沂 address 临沂 null
+日照 address 日照 null
+德州 address 德州 null
+威海 address 威海 null
+东营 address 东营 null
+荷泽 address 荷泽 null
+济宁 address 济宁 null
+潍坊 address 潍坊 null
+枣庄 address 枣庄 null
+聊城 address 聊城 null
+河南 address 河南 null
+郑州 address 郑州 null
+洛阳 address 洛阳 null
+开封 address 开封 null
+平顶山 address 平顶山 null
+濮阳 address 濮阳 null
+安阳 address 安阳 null
+许昌 address 许昌 null
+南阳 address 南阳 null
+信阳 address 信阳 null
+周口 address 周口 null
+新乡 address 新乡 null
+焦作 address 焦作 null
+三门峡 address 三门峡 null
+商丘 address 商丘 null
+湖北 address 湖北 null
+武汉 address 武汉 null
+襄樊 address 襄樊 null
+孝感 address 孝感 null
+十堰 address 十堰 null
+荆州 address 荆州 null
+黄石 address 黄石 null
+宜昌 address 宜昌 null
+黄冈 address 黄冈 null
+恩施 address 恩施 null
+鄂州 address 鄂州 null
+江汉 address 江汉 null
+随枣 address 随枣 null
+荆沙 address 荆沙 null
+咸宁 address 咸宁 null
+湖南 address 湖南 null
+长沙 address 长沙 null
+湘潭 address 湘潭 null
+岳阳 address 岳阳 null
+株洲 address 株洲 null
+怀化 address 怀化 null
+永州 address 永州 null
+益阳 address 益阳 null
+张家界 address 张家界 null
+常德 address 常德 null
+衡阳 address 衡阳 null
+湘西 address 湘西 null
+邵阳 address 邵阳 null
+娄底 address 娄底 null
+郴州 address 郴州 null
+广东 address 广东 null
+广州 address 广州 null
+深圳 address 深圳 null
+东莞 address 东莞 null
+佛山 address 佛山 null
+珠海 address 珠海 null
+汕头 address 汕头 null
+韶关 address 韶关 null
+江门 address 江门 null
+梅州 address 梅州 null
+揭阳 address 揭阳 null
+中山 address 中山 null
+河源 address 河源 null
+惠州 address 惠州 null
+茂名 address 茂名 null
+湛江 address 湛江 null
+阳江 address 阳江 null
+潮州 address 潮州 null
+云浮 address 云浮 null
+汕尾 address 汕尾 null
+潮阳 address 潮阳 null
+肇庆 address 肇庆 null
+顺德 address 顺德 null
+清远 address 清远 null
+广西 address 广西 null
+南宁 address 南宁 null
+桂林 address 桂林 null
+柳州 address 柳州 null
+梧州 address 梧州 null
+来宾 address 来宾 null
+贵港 address 贵港 null
+玉林 address 玉林 null
+贺州 address 贺州 null
+海南 address 海南 null
+海口 address 海口 null
+三亚 address 三亚 null
+重庆 address 重庆 null
+渝中 address 渝中 null
+大渡口 address 大渡口 null
+江北 address 江北 null
+沙坪坝 address 沙坪坝 null
+九龙坡 address 九龙坡 null
+南岸 address 南岸 null
+北碚 address 北碚 null
+万盛 address 万盛 null
+双桥 address 双桥 null
+渝北 address 渝北 null
+巴南 address 巴南 null
+万州 address 万州 null
+涪陵 address 涪陵 null
+黔江 address 黔江 null
+长寿 address 长寿 null
+四川 address 四川 null
+成都 address 成都 null
+达州 address 达州 null
+南充 address 南充 null
+乐山 address 乐山 null
+绵阳 address 绵阳 null
+德阳 address 德阳 null
+内江 address 内江 null
+遂宁 address 遂宁 null
+宜宾 address 宜宾 null
+巴中 address 巴中 null
+自贡 address 自贡 null
+康定 address 康定 null
+攀枝花 address 攀枝花 null
+贵州 address 贵州 null
+贵阳 address 贵阳 null
+遵义 address 遵义 null
+安顺 address 安顺 null
+黔西南 address 黔西南 null
+都匀 address 都匀 null
+云南 address 云南 null
+昆明 address 昆明 null
+丽江 address 丽江 null
+昭通 address 昭通 null
+玉溪 address 玉溪 null
+临沧 address 临沧 null
+文山 address 文山 null
+红河 address 红河 null
+楚雄 address 楚雄 null
+大理 address 大理 null
+西藏 address 西藏 null
+拉萨 address 拉萨 null
+林芝 address 林芝 null
+日喀则 address 日喀则 null
+昌都 address 昌都 null
+陕西 address 陕西 null
+西安 address 西安 null
+咸阳 address 咸阳 null
+延安 address 延安 null
+汉中 address 汉中 null
+榆林 address 榆林 null
+商南 address 商南 null
+略阳 address 略阳 null
+宜君 address 宜君 null
+麟游 address 麟游 null
+白河 address 白河 null
+甘肃 address 甘肃 null
+兰州 address 兰州 null
+金昌 address 金昌 null
+天水 address 天水 null
+武威 address 武威 null
+张掖 address 张掖 null
+平凉 address 平凉 null
+酒泉 address 酒泉 null
+青海 address 青海 null
+黄南 address 黄南 null
+海南 address 海南 null
+西宁 address 西宁 null
+海东 address 海东 null
+海西 address 海西 null
+海北 address 海北 null
+果洛 address 果洛 null
+玉树 address 玉树 null
+宁夏 address 宁夏 null
+银川 address 银川 null
+吴忠 address 吴忠 null
+新疆 address 新疆 null
+乌鲁木齐 address 乌鲁木齐 null
+哈密 address 哈密 null
+喀什 address 喀什 null
+巴音郭楞 address 巴音郭楞 null
+昌吉 address 昌吉 null
+伊犁 address 伊犁 null
+阿勒泰 address 阿勒泰 null
+克拉玛依 address 克拉玛依 null
+博尔塔拉 address 博尔塔拉 null
+香港 address 香港 null
+中西区 address 中西区 null
+湾仔区 address 湾仔区 null
+东区 address 东区 null
+南区 address 南区 null
+九龙-油尖旺区 address 九龙-油尖旺区 null
+九龙-深水埗区 address 九龙-深水埗区 null
+九龙-九龙城区 address 九龙-九龙城区 null
+九龙-黄大仙区 address 九龙-黄大仙区 null
+九龙-观塘区 address 九龙-观塘区 null
+新界-北区 address 新界-北区 null
+新界-大埔区 address 新界-大埔区 null
+新界-沙田区 address 新界-沙田区 null
+新界-西贡区 address 新界-西贡区 null
+新界-荃湾区 address 新界-荃湾区 null
+新界-屯门区 address 新界-屯门区 null
+新界-元朗区 address 新界-元朗区 null
+新界-葵青区 address 新界-葵青区 null
+新界-离岛区 address 新界-离岛区 null
+澳门 address 澳门 null
+花地玛堂区 address 花地玛堂区 null
+圣安多尼堂区 address 圣安多尼堂区 null
+大堂区 address 大堂区 null
+望德堂区 address 望德堂区 null
+风顺堂区 address 风顺堂区 null
+嘉模堂区 address 嘉模堂区 null
+圣方济各堂区 address 圣方济各堂区 null
+路氹城 address 路氹城 null
+今天 time 0 null
+明天 time 1 null
+后天 time 2 null
+大后天 time 3 null
+昨天 time -1 null
+前天 time -2 null
+星期一 time 1 null
+星期二 time 2 null
+星期三 time 3 null
+星期四 time 4 null
+星期五 time 5 null
+星期六 time 6 null
+星期天 time 7 null
+周一 time 1 null
+周二 time 2 null
+周三 time 3 null
+周四 time 4 null
+周五 time 5 null
+周六 time 6 null
+周日 time 7 null
+星期1 time 1 null
+星期2 time 2 null
+星期3 time 3 null
+星期4 time 4 null
+星期5 time 5 null
+星期6 time 6 null
+天气 weather 天气 null
+气温 weather 气温 null
+温度 weather 温度 null
+雨 weather 雨 null
+雪 weather 雪 null
+雾 weather 雾 null
+风 weather 风 null
+霾 weather 霾 null
+寒 temprature 寒 null
+冷 temprature 冷 null
+热 temprature 热 null
+电影 video 电影 null
+影片 video 影片 null
+科幻电影 video 科幻电影 null
+不想 not 不想 null
+不要 not 不要 null
+不 not 不 null
+否 not 否 null
+取消 not 取消 null
+是 yes 是 null
+可以 yes 可以 null
+和 conjunction and null
+或 conjunction or null
+与 conjunction and null
+票 parent ticket null
+车票 parent ticket null
+火车票 traintkt 火车票 ticket
+汽车票 cartkt 汽车票 ticket
+飞机票 planetkt 飞机票 ticket
+航班 planetkt 航班 ticket
+机票 planetkt 机票 ticket
+船票 shiptkt 船票 ticket
+笑话 joke 笑话 null
+位置 location 位置 null
+地方 location 地方 null
+地方 location 地方 null
+要 want 要 null
+订 choose 订 null
+选择 choose 选择 null
+1 number 1 null
+2 number 2 null
+3 number 3 null
+4 number 4 null
+5 number 5 null
+6 number 6 null
+7 number 7 null
+8 number 8 null
+9 number 9 null
+第一个 index 1 null
+第二个 index 2 null
+第三个 index 3 null
+第四个 index 4 null
+第五个 index 5 null
+第六个 index 6 null
+第七个 index 7 null
+第八个 index 8 null
+第九个 index 9 null
+第十个 index 10 null
+第一 index 1 null
+第二 index 2 null
+第三 index 3 null
+第四 index 4 null
+第五 index 5 null
+第六 index 6 null
+第七 index 7 null
+第八 index 8 null
+第九 index 9 null
+第十 index 10 null
+第1个 index 1 null
+第2个 index 2 null
+第3个 index 3 null
+第4个 index 4 null
+第5个 index 5 null
+第6个 index 6 null
+第7个 index 7 null
+第8个 index 8 null
+第9个 index 9 null
+第1 index 1 null
+第2 index 2 null
+第3 index 3 null
+第4 index 4 null
+第5 index 5 null
+第6 index 6 null
+第7 index 7 null
+第8 index 8 null
+第9 index 9 null
+第一条 index 1 null
+第二条 index 2 null
+第三条 index 3 null
+第四条 index 4 null
+第五条 index 5 null
+第六条 index 6 null
+第七条 index 7 null
+第八条 index 8 null
+第九条 index 9 null
+第十条 index 10 null
+第1条 index 1 null
+第2条 index 2 null
+第3条 index 3 null
+第4条 index 4 null
+第5条 index 5 null
+第6条 index 6 null
+第7条 index 7 null
+第8条 index 8 null
+第9条 index 9 null

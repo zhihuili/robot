@@ -1,0 +1,13 @@
+##表单模板
+##@author fsjohnhuang
+##@version 1.0
+## 引入外部模板文件
+#parse('resources/vm/flightmacro.vm')
+## 主逻辑
+<form action="$action">
+<table>
+#foreach($flight in $flights)
+  #table($flight.index $flight.depTime $flight.depcity $flight.airline $flight.flightNum $flight.arrTime $flight.arrcity)
+#end
+</table>
+</form>
