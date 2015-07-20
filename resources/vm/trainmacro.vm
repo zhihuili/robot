@@ -1,9 +1,7 @@
 #macro(table $index $trainno $fromstationname $tostationname $starttime $arrivetime $trainclassname $lishi)
 		<tr>
-			<td rowspan="5"><font size="1" color="＃4876FF">$index</font></td>
-			<td rowspan="3"><font size="1" color="＃4876FF"><b>$trainno</b></font></td>
-		</tr>
-		<tr>
+			<td rowspan="2"><font size="1" color="＃4876FF">$index</font></td>
+			<td rowspan="2"><font size="1" color="＃4876FF"><b>$trainno</b></font></td>
 			<td><font size="1" color="＃4876FF">$starttime</font></td>
 			<td><font size="1" color="＃4876FF">$fromstationname</font></td>
 			<td><font size="1" color="＃4876FF">$lishi</font></td>
@@ -11,6 +9,6 @@
 		<tr>
 			<td><font size="1" color="＃4876FF">$arrivetime</font></td>
 			<td><font size="1" color="＃4876FF">$tostationname</font></td>
-			<td><font size="1" color="＃4876FF"color="＃4876FF">$trainclassname</font></td>
+			<td><font size="1" color="＃4876FF">$trainclassnam</font></td>
 		</tr>
 #end
