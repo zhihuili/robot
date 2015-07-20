@@ -6,16 +6,22 @@
                     <font size="1" color="＃4876FF"> $index </font>
                  </td>
 	             <td>
+	               <center>
 	               <font size="1" color="＃4876FF">$starttime</font><br/>
 	               <font size="1" color="＃4876FF">$depcity
+	               </center>
 	             </td>
 	             <td>
+	               <center>
 	               <font size="1" color="＃4876FF">$airline</font><br/>
 	               <font size="1" color="＃4876FF">$flightNum </font>
+	               </center>
 	             </td>
 	              <td>
+	              <center>
 	               <font size="1" color="＃4876FF">$arrtime </font><br/>
 	               <font size="1" color="＃4876FF">$arrcity</font>
+	               </center>
 	             </td>
       </tr>
 #end

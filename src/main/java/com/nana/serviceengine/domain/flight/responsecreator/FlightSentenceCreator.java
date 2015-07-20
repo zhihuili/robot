@@ -66,6 +66,7 @@ public class FlightSentenceCreator implements SentenceCreator {
 		
 		// 获取用户的选择的那一航班信息
 		Integer choice= (Integer)paramItems.get("choice").getValue();
+		
 		if (choice != null && choice != -1) {// 搜集到了用户的选择
 			if (choice >= 1 && choice <= 5) {// 在选择范围
 				int choose = start + choice - 1;
