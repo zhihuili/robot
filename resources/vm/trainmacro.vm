@@ -9,6 +9,6 @@
 		<tr>
 			<td><font size="1" color="＃4876FF">$arrivetime</font></td>
 			<td><font size="1" color="＃4876FF">$tostationname</font></td>
-			<td><font size="1" color="＃4876FF">$trainclassnam</font></td>
+			<td><font size="1" color="＃4876FF">$trainclassname</font></td>
 		</tr>
 #end
