@@ -1,26 +1,30 @@
 ##表单模板
+<body>
 <form action="$action">
-<table>
-	<tr>
-	           <td size="1" color="#4876FF">出发站</td>
-	           <td size="1" color="#4876FF">到达站</td>
-	           <td size="1" color="#4876FF">
-	               出发时间
-	             </td>
-	              <td size="1" color="#4876FF">	              
-	               目的城市
-	             </td>
-	</tr>
+<TABLE width="100%">
+				<tr bgColor=#F2F2F2>
+					<th width="20%" ><font size="1" >发车时间</font></th>
+					<th width="20%" ><font size="1">出发/到达站</font></th>
+					<th width="20%"><font size="1" >车价</font></th>
+				</tr>
+<／body>				
 #foreach($input in $inputs)
-  <tr>
-                 <td size="1" color="#4876FF">$input.start</td>
-	             <td size="1" color="#4876FF">$input.arrive</td>
-	             <td size="1" color="#4876FF">
-	              $input.date
-	             </td>
-	              <td size="1" color="#4876FF">	            
-	               $input.price
-	             </td>
-      </tr>
+##  <tr>
+##                 <td size="1" color="#4876FF">$input.start</td>
+##	             <td size="1" color="#4876FF">$input.arrive</td>
+##	             <td size="1" color="#4876FF">$input.date</td>
+##	             <td size="1" color="#4876FF">$input.price</td>
+##      </tr>
+##      
+      <tr>
+					<th rowspan="2"><font size="1" >$input.date</font></th>
+					<td align="center"><font size="1" color="#FF7F00">始</font> <font
+						size="1">$input.start</font></td>
+					<th rowspan="2"><font color="#FF7F00" size="1">$input.price</font></th>
+				</tr>
+				<tr>
+					<td align="center"><font size="1" color="#FF7F00">终</font> <font
+						size="1">$input.arrive</font></td>
+				</tr>  
 #end
 </form>
