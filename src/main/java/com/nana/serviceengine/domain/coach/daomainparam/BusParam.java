@@ -52,7 +52,7 @@ public class BusParam extends DomainParam<Bus> {
 		
 		ParamItem starStation=new ParamItem();
 		starStation.setName("start");
-		starStation.setAlertMes("请告诉我您要查询汽车站的出发点");
+		starStation.setAlertMes("请告诉我您的出发点");
 		starStation.setCollector(BusStartStationCollector.getInstance());
 		starStation.setNeedExternalLoad(true);
 		starStation.setCmd(new ParamCommand() {
@@ -68,7 +68,7 @@ public class BusParam extends DomainParam<Bus> {
 		ParamItem endStation = new  ParamItem();
 		endStation.setName("end");
 		endStation.setCollector(BusEndStationCollector.getInstance());
-		endStation.setAlertMes("请告诉我您要查询汽车站的终点");
+		endStation.setAlertMes("请告诉我您的终点");
 		endStation.setNeedExternalLoad(true);
 		endStation.setCmd(new ParamCommand() {
 			

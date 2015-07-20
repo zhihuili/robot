@@ -1,5 +1,6 @@
 package com.nana.serviceengine.domain.coach.responsecreator;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,8 +9,10 @@ import java.util.Map;
 import com.alibaba.fastjson.JSON;
 import com.nana.serviceengine.adapter.ResponseMessageAdapter;
 import com.nana.serviceengine.domain.coach.bean.Bus;
+import com.nana.serviceengine.domain.coach.webapi.BusAPI;
 import com.nana.serviceengine.domain.commonapi.htmlcenter.HtmlCenter;
 import com.nana.serviceengine.domain.flight.bean.Flight;
+import com.nana.serviceengine.domain.weather.bean.WeatherFuture;
 import com.nana.serviceengine.inout.bean.ResponseDisplay;
 import com.nana.serviceengine.neuron.domainparam.DomainParam;
 import com.nana.serviceengine.neuron.domainparam.bean.ParamItem;
@@ -38,8 +41,13 @@ public class BusSentenceCreator implements SentenceCreator {
 		if(index==null){
 			index=1;	
 		}
-		List<Bus> bus = params.getResult();
-		System.out.println("choice"+choice);
+		
+		
+	    List<Bus> bus =params.getResult();
+		
+		
+		
+		
 		if(bus==null||bus.size()==0){
 			rma.setAudioText("对不起，没有数据。");
 			return rma;

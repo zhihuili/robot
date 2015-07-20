@@ -46,7 +46,7 @@ public class BusAPI {
 	  List<Bus> carGroup=null;
 	  StringBuffer sbf = new StringBuffer();
 	  String path=new StringBuffer("http://op.juhe.cn/onebox/bus/query_ab?key=").append("cc12dbba24917a2f97d4e3aecbb0c5d7").append("&from=").append(start).append("&to=").append(end).toString();
-	URL url;
+	  URL url;
 	try {
 		url = new URL(path);
 		HttpURLConnection connection;
@@ -66,12 +66,12 @@ public class BusAPI {
 			reader.close();
 			JSONObject oject = (JSONObject) JSONObject.parse(sbf.toString());
 			BusErrorCode errorCode = JSON.parseObject(sbf.toString(), BusErrorCode.class);
-			if(!errorCode.equals("0")){
+			if(!errorCode.getError_code().equals("0")){
 				carGroup=null;
-			}else{
-			    carGroup=JSON.parseArray(oject.getJSONObject("result").getJSONArray("list").toString(),Bus.class);
+				return carGroup;
 			}
-			
+			    carGroup=JSON.parseArray(oject.getJSONObject("result").getJSONArray("list").toString(),Bus.class);
+			    return carGroup;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
