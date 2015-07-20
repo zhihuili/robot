@@ -66,6 +66,7 @@ public class FlightSentenceCreator implements SentenceCreator {
 		
 		// 获取用户的选择的那一航班信息
 		Integer choice= (Integer)paramItems.get("choice").getValue();
+		
 		if (choice != null && choice != -1) {// 搜集到了用户的选择
 			if (choice >= 1 && choice <= 5) {// 在选择范围
 				int choose = start + choice - 1;
@@ -93,7 +94,7 @@ public class FlightSentenceCreator implements SentenceCreator {
 		if (flights != null) {
 			ResponseDisplay responseDisplay = new ResponseDisplay();
 			responseDisplay.setDataType("1");
-			responseDisplay.setHeight("0.6");
+			responseDisplay.setHeight("0.5");
 			responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList(
 					"flightfrm.vm", flights, "flights", "videohtml"));
 			rma.setDisplayText(JSON.toJSONString(responseDisplay));
