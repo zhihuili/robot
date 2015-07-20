@@ -94,7 +94,7 @@ public class FlightSentenceCreator implements SentenceCreator {
 		if (flights != null) {
 			ResponseDisplay responseDisplay = new ResponseDisplay();
 			responseDisplay.setDataType("1");
-			responseDisplay.setHeight("0.5");
+			responseDisplay.setHeight("0.6");
 			responseDisplay.setContent(HtmlCenter.getInstance().getHtmlByList(
 					"flightfrm.vm", flights, "flights", "videohtml"));
 			rma.setDisplayText(JSON.toJSONString(responseDisplay));
