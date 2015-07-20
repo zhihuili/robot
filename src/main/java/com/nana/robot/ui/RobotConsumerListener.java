@@ -7,6 +7,7 @@ import com.nana.common.mq.ConsumerListener;
 import com.nana.common.mq.MqFactory;
 import com.nana.common.mq.MqProducer;
 import com.nana.common.utils.Property;
+import com.nana.serviceengine.common.bean.GPS;
 import com.nana.serviceengine.common.bean.UserMessage;
 
 public class RobotConsumerListener implements ConsumerListener {
@@ -32,9 +33,14 @@ public class RobotConsumerListener implements ConsumerListener {
 				RequestMessage.class);
 		System.out.println("user say" + reqMessage.getContent());
 		UserMessage mes = new UserMessage();
+		GPS gps = new GPS();
+		gps.setLat(reqMessage.getGps().getLongitude()+"");
+		gps.setLon(reqMessage.getGps().getLatitude()+"");
+		System.out.println("user location(lat:"+gps.getLat()+"lon:"+gps.getLon());
 		mes.setUserid(reqMessage.getId());
 		mes.setMessage(reqMessage.getContent());
 		mes.setReqMessage(reqMessage);
+		mes.setGps(gps);
 		robot.getAnswer(mes);
 	}
 
