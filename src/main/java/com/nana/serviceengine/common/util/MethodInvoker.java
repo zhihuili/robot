@@ -1,6 +1,5 @@
 package com.nana.serviceengine.common.util;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 
@@ -25,21 +24,8 @@ public class MethodInvoker {
 			}
 			method = target.getClass().getMethod(methodName, tmp);
 			return method.invoke(target, args);
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			;
 		}
 		return null;
 	}
@@ -59,21 +45,8 @@ public class MethodInvoker {
 			}
 			method = target.getClass().getMethod(methodName, types);
 			return method.invoke(target, args);
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			;
 		}
 		return null;
 	}

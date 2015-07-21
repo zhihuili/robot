@@ -31,7 +31,7 @@ public class ZhidaoAnalysis {
 			Document doc = Jsoup.connect(url+"?word="+keyWord).get();
 			return ContentAnalysisor.getInstance().getBeanFromItemHtml(doc, model, ZhidaoBean.class);		
 		}catch(Exception ex){
-			ex.printStackTrace();
+			;
 		}
 		return null;
 	} 
