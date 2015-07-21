@@ -64,7 +64,7 @@ public class ContentAnalysisor {
 			}
 			return res;
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			
 		}
 		return null;
 	}
@@ -104,7 +104,7 @@ public class ContentAnalysisor {
 			}
 			return content;
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			;
 		}
 		return null;
 

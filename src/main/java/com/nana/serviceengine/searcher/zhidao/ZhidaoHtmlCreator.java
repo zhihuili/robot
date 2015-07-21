@@ -17,7 +17,7 @@ public class ZhidaoHtmlCreator {
 	}
 	
 	public String createAppHtml(List<Object> data){
-		if(data.size() == 0) return ComminDic.ERRORPAGE;
+		if(data == null || data.size() == 0) return null;
 		return HtmlCenter.getInstance().formatVM("zhidaohtml.vm", data.get(0));
 	}
 	
