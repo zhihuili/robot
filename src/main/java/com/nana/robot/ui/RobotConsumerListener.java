@@ -34,8 +34,8 @@ public class RobotConsumerListener implements ConsumerListener {
 		System.out.println("user say" + reqMessage.getContent());
 		UserMessage mes = new UserMessage();
 		GPS gps = new GPS();
-		gps.setLat(reqMessage.getGps().getLongitude()+"");
-		gps.setLon(reqMessage.getGps().getLatitude()+"");
+		gps.setLat(reqMessage.getGps().getLatitude()+"");
+		gps.setLon(reqMessage.getGps().getLongitude()+"");
 		System.out.println("user location(lat:"+gps.getLat()+"lon:"+gps.getLon());
 		mes.setUserid(reqMessage.getId());
 		mes.setMessage(reqMessage.getContent());
