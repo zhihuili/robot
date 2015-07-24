@@ -43,6 +43,9 @@ public class Aiml implements AIMLElement {
 			defaultTopic.appendChild(category);
 			categories.add(category);
 		} else {
+//			if(!(child instanceof Pattern)){
+//				java.lang.System.out.println(child.toString());
+//			}
 			Topic topic = (Topic) child; // 如果child不是topic的类型怎么办？
 			topics.add(topic);
 			categories.addAll(topic.getCategories());
