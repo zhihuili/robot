@@ -23,7 +23,7 @@ public class UserMessageDataFiller {
 	public void dataFill(UserMessage mes) {
 		// 分词
 		if (mes.getTerms() == null || mes.getTerms().size() == 0)
-			mes.setTerms(ToAnalysis.parse(mes.getMessage()));
+			mes.setTerms(ToAnalysis.parse(mes.getMessage()).getTerms());
 		// 分析语法
 		if (mes.getGrammerItem() == null) {
 			mes.setGrammerItem(MessagePreTreator.getInstance().getGrammerItem(
